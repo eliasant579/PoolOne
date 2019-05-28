@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BallClass.cs" />
+    <Compile Include="HighScores.cs" />
     <Compile Include="HighScoresScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
