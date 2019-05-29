@@ -46,57 +46,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BallClass.cs" />
-    <Compile Include="HighScores.cs" />
-    <Compile Include="HighScoresScreen.cs">
+    <Compile Include="Classes\BallClass.cs" />
+    <Compile Include="Classes\HighScores.cs" />
+    <Compile Include="Screens\HighScoresScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HighScoresScreen.Designer.cs">
+    <Compile Include="Screens\HighScoresScreen.Designer.cs">
       <DependentUpon>HighScoresScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="PocketClass.cs" />
+    <Compile Include="Classes\PocketClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MenuScreen.cs">
+    <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MenuScreen.Designer.cs">
+    <Compile Include="Screens\MenuScreen.Designer.cs">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameScreen.cs">
+    <Compile Include="Screens\GameScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GameScreen.Designer.cs">
+    <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="PauseScreen.cs">
+    <Compile Include="Screens\PauseScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PauseScreen.Designer.cs">
+    <Compile Include="Screens\PauseScreen.Designer.cs">
       <DependentUpon>PauseScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameOverScreen.cs">
+    <Compile Include="Screens\GameOverScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GameOverScreen.Designer.cs">
+    <Compile Include="Screens\GameOverScreen.Designer.cs">
       <DependentUpon>GameOverScreen.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GameOverScreen.resx">
+    <EmbeddedResource Include="Screens\GameOverScreen.resx">
       <DependentUpon>GameOverScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HighScoresScreen.resx">
+    <EmbeddedResource Include="Screens\HighScoresScreen.resx">
       <DependentUpon>HighScoresScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PauseScreen.resx">
+    <EmbeddedResource Include="Screens\PauseScreen.resx">
       <DependentUpon>PauseScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -108,10 +108,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MenuScreen.resx">
+    <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameScreen.resx">
+    <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -127,5 +127,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
