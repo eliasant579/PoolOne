@@ -34,21 +34,22 @@
             // clothPlaceHolderLabel
             // 
             this.clothPlaceHolderLabel.BackColor = System.Drawing.Color.DarkGreen;
-            this.clothPlaceHolderLabel.Location = new System.Drawing.Point(30, 30);
+            this.clothPlaceHolderLabel.Location = new System.Drawing.Point(40, 37);
+            this.clothPlaceHolderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.clothPlaceHolderLabel.Name = "clothPlaceHolderLabel";
-            this.clothPlaceHolderLabel.Size = new System.Drawing.Size(740, 440);
+            this.clothPlaceHolderLabel.Size = new System.Drawing.Size(987, 542);
             this.clothPlaceHolderLabel.TabIndex = 0;
             this.clothPlaceHolderLabel.Text = "clothPlaceHolderLabel";
-            this.clothPlaceHolderLabel.Visible = false;
             // 
             // GameScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.Controls.Add(this.clothPlaceHolderLabel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GameScreen";
-            this.Size = new System.Drawing.Size(800, 500);
+            this.Size = new System.Drawing.Size(1067, 615);
             this.ResumeLayout(false);
 
         }
