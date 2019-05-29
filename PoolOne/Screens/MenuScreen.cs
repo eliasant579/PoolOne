@@ -38,10 +38,11 @@ namespace PoolOne
             this.Parent.Controls.Remove(this);
 
             HighScoresScreen hs = new HighScoresScreen();
-            this.Parent.Controls.Add(hs);
+            form.Controls.Add(hs);
 
             hs.Location = new Point((form.Width - hs.Width) / 2, (form.Height - hs.Height) / 2);
             hs.BringToFront();
+
         }
     }
 }
