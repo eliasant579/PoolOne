@@ -19,11 +19,6 @@ namespace PoolOne
 
         private void MainForm_Load(object sender, EventArgs e)
         {           
-            MenuScreen ms = new MenuScreen();
-            this.Controls.Add(ms);
-
-            ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
-
             GameScreen gs = new GameScreen();
             this.Controls.Add(gs);
 
