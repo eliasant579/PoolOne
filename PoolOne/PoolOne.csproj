@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\BallClass.cs" />
+    <Compile Include="Classes\Ball.cs" />
     <Compile Include="Classes\HighScores.cs" />
     <Compile Include="Screens\HighScoresScreen.cs">
       <SubType>UserControl</SubType>
@@ -54,7 +54,7 @@
     <Compile Include="Screens\HighScoresScreen.Designer.cs">
       <DependentUpon>HighScoresScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\PocketClass.cs" />
+    <Compile Include="Classes\Pocket.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

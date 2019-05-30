@@ -42,7 +42,6 @@ namespace PoolOne
 
             hs.Location = new Point((form.Width - hs.Width) / 2, (form.Height - hs.Height) / 2);
             hs.BringToFront();
-
         }
     }
 }
