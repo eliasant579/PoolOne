@@ -111,7 +111,7 @@ namespace PoolOne
             }
         }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
+        private void singlePlayerTimer_Tick(object sender, EventArgs e)
         {
             if(true)
             {
@@ -120,10 +120,10 @@ namespace PoolOne
             Refresh();
         }
 
-        public static void RemoveMenuScreen(MenuScreen ms)
+        public static void RemoveMenuScreen(MenuScreen ms, int playerNumber)
         {          
             thisScreen.Controls.Remove(ms);
-            thisScreen.gameTimer.Enabled = true;
+            thisScreen.singlePalyerTimer.Enabled = true;
         }
 
         public static void LoadHighScoresScreen(MenuScreen ms)
