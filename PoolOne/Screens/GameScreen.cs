@@ -13,7 +13,7 @@ namespace PoolOne
     public partial class GameScreen : UserControl
     {
         const int BORDERSIZE = 30;
-        List<Ball> ballList = new List<Ball>();
+        Ball[] ballsArray = new Ball[16];
         public Random randGenerator = new Random();
         public static GameScreen thisScreen = new GameScreen();
 
@@ -34,7 +34,7 @@ namespace PoolOne
             ms.BringToFront();
 
             Ball testBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, 0, Color.White, "solid");
-            ballList.Add(testBall);
+            ballsArray[0] = testBall;
 
             for (int i = 1; i < 16; i++)
             {
@@ -89,6 +89,8 @@ namespace PoolOne
                         nextBall.colour = Color.Maroon;
                         break;
                 }
+
+                ballsArray[i] = nextBall;
             }
         }
 
@@ -101,8 +103,9 @@ namespace PoolOne
             e.Graphics.FillRectangle(borderBrush, this.Width - BORDERSIZE, 0, BORDERSIZE, this.Height);
             e.Graphics.FillRectangle(borderBrush, 0, this.Height - BORDERSIZE, this.Width, BORDERSIZE);
 
-            foreach(Ball b in ballList)
+            for (int i = 0; i < 16; i++)
             {
+                Ball b = ballsArray[i];
                 ballBrush.Color = b.colour;
                 e.Graphics.FillEllipse(ballBrush, b.x, b.y, b.size, b.size);
             }
@@ -110,7 +113,11 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            int i = 0;
+            if(true)
+            {
+                ballsArray[0].x++;
+            }
+            Refresh();
         }
 
         public static void RemoveMenuScreen(MenuScreen ms)
