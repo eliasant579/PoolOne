@@ -15,14 +15,16 @@ namespace PoolOne
         const int BORDERSIZE = 30;
         List<Ball> ballList = new List<Ball>();
         public Random randGenerator = new Random();
+        public static GameScreen thisScreen = new GameScreen();
 
         public GameScreen()
         {
             InitializeComponent();
-            OnScreen();
+            InitializeValues();
+            thisScreen = this;
         }
 
-        public void OnScreen()
+        public void InitializeValues()
         {
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);
@@ -31,7 +33,7 @@ namespace PoolOne
             ms.BackColor = Color.FromArgb(80, 128, 128, 128);
             ms.BringToFront();
 
-            Ball testBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, 0, Color.White);
+            Ball testBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, 0, Color.White, "solid");
             ballList.Add(testBall);
 
             for (int i = 1; i < 16; i++)
@@ -104,6 +106,30 @@ namespace PoolOne
                 ballBrush.Color = b.colour;
                 e.Graphics.FillEllipse(ballBrush, b.x, b.y, b.size, b.size);
             }
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            int i = 0;
+        }
+
+        public static void RemoveMenuScreen(MenuScreen ms)
+        {          
+            thisScreen.Controls.Remove(ms);
+            thisScreen.gameTimer.Enabled = true;
+        }
+
+        public static void LoadHighScoresScreen(MenuScreen ms)
+        {
+            thisScreen.Controls.Remove(ms);
+
+            HighScoresScreen hs = new HighScoresScreen();
+            thisScreen.Controls.Add(hs);
+
+            Form form = thisScreen.FindForm();
+
+            hs.Location = new Point((form.Width - hs.Width) / 2, (form.Height - hs.Height) / 2);
+            hs.BringToFront();
         }
     }
 }

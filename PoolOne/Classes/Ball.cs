@@ -12,9 +12,9 @@ namespace PoolOne
         public float x, y, xSpeed, ySpeed;
         public int size, number;
         public Color colour;
-        public bool inPocket;
+        public bool stripesTrue, inPocket;
 
-        public Ball(float _x, float _y, float _xSpeed, float _ySpeed, int _ballSize, int _number, Color _colour)
+        public Ball(float _x, float _y, float _xSpeed, float _ySpeed, int _ballSize, int _number, Color _colour, string _stripesOrSolid)
         {
             x = _x;
             y = _y;
@@ -23,11 +23,22 @@ namespace PoolOne
             size = _ballSize;
             number = _number;
             colour = _colour;
+
+            if(_stripesOrSolid == "stripes")
+            {
+                stripesTrue = true;
+            }
+            else
+            {
+                stripesTrue = false;
+            }
+
             inPocket = false;
         }
 
         public Ball()
         {
+            //empty method
         }
     }
 }

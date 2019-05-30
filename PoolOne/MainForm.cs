@@ -18,11 +18,13 @@ namespace PoolOne
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {           
+        {
             GameScreen gs = new GameScreen();
             this.Controls.Add(gs);
 
             gs.Location = new Point((this.Width - gs.Width) / 2, (this.Height - gs.Height) / 2);
+            gs.BringToFront();
         }
+
     }
 }
