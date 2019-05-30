@@ -28,32 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.testButton = new System.Windows.Forms.Button();
+            this.backToMenuButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // testButton
+            // backToMenuButton
             // 
-            this.testButton.Location = new System.Drawing.Point(420, 161);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(75, 23);
-            this.testButton.TabIndex = 0;
-            this.testButton.Text = "TEST";
-            this.testButton.UseVisualStyleBackColor = true;
+            this.backToMenuButton.Location = new System.Drawing.Point(465, 299);
+            this.backToMenuButton.Margin = new System.Windows.Forms.Padding(4);
+            this.backToMenuButton.Name = "backToMenuButton";
+            this.backToMenuButton.Size = new System.Drawing.Size(140, 28);
+            this.backToMenuButton.TabIndex = 0;
+            this.backToMenuButton.Text = "Back to menu";
+            this.backToMenuButton.UseVisualStyleBackColor = true;
+            this.backToMenuButton.Click += new System.EventHandler(this.backToMenuButton_Click);
             // 
             // HighScoresScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.testButton);
+            this.Controls.Add(this.backToMenuButton);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HighScoresScreen";
-            this.Size = new System.Drawing.Size(800, 500);
+            this.Size = new System.Drawing.Size(645, 355);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button testButton;
+        private System.Windows.Forms.Button backToMenuButton;
     }
 }
