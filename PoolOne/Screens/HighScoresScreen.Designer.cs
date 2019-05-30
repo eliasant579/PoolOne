@@ -33,7 +33,7 @@
             // 
             // backToMenuButton
             // 
-            this.backToMenuButton.Location = new System.Drawing.Point(465, 299);
+            this.backToMenuButton.Location = new System.Drawing.Point(515, 320);
             this.backToMenuButton.Margin = new System.Windows.Forms.Padding(4);
             this.backToMenuButton.Name = "backToMenuButton";
             this.backToMenuButton.Size = new System.Drawing.Size(140, 28);
@@ -46,11 +46,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.backToMenuButton);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HighScoresScreen";
-            this.Size = new System.Drawing.Size(645, 355);
+            this.Size = new System.Drawing.Size(668, 404);
             this.ResumeLayout(false);
 
         }

@@ -16,7 +16,6 @@ namespace PoolOne
         Ball[] ballsArray = new Ball[16];
         public Random randGenerator = new Random();
         public static GameScreen thisScreen = new GameScreen();
-        public static HighScoresScreen hs = new HighScoresScreen();
 
         public GameScreen()
         {
@@ -29,7 +28,11 @@ namespace PoolOne
         {
             //put menu on top of this game screen
             MenuScreen ms = new MenuScreen();
-            LoadMenuScreen(ms);
+            this.Controls.Add(ms);
+
+            ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
+            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
+            ms.BringToFront();
 
             //whiteball
             Ball cueBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, Color.White, "solid");
@@ -138,17 +141,8 @@ namespace PoolOne
             Refresh();
         }
 
-        public static void LoadMenuScreen(MenuScreen ms)
-        {
-            thisScreen.Controls.Add(ms);
-
-            ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
-            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
-            ms.BringToFront();
-        }
-
         public static void RemoveMenuScreen(MenuScreen ms)
-        {
+        {          
             thisScreen.Controls.Remove(ms);
             thisScreen.gameTimer.Enabled = true;
         }
@@ -159,18 +153,27 @@ namespace PoolOne
 
             Form form = thisScreen.FindForm();
 
-            hs.Location = new Point((form.Width - hs.Width) / 2, (form.Height - hs.Height) / 2);
+            HighScoresScreen hs = new HighScoresScreen();
+
+            hs.Location = new Point((thisScreen.Width - hs.Width) / 2, (thisScreen.Height - hs.Height) / 2);
+            hs.BackColor = Color.FromArgb(80, 128, 128, 128);
 
             thisScreen.Controls.Add(hs);
             hs.BringToFront();
         }
 
-        public static void RemoveHighScoresScreen()
+        public static void RemoveHighScoresScreen(HighScoresScreen hss)
         {
-            thisScreen.Controls.Remove(hs);
+            thisScreen.Controls.Remove(hss);
 
             MenuScreen ms = new MenuScreen();
-            LoadMenuScreen(ms);
+            thisScreen.Controls.Add(ms);
+
+            Form form = thisScreen.FindForm();
+
+            ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
+            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
+            ms.BringToFront();
         }
 
     }
