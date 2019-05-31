@@ -36,9 +36,10 @@
             // 
             // onePlayerButton
             // 
-            this.onePlayerButton.Location = new System.Drawing.Point(47, 208);
+            this.onePlayerButton.Location = new System.Drawing.Point(63, 256);
+            this.onePlayerButton.Margin = new System.Windows.Forms.Padding(4);
             this.onePlayerButton.Name = "onePlayerButton";
-            this.onePlayerButton.Size = new System.Drawing.Size(75, 23);
+            this.onePlayerButton.Size = new System.Drawing.Size(100, 28);
             this.onePlayerButton.TabIndex = 0;
             this.onePlayerButton.Text = "One player";
             this.onePlayerButton.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // twoPlayersButton
             // 
-            this.twoPlayersButton.Location = new System.Drawing.Point(146, 260);
+            this.twoPlayersButton.Location = new System.Drawing.Point(195, 320);
+            this.twoPlayersButton.Margin = new System.Windows.Forms.Padding(4);
             this.twoPlayersButton.Name = "twoPlayersButton";
-            this.twoPlayersButton.Size = new System.Drawing.Size(75, 23);
+            this.twoPlayersButton.Size = new System.Drawing.Size(100, 28);
             this.twoPlayersButton.TabIndex = 1;
             this.twoPlayersButton.Text = "Two players";
             this.twoPlayersButton.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // highScoresButton
             // 
-            this.highScoresButton.Location = new System.Drawing.Point(259, 208);
+            this.highScoresButton.Location = new System.Drawing.Point(345, 256);
+            this.highScoresButton.Margin = new System.Windows.Forms.Padding(4);
             this.highScoresButton.Name = "highScoresButton";
-            this.highScoresButton.Size = new System.Drawing.Size(75, 23);
+            this.highScoresButton.Size = new System.Drawing.Size(100, 28);
             this.highScoresButton.TabIndex = 2;
             this.highScoresButton.Text = "Highscores";
             this.highScoresButton.UseVisualStyleBackColor = true;
@@ -66,9 +69,10 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(386, 260);
+            this.exitButton.Location = new System.Drawing.Point(515, 320);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.Size = new System.Drawing.Size(100, 28);
             this.exitButton.TabIndex = 3;
             this.exitButton.Text = "Quit";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -76,15 +80,17 @@
             // 
             // MenuScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.highScoresButton);
             this.Controls.Add(this.twoPlayersButton);
             this.Controls.Add(this.onePlayerButton);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuScreen";
-            this.Size = new System.Drawing.Size(501, 328);
+            this.Size = new System.Drawing.Size(668, 404);
             this.ResumeLayout(false);
 
         }

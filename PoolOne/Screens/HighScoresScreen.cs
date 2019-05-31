@@ -16,5 +16,10 @@ namespace PoolOne
         {
             InitializeComponent();
         }
+
+        private void backToMenuButton_Click(object sender, EventArgs e)
+        {
+            GameScreen.RemoveHighScoresScreen(this);
+        }
     }
 }

@@ -13,9 +13,14 @@ namespace PoolOne
     public partial class GameScreen : UserControl
     {
         const int BORDERSIZE = 30;
+        const float FRICTION_COEFFICIENT = 4;
+
         Ball[] ballsArray = new Ball[16];
         public Random randGenerator = new Random();
         public static GameScreen thisScreen = new GameScreen();
+
+        public int playerNumber;
+        public int player1Shots, player2Shots = 0;
 
         public GameScreen()
         {
@@ -26,6 +31,7 @@ namespace PoolOne
 
         public void InitializeValues()
         {
+            //put menu on top of this game screen
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);
 
@@ -33,12 +39,16 @@ namespace PoolOne
             ms.BackColor = Color.FromArgb(80, 128, 128, 128);
             ms.BringToFront();
 
-            Ball testBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, 0, Color.White, "solid");
-            ballsArray[0] = testBall;
+            //whiteball
+            Ball cueBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, Color.White, "solid");
+            ballsArray[0] = cueBall;
 
+            //generate balls 1 - 15
             for (int i = 1; i < 16; i++)
             {
                 Ball nextBall = new Ball();
+
+                nextBall.size = 30; 
                 
                 //changes colour
                 switch (i)
@@ -89,20 +99,45 @@ namespace PoolOne
                         nextBall.colour = Color.Maroon;
                         break;
                 }
+                
+                //Set if solid or stripes
+                if (i < 9)
+                {
+                    nextBall.solidTrue = true;
+                }
+                else if (i < 16)
+                {
+                    nextBall.solidTrue = false;
+                }
 
                 ballsArray[i] = nextBall;
             }
+
+            //assign to balls from 1 to 15 exept 8 random positions from position list
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                ballsArray[0].x += 2;
+            }
+            Refresh();
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            //Brushes
             SolidBrush borderBrush = new SolidBrush(Color.Maroon);
             SolidBrush ballBrush = new SolidBrush(Color.White);
+
+            //draw borders
             e.Graphics.FillRectangle(borderBrush, 0, 0, BORDERSIZE, this.Height);
             e.Graphics.FillRectangle(borderBrush, 0, 0, this.Width, BORDERSIZE);
             e.Graphics.FillRectangle(borderBrush, this.Width - BORDERSIZE, 0, BORDERSIZE, this.Height);
             e.Graphics.FillRectangle(borderBrush, 0, this.Height - BORDERSIZE, this.Width, BORDERSIZE);
 
+            //draw balls
             for (int i = 0; i < 16; i++)
             {
                 Ball b = ballsArray[i];
@@ -111,32 +146,44 @@ namespace PoolOne
             }
         }
 
-        private void singlePlayerTimer_Tick(object sender, EventArgs e)
-        {
-            if(true)
-            {
-                ballsArray[0].x++;
-            }
-            Refresh();
-        }
+        #region screens management
 
-        public static void RemoveMenuScreen(MenuScreen ms, int playerNumber)
+        public static void RemoveMenuScreen(MenuScreen ms, int n)
         {          
             thisScreen.Controls.Remove(ms);
-            thisScreen.singlePalyerTimer.Enabled = true;
+            thisScreen.gameTimer.Enabled = true;
+            thisScreen.playerNumber = n;
         }
 
         public static void LoadHighScoresScreen(MenuScreen ms)
         {
             thisScreen.Controls.Remove(ms);
 
+            Form form = thisScreen.FindForm();
+
             HighScoresScreen hs = new HighScoresScreen();
+
+            hs.Location = new Point((thisScreen.Width - hs.Width) / 2, (thisScreen.Height - hs.Height) / 2);
+            hs.BackColor = Color.FromArgb(80, 128, 128, 128);
+
             thisScreen.Controls.Add(hs);
+            hs.BringToFront();
+        }
+
+        public static void RemoveHighScoresScreen(HighScoresScreen hss)
+        {
+            thisScreen.Controls.Remove(hss);
+
+            MenuScreen ms = new MenuScreen();
+            thisScreen.Controls.Add(ms);
 
             Form form = thisScreen.FindForm();
 
-            hs.Location = new Point((form.Width - hs.Width) / 2, (form.Height - hs.Height) / 2);
-            hs.BringToFront();
+            ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
+            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
+            ms.BringToFront();
         }
+
+        #endregion
     }
 }
