@@ -14,8 +14,10 @@ namespace PoolOne
     {
         const int BORDERSIZE = 30;
         const float FRICTION_COEFFICIENT = 4;
+        const int BALL_SIZE = 30;
 
         Ball[] ballsArray = new Ball[16];
+        Point[] startPositionArray = new Point[16];
         public Random randGenerator = new Random();
         public static GameScreen thisScreen = new GameScreen();
 
@@ -39,20 +41,60 @@ namespace PoolOne
             ms.BackColor = Color.FromArgb(80, 128, 128, 128);
             ms.BringToFront();
 
-            //whiteball
-            Ball cueBall = new Ball(200, (this.Height - 30) / 2, 0, 0, 30, Color.White, "solid");
+            //*
+            //cueBall
+            Ball cueBall = new Ball(200, (this.Height - BALL_SIZE) / 2, 0, 0, 30, Color.White, "solid");
             ballsArray[0] = cueBall;
+            //*/
+
+            #region declaring start positions
+            //startPositionArray[0] = new Point();
+
+            startPositionArray[1] = new Point(this.Width / 2 + 3 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+
+            startPositionArray[2] = new Point(this.Width / 2 + 4 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
+            startPositionArray[3] = new Point(this.Width / 2 + 4 * BALL_SIZE, this.Height / 2 + 1);
+
+            startPositionArray[4] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
+            startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[5] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
+
+            startPositionArray[6] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
+            startPositionArray[7] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
+            startPositionArray[9] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height) / 2 + 1);
+            startPositionArray[10] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height + 2 * BALL_SIZE) / 2 + 2);
+
+            startPositionArray[11] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - 5 * BALL_SIZE) / 2 - 2);
+            startPositionArray[12] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
+            startPositionArray[13] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[14] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
+            startPositionArray[15] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
+
+
+            #endregion
 
             //generate balls 1 - 15
             for (int i = 1; i < 16; i++)
             {
                 Ball nextBall = new Ball();
+                nextBall.size = BALL_SIZE;
+                nextBall.xSpeed = 0;
+                nextBall.ySpeed = 0;
 
-                nextBall.size = 30; 
-                
+                nextBall.x = startPositionArray[i].X;
+                nextBall.y = startPositionArray[i].Y;
+
+                /*just for testing purposes
+                nextBall.x = i * 40;
+                nextBall.y = i * 20;
+                //*/
+
                 //changes colour
                 switch (i)
                 {
+                    case 0:
+                        nextBall.colour = Color.White;
+                        break;
                     case 1:
                         nextBall.colour = Color.Yellow;
                         break;
@@ -99,7 +141,7 @@ namespace PoolOne
                         nextBall.colour = Color.Maroon;
                         break;
                 }
-                
+
                 //Set if solid or stripes
                 if (i < 9)
                 {
@@ -149,7 +191,7 @@ namespace PoolOne
         #region screens management
 
         public static void RemoveMenuScreen(MenuScreen ms, int n)
-        {          
+        {
             thisScreen.Controls.Remove(ms);
             thisScreen.gameTimer.Enabled = true;
             thisScreen.playerNumber = n;
