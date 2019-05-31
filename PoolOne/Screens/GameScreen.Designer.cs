@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.singlePalyerTimer = new System.Windows.Forms.Timer(this.components);
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.twoPlayersTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // singlePalyerTimer
+            // gameTimer
             // 
-            this.singlePalyerTimer.Interval = 80;
-            this.singlePalyerTimer.Tick += new System.EventHandler(this.singlePlayerTimer_Tick);
+            this.gameTimer.Interval = 80;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // twoPlayersTimer
             // 
@@ -57,7 +57,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer singlePalyerTimer;
+        private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Timer twoPlayersTimer;
     }
 }
