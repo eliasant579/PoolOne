@@ -37,7 +37,7 @@
             // onePlayerButton
             // 
             this.onePlayerButton.Location = new System.Drawing.Point(63, 256);
-            this.onePlayerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.onePlayerButton.Margin = new System.Windows.Forms.Padding(4);
             this.onePlayerButton.Name = "onePlayerButton";
             this.onePlayerButton.Size = new System.Drawing.Size(100, 28);
             this.onePlayerButton.TabIndex = 0;
@@ -48,7 +48,7 @@
             // twoPlayersButton
             // 
             this.twoPlayersButton.Location = new System.Drawing.Point(195, 320);
-            this.twoPlayersButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.twoPlayersButton.Margin = new System.Windows.Forms.Padding(4);
             this.twoPlayersButton.Name = "twoPlayersButton";
             this.twoPlayersButton.Size = new System.Drawing.Size(100, 28);
             this.twoPlayersButton.TabIndex = 1;
@@ -59,7 +59,7 @@
             // highScoresButton
             // 
             this.highScoresButton.Location = new System.Drawing.Point(345, 256);
-            this.highScoresButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.highScoresButton.Margin = new System.Windows.Forms.Padding(4);
             this.highScoresButton.Name = "highScoresButton";
             this.highScoresButton.Size = new System.Drawing.Size(100, 28);
             this.highScoresButton.TabIndex = 2;
@@ -70,7 +70,7 @@
             // exitButton
             // 
             this.exitButton.Location = new System.Drawing.Point(515, 320);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(100, 28);
             this.exitButton.TabIndex = 3;
@@ -87,7 +87,8 @@
             this.Controls.Add(this.highScoresButton);
             this.Controls.Add(this.twoPlayersButton);
             this.Controls.Add(this.onePlayerButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(668, 404);
             this.ResumeLayout(false);

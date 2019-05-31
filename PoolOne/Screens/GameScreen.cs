@@ -13,9 +13,14 @@ namespace PoolOne
     public partial class GameScreen : UserControl
     {
         const int BORDERSIZE = 30;
+        const float FRICTION_COEFFICIENT = 4;
+
         Ball[] ballsArray = new Ball[16];
         public Random randGenerator = new Random();
         public static GameScreen thisScreen = new GameScreen();
+
+        public int playerNumber;
+        public int player1Shots, player2Shots = 0;
 
         public GameScreen()
         {
@@ -111,6 +116,15 @@ namespace PoolOne
             //assign to balls from 1 to 15 exept 8 random positions from position list
         }
 
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                ballsArray[0].x += 2;
+            }
+            Refresh();
+        }
+
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             //Brushes
@@ -132,19 +146,13 @@ namespace PoolOne
             }
         }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
-        {
-            if(true)
-            {
-                ballsArray[0].x += 2;
-            }
-            Refresh();
-        }
+        #region screens management
 
-        public static void RemoveMenuScreen(MenuScreen ms)
+        public static void RemoveMenuScreen(MenuScreen ms, int n)
         {          
             thisScreen.Controls.Remove(ms);
             thisScreen.gameTimer.Enabled = true;
+            thisScreen.playerNumber = n;
         }
 
         public static void LoadHighScoresScreen(MenuScreen ms)
@@ -176,5 +184,6 @@ namespace PoolOne
             ms.BringToFront();
         }
 
+        #endregion
     }
 }
