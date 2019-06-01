@@ -167,6 +167,7 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            //*/
             if (downArrowDown)
             {
                 ballsArray[0].y += 10;
@@ -178,12 +179,14 @@ namespace PoolOne
 
             if (leftArrowDown)
             {
-                ballsArray[0].x -= 10;
+                ballsArray[0].x -= 10f;
             }
             else if (rightArrowDown)
             {
                 ballsArray[0].x += 10;
             }
+            //*/
+
             Refresh();
         }
 
