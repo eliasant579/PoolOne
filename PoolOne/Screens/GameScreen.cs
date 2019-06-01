@@ -167,6 +167,7 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            /*Ball for testing
             if (downArrowDown)
             {
                 ballsArray[0].y += 10;
@@ -184,6 +185,43 @@ namespace PoolOne
             {
                 ballsArray[0].x += 10;
             }
+            //*/
+
+            //*/
+            if (downArrowDown)
+            {
+                ballsArray[0].ySpeed = 8;
+            }
+            else if (upArrowDown)
+            {
+                ballsArray[0].ySpeed = -8;
+            }
+            else
+            {
+                ballsArray[0].ySpeed = 0;
+            }
+
+            if (leftArrowDown)
+            {
+                ballsArray[0].xSpeed = -8;
+            }
+            else if (rightArrowDown)
+            {
+                ballsArray[0].xSpeed = 8;
+            }
+            else
+            {
+                ballsArray[0].xSpeed = 0;
+            }
+            //*/
+
+            //move balls by their speed
+            for (int i = 0; i < 16; i++)
+            {
+                ballsArray[i].x += ballsArray[i].xSpeed;
+                ballsArray[i].y += ballsArray[i].ySpeed;
+            }
+
             Refresh();
         }
 
