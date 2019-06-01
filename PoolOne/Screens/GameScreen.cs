@@ -15,6 +15,7 @@ namespace PoolOne
         const int BORDERSIZE = 30;
         const float FRICTION_COEFFICIENT = 4;
         const int BALL_SIZE = 30;
+        const int BALL_RADIUS = 15;
 
         Ball[] ballsArray = new Ball[16];
         Point[] startPositionArray = new Point[16];
@@ -69,7 +70,7 @@ namespace PoolOne
             for (int i = 0; i < 16; i++)
             {
                 Ball nextBall = new Ball();
-                nextBall.size = BALL_SIZE;
+                nextBall.radius = BALL_SIZE;
                 nextBall.xSpeed = 0;
                 nextBall.ySpeed = 0;
 
@@ -126,7 +127,7 @@ namespace PoolOne
                         break;
                 }
 
-                #region Maybe?
+                #region Maybe scramble?
                 /*to use only if I do scramble balls
                 //gets positions
                 switch (i)
@@ -145,7 +146,7 @@ namespace PoolOne
                         break;
                 }
                 */
-                #endregion
+                #endregion 
 
                 //get position
                 nextBall.x = startPositionArray[i].X;
@@ -242,7 +243,7 @@ namespace PoolOne
             {
                 Ball b = ballsArray[i];
                 ballBrush.Color = b.colour;
-                e.Graphics.FillEllipse(ballBrush, b.x, b.y, b.size, b.size);
+                e.Graphics.FillEllipse(ballBrush, b.x, b.y, b.radius * 2, b.radius * 2);
             }
         }
 
