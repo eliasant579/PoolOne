@@ -87,7 +87,7 @@
     <Compile Include="Screens\GameOverScreen.Designer.cs">
       <DependentUpon>GameOverScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vector2d.cs" />
+    <Compile Include="Classes\Vector2d.cs" />
     <EmbeddedResource Include="Screens\GameOverScreen.resx">
       <DependentUpon>GameOverScreen.cs</DependentUpon>
     </EmbeddedResource>

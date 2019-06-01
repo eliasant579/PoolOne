@@ -21,7 +21,9 @@ namespace PoolOne
         Point[] startPositionArray = new Point[16];
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown;
         public Random randGenerator = new Random();
+
         public static GameScreen thisScreen = new GameScreen();
+        public static MenuScreen ms = new MenuScreen();
 
         public int playerNumber;
         public int player1Shots, player2Shots = 0;
@@ -71,8 +73,8 @@ namespace PoolOne
             {
                 Ball nextBall = new Ball();
                 nextBall.radius = BALL_SIZE;
-                nextBall.xSpeed = 0;
-                nextBall.ySpeed = 0;
+                nextBall.velocity.x = 0;
+                nextBall.velocity.y = 0;
 
                 //changes colour
                 switch (i)
@@ -149,9 +151,10 @@ namespace PoolOne
                 #endregion 
 
                 //get position
-                nextBall.x = startPositionArray[i].X;
-                nextBall.y = startPositionArray[i].Y;
+                nextBall.position.x = startPositionArray[i].X;
+                nextBall.position.y = startPositionArray[i].Y;
 
+                /*
                 //Set if solid or stripes
                 if (i < 9)
                 {
@@ -161,7 +164,7 @@ namespace PoolOne
                 {
                     nextBall.solidTrue = false;
                 }
-
+                //*/
                 ballsArray[i] = nextBall;
             }
         }
@@ -191,36 +194,36 @@ namespace PoolOne
             //*/
             if (downArrowDown)
             {
-                ballsArray[0].ySpeed = 8;
+                ballsArray[0].velocity.y = 8;
             }
             else if (upArrowDown)
             {
-                ballsArray[0].ySpeed = -8;
+                ballsArray[0].velocity.y = -8;
             }
             else
             {
-                ballsArray[0].ySpeed = 0;
+                ballsArray[0].velocity.y = 0;
             }
 
             if (leftArrowDown)
             {
-                ballsArray[0].xSpeed = -8;
+                ballsArray[0].velocity.x = -8;
             }
             else if (rightArrowDown)
             {
-                ballsArray[0].xSpeed = 8;
+                ballsArray[0].velocity.x = 8;
             }
             else
             {
-                ballsArray[0].xSpeed = 0;
+                ballsArray[0].velocity.x = 0;
             }
             //*/
 
             //move balls by their speed
             for (int i = 0; i < 16; i++)
             {
-                ballsArray[i].x += ballsArray[i].xSpeed;
-                ballsArray[i].y += ballsArray[i].ySpeed;
+                ballsArray[i].position.x += ballsArray[i].velocity.x;
+                ballsArray[i].position.y += ballsArray[i].velocity.y;
             }
 
             Refresh();
@@ -243,7 +246,7 @@ namespace PoolOne
             {
                 Ball b = ballsArray[i];
                 ballBrush.Color = b.colour;
-                e.Graphics.FillEllipse(ballBrush, b.x, b.y, b.radius * 2, b.radius * 2);
+                e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
             }
         }
 
@@ -251,7 +254,7 @@ namespace PoolOne
 
         public static void LoadMenuScreen()
         {
-            MenuScreen ms = new MenuScreen();
+            //ms = new MenuScreen();
             thisScreen.Controls.Add(ms);
 
             ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);

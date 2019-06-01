@@ -50,26 +50,30 @@ namespace PoolOne
         public Vector2d velocity;
         public Vector2d position;
         public float radius;
-        public float angularVel;
-        public float orientation = 45f;
+        public Boolean inPocket;
+        //public float angularVel;
+        //public float orientation = 45f;
 
         public Ball()
         {
 
         }
 
+        /*
         public Ball(float _x, float _y, float _radius, Color _colour)
         {
             this.velocity = new Vector2d(0, 0);
             this.position = new Vector2d(_x, _y);
             radius = _radius;
             colour = _colour;
+            inPocket = false;
         }
+        //*/
 
         public Boolean colliding(Ball ball)
         {
-            float xd = position.getX() - ball.position.getX();
-            float yd = position.getY() - ball.position.getY();
+            float xd = position.x - ball.position.x;
+            float yd = position.y - ball.position.y;
 
             float sumRadius = radius + ball.radius;
             float sqrRadius = sumRadius * sumRadius;
@@ -124,6 +128,7 @@ namespace PoolOne
             Vector2d impulse = mtd.multiply(i);
         }
 
+        /*
         public int compareTo(Ball ball)
         {
             if (this.position.getX() - this.radius > ball.position.getX() - ball.radius)
@@ -139,5 +144,6 @@ namespace PoolOne
                 return 0;
             }
         }
+        //*/
     }
 }
