@@ -38,15 +38,9 @@ namespace PoolOne
 
             LoadMenuScreen();
 
-            /*testing purposes
-            //cueBall
-            Ball cueBall = new Ball(200, (this.Height - BALL_SIZE) / 2, 0, 0, 30, Color.White, "solid");
-            ballsArray[0] = cueBall;
-            //*/
-
             //Still needs randomization
             #region declaring start positions
-            //startPositionArray[0] = new Point(200, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[0] = new Point(200, (this.Height - BALL_SIZE) / 2);
 
             startPositionArray[1] = new Point(this.Width / 2 + 3 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
 
@@ -54,7 +48,7 @@ namespace PoolOne
             startPositionArray[3] = new Point(this.Width / 2 + 4 * BALL_SIZE, this.Height / 2 + 1);
 
             startPositionArray[4] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
-            //startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[5] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
 
             startPositionArray[6] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
@@ -78,11 +72,6 @@ namespace PoolOne
                 nextBall.size = BALL_SIZE;
                 nextBall.xSpeed = 0;
                 nextBall.ySpeed = 0;
-
-                /*just for testing purposes
-                nextBall.x = i * 40;
-                nextBall.y = i * 20;
-                //*/
 
                 //changes colour
                 switch (i)
@@ -137,6 +126,7 @@ namespace PoolOne
                         break;
                 }
 
+                /*to use only if I do scramble balls
                 //gets positions
                 switch (i)
                 {
@@ -153,6 +143,11 @@ namespace PoolOne
                         nextBall.y = startPositionArray[i].Y;
                         break;
                 }
+                */
+
+                //get position
+                nextBall.x = startPositionArray[i].X;
+                nextBall.y = startPositionArray[i].Y;
 
                 //Set if solid or stripes
                 if (i < 9)
