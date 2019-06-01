@@ -36,13 +36,7 @@ namespace PoolOne
             //static alternative for GameScreen
             thisScreen = this;
 
-            //put menu on top of this game screen
-            MenuScreen ms = new MenuScreen();
-            this.Controls.Add(ms);
-
-            ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
-            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
-            ms.BringToFront();
+            LoadMenuScreen();
 
             /*testing purposes
             //cueBall
@@ -205,14 +199,22 @@ namespace PoolOne
             }
         }
 
-        //I should probably revise this part into different smaller methods
         #region screens management
+
+        public static void LoadMenuScreen()
+        {
+            MenuScreen ms = new MenuScreen();
+            thisScreen.Controls.Add(ms);
+
+            ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
+            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
+            ms.BringToFront();
+        }
 
         public static void RemoveMenuScreen(MenuScreen ms, int n)
         {
             thisScreen.Controls.Remove(ms);
-            thisScreen.gameTimer.Enabled = true;
-            thisScreen.playerNumber = n;
+            StartGame(n);
         }
 
         public static void LoadHighScoresScreen(MenuScreen ms)
@@ -233,15 +235,12 @@ namespace PoolOne
         public static void RemoveHighScoresScreen(HighScoresScreen hss)
         {
             thisScreen.Controls.Remove(hss);
+        }
 
-            MenuScreen ms = new MenuScreen();
-            thisScreen.Controls.Add(ms);
-
-            Form form = thisScreen.FindForm();
-
-            ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
-            ms.BackColor = Color.FromArgb(80, 128, 128, 128);
-            ms.BringToFront();
+        public static void StartGame(int playersNumber)
+        {
+            thisScreen.gameTimer.Enabled = true;
+            thisScreen.playerNumber = playersNumber;
         }
 
         #endregion
