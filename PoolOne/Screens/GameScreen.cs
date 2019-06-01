@@ -126,6 +126,7 @@ namespace PoolOne
                         break;
                 }
 
+                #region Maybe?
                 /*to use only if I do scramble balls
                 //gets positions
                 switch (i)
@@ -144,6 +145,7 @@ namespace PoolOne
                         break;
                 }
                 */
+                #endregion
 
                 //get position
                 nextBall.x = startPositionArray[i].X;
@@ -165,10 +167,22 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            if (true)
+            if (downArrowDown)
             {
-                ballsArray[0].x += 2;
-                ballsArray[0].y += 1;
+                ballsArray[0].y += 10;
+            }
+            else if (upArrowDown)
+            {
+                ballsArray[0].y -= 10;
+            }
+
+            if (leftArrowDown)
+            {
+                ballsArray[0].x -= 10;
+            }
+            else if (rightArrowDown)
+            {
+                ballsArray[0].x += 10;
             }
             Refresh();
         }
@@ -236,8 +250,53 @@ namespace PoolOne
         {
             thisScreen.gameTimer.Enabled = true;
             thisScreen.playerNumber = playersNumber;
+            thisScreen.Focus();
         }
 
+        #endregion
+
+        #region Key press
+        private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                downArrowDown = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                upArrowDown = true;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                leftArrowDown = true;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                rightArrowDown = true;
+            }
+        }
+
+        private void GameScreen_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                downArrowDown = false;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                upArrowDown = false;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                leftArrowDown = false;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                rightArrowDown = false;
+            }
+        }
         #endregion
     }
 }
