@@ -79,7 +79,7 @@ namespace PoolOne
             }
 
             // impact speed
-            Vector2d v = (this.velocity.subtract(ball.velocity));
+            Vector2d v = (velocity.subtract(ball.velocity));
             float vn = v.dot(mtd.normalize());
 
             // sphere intersecting but moving away from each other already
@@ -88,6 +88,10 @@ namespace PoolOne
             // collision impulse
             float i = -(1.0f + 0.85f) * vn / 2;
             Vector2d impulse = mtd.multiply(i);
+
+            // change in momentum
+            velocity = this.velocity.add(impulse.multiply(1));
+            ball.velocity = ball.velocity.subtract(impulse.multiply(1));
         }
     }
 }

@@ -233,7 +233,7 @@ namespace PoolOne
                     if (ballsArray[i].colliding(ballsArray[j]))
                     {
                         ballsArray[i].resolveCollision(ballsArray[j]);
-                        borderBrush.Color = Color.Blue;
+                        //borderBrush.Color = Color.Blue;
                     }
                 }
             }

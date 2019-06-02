@@ -80,12 +80,5 @@ namespace PoolOne
 
             return this;
         }
-
-        /*
-        public String toString()
-        {
-            return "X: " + x + " Y: " + y;
-        }
-        //*/
     }
 }
