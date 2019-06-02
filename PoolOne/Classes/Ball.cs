@@ -59,11 +59,11 @@ namespace PoolOne
 
         }
 
-        /*
+        //*
         public Ball(float _x, float _y, float _radius, Color _colour)
         {
-            this.velocity = new Vector2d(0, 0);
-            this.position = new Vector2d(_x, _y);
+            velocity = new Vector2d(0, 0);
+            position = new Vector2d(_x, _y);
             radius = _radius;
             colour = _colour;
             inPocket = false;

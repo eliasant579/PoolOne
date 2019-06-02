@@ -17,27 +17,25 @@ namespace PoolOne
         const int BALL_SIZE = 30;
         const int BALL_RADIUS = 15;
 
-        Ball[] ballsArray = new Ball[16];
-        Point[] startPositionArray = new Point[16];
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown;
-        public Random randGenerator = new Random();
-
         public static GameScreen thisScreen = new GameScreen();
 
-        public int playerNumber;
-        public int player1Shots, player2Shots = 0;
+        Ball[] ballsArray = new Ball[16];
+        PointF[] startPositionArray = new PointF[16];
+        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown = false;
+        public SolidBrush borderBrush = new SolidBrush(Color.Maroon);
+        //public Random randGenerator = new Random();
+
+        public int playerNumber, player1Shots, player2Shots = 0;
 
         public GameScreen()
         {
             InitializeComponent();
+            thisScreen = this;
             InitializeValues();
         }
 
         public void InitializeValues()
         {
-            //static alternative for GameScreen
-            thisScreen = this;
-
             LoadMenuScreen();
 
             //Still needs randomization
@@ -70,10 +68,13 @@ namespace PoolOne
             //generate balls
             for (int i = 0; i < 16; i++)
             {
-                Ball nextBall = new Ball();
-                nextBall.radius = BALL_SIZE;
+                Ball nextBall = new Ball(startPositionArray[i].X, startPositionArray[i].Y, BALL_RADIUS, Color.Beige);
+                //nextBall.radius = BALL_SIZE;
+
+                /*
                 nextBall.velocity.x = 0;
                 nextBall.velocity.y = 0;
+                //*/
 
                 //changes colour
                 switch (i)
@@ -150,8 +151,8 @@ namespace PoolOne
                 #endregion 
 
                 //get position
-                nextBall.position.x = startPositionArray[i].X;
-                nextBall.position.y = startPositionArray[i].Y;
+                //nextBall.position.x = startPositionArray[i].X;
+                //nextBall.position.y = startPositionArray[i].Y;
 
                 /*
                 //Set if solid or stripes
@@ -225,13 +226,24 @@ namespace PoolOne
                 ballsArray[i].position.y += ballsArray[i].velocity.y;
             }
 
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = i + 1; j < 16; j++)
+                {
+                    if (ballsArray[i].colliding(ballsArray[j]))
+                    {
+                        ballsArray[i].resolveCollision(ballsArray[j]);
+                        borderBrush.Color = Color.Blue;
+                    }
+                }
+            }
+
             Refresh();
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             //Brushes
-            SolidBrush borderBrush = new SolidBrush(Color.Maroon);
             SolidBrush ballBrush = new SolidBrush(Color.White);
 
             //draw borders
@@ -254,11 +266,13 @@ namespace PoolOne
         public static void LoadMenuScreen()
         {
             MenuScreen ms = new MenuScreen();
-            thisScreen.Controls.Add(ms);
 
             ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
             ms.BackColor = Color.FromArgb(80, 128, 128, 128);
-            ms.BringToFront();
+
+            thisScreen.Controls.Add(ms);
+
+            //ms.BringToFront();
         }
 
         public static void RemoveMenuScreen(MenuScreen ms, int n)
