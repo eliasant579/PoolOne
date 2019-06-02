@@ -31,7 +31,7 @@ namespace PoolOne
             inPocket = false;
         }
 
-        public Boolean colliding(Ball ball)
+        public Boolean Colliding(Ball ball)
         {
             float xd = position.x - ball.position.x;
             float yd = position.y - ball.position.y;
@@ -50,7 +50,7 @@ namespace PoolOne
 
         }
 
-        public void resolveCollision(Ball ball)
+        public void ResolveCollision(Ball ball)
         {
 
             // get the mtd
@@ -92,6 +92,28 @@ namespace PoolOne
             // change in momentum
             velocity = this.velocity.add(impulse.multiply(1));
             ball.velocity = ball.velocity.subtract(impulse.multiply(1));
+        }
+
+        public void SidesCollsion(GameScreen UC)
+        {
+            if (position.x <= 30)
+            {
+                velocity.x = Math.Abs(velocity.x);
+            }
+            // Collision with right wall
+            if (position.x >= (UC.Width - radius * 2 - 30))
+            {
+                velocity.x = Math.Abs(velocity.x) * -1;
+            }
+            // Collision with top wall
+            if (position.y <= 32)
+            {
+                velocity.y = Math.Abs(velocity.y);
+            }
+            if (position.y >= (UC.Height - radius * 2 - 30))
+            {
+                velocity.y = Math.Abs(velocity.y) * -1;
+            }
         }
     }
 }

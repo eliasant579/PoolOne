@@ -227,9 +227,10 @@ namespace PoolOne
 
                     for (int j = i + 1; j < 16; j++)
                     {
-                        if (ballsArray[i].colliding(ballsArray[j]))
+                        ballsArray[i].SidesCollsion(this);
+                        if (ballsArray[i].Colliding(ballsArray[j]))
                         {
-                            ballsArray[i].resolveCollision(ballsArray[j]);
+                            ballsArray[i].ResolveCollision(ballsArray[j]);
                             //borderBrush.Color = Color.Blue;
                         }
                     }
