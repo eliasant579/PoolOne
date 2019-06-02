@@ -23,7 +23,6 @@ namespace PoolOne
         public Random randGenerator = new Random();
 
         public static GameScreen thisScreen = new GameScreen();
-        public static MenuScreen ms = new MenuScreen();
 
         public int playerNumber;
         public int player1Shots, player2Shots = 0;
@@ -254,7 +253,7 @@ namespace PoolOne
 
         public static void LoadMenuScreen()
         {
-            //ms = new MenuScreen();
+            MenuScreen ms = new MenuScreen();
             thisScreen.Controls.Add(ms);
 
             ms.Location = new Point((thisScreen.Width - ms.Width) / 2, (thisScreen.Height - ms.Height) / 2);
