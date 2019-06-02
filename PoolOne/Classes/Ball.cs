@@ -9,43 +9,6 @@ namespace PoolOne
 {
     class Ball
     {
-        #region My old ball class
-        /*
-        public PointF position;
-        public float x, y, xSpeed, ySpeed;
-        public int size;
-        public Color colour;
-        public bool solidTrue, inPocket;
-
-        public Ball(float _x, float _y, float _xSpeed, float _ySpeed, int _ballSize, Color _colour, string _stripesOrSolid)
-        {
-            position = new Point(_x, _y);
-            x = _x;
-            y = _y;
-            xSpeed = _xSpeed;
-            ySpeed = _ySpeed;
-            size = _ballSize;
-            colour = _colour;
-
-            if(_stripesOrSolid == "solid")
-            {
-                solidTrue = true;
-            }
-            else
-            {
-                solidTrue = false;
-            }
-
-            inPocket = false;
-        }
-
-        public Ball()
-        {
-            //empty method
-        }
-        //*/
-        #endregion
-
         public Color colour;
         public Vector2d velocity;
         public Vector2d position;
@@ -59,7 +22,6 @@ namespace PoolOne
 
         }
 
-        //*
         public Ball(float _x, float _y, float _radius, Color _colour)
         {
             velocity = new Vector2d(0, 0);
@@ -68,7 +30,6 @@ namespace PoolOne
             colour = _colour;
             inPocket = false;
         }
-        //*/
 
         public Boolean colliding(Ball ball)
         {
@@ -97,7 +58,8 @@ namespace PoolOne
             float r = radius + ball.radius;
             float dist2 = delta.dot(delta);
 
-            if (dist2 > r * r) return; // they aren't colliding
+            if (dist2 > r * r)
+            { return; }// they aren't colliding
 
 
             float d = delta.getLength();
@@ -127,23 +89,5 @@ namespace PoolOne
             float i = -(1.0f + 0.85f) * vn / 2;
             Vector2d impulse = mtd.multiply(i);
         }
-
-        /*
-        public int compareTo(Ball ball)
-        {
-            if (this.position.getX() - this.radius > ball.position.getX() - ball.radius)
-            {
-                return 1;
-            }
-            else if (this.position.getX() - this.radius < ball.position.getX() - ball.radius)
-            {
-                return -1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        //*/
     }
 }

@@ -252,12 +252,26 @@ namespace PoolOne
             e.Graphics.FillRectangle(borderBrush, this.Width - BORDERSIZE, 0, BORDERSIZE, this.Height);
             e.Graphics.FillRectangle(borderBrush, 0, this.Height - BORDERSIZE, this.Width, BORDERSIZE);
 
+            //draw shadows
+            ballBrush.Color = Color.FromArgb(80, 150, 150, 150);
+            for (int i = 0; i < 16; i++)
+            {
+                if (ballsArray[i].inPocket == false)
+                {
+                    Ball b = ballsArray[i];
+                    e.Graphics.FillEllipse(ballBrush, b.position.x + 3, b.position.y + 2, b.radius * 2, b.radius * 2);
+                }
+            }
+
             //draw balls
             for (int i = 0; i < 16; i++)
             {
-                Ball b = ballsArray[i];
-                ballBrush.Color = b.colour;
-                e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
+                if (ballsArray[i].inPocket == false)
+                {
+                    Ball b = ballsArray[i];
+                    ballBrush.Color = b.colour;
+                    e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
+                }
             }
         }
 
