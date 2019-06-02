@@ -28,13 +28,13 @@ namespace PoolOne
         public GameScreen()
         {
             InitializeComponent();
+            thisScreen = this;
             InitializeValues();
         }
 
         public void InitializeValues()
         {
             //static alternative for GameScreen
-            thisScreen = this;
 
             LoadMenuScreen();
 
