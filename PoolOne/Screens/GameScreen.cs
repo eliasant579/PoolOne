@@ -13,7 +13,7 @@ namespace PoolOne
     public partial class GameScreen : UserControl
     {
         const int BORDERSIZE = 30;
-        const float FRICTION_COEFFICIENT = 4;
+        const float FRICTION_COEFFICIENT = 0.015f;
         const int BALL_SIZE = 30;
         const int BALL_RADIUS = 15;
 
@@ -144,18 +144,6 @@ namespace PoolOne
                 }
                 */
                 #endregion 
-
-                /*
-                //Set if solid or stripes
-                if (i < 9)
-                {
-                    nextBall.solidTrue = true;
-                }
-                else if (i < 16)
-                {
-                    nextBall.solidTrue = false;
-                }
-                //*/
                 ballsArray[i] = nextBall;
             }
 
@@ -165,7 +153,7 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            /*Ball for testing
+            //*Ball for testing
             if (downArrowDown)
             {
                 ballsArray[0].velocity.y += 1;
@@ -213,6 +201,30 @@ namespace PoolOne
             }
             //*/
 
+            ProcessCollisions();
+
+            //move balls by their speed
+            for (int i = 0; i < 16; i++)
+            {
+                ballsArray[i].position.x += ballsArray[i].velocity.x;
+                ballsArray[i].position.y += ballsArray[i].velocity.y;
+            }
+
+            SlowBallsDown();
+
+            Refresh();
+        }
+
+        private void SlowBallsDown()
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
+            }
+        }
+
+        private void ProcessCollisions()
+        {
             for (int i = 0; i < 7; i++)
             {
                 if (ballsArray[i].inPocket == false)
@@ -232,17 +244,6 @@ namespace PoolOne
                     }
                 }
             }
-
-            //*
-            //move balls by their speed
-            for (int i = 0; i < 16; i++)
-            {
-                ballsArray[i].position.x += ballsArray[i].velocity.x;
-                ballsArray[i].position.y += ballsArray[i].velocity.y;
-            }
-            //*/
-
-            Refresh();
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
