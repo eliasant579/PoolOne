@@ -92,7 +92,7 @@ namespace PoolOne
                         nextBall.colour = Color.Orange;
                         break;
                     case 6:
-                        nextBall.colour = Color.LightGreen;
+                        nextBall.colour = Color.GreenYellow;
                         break;
                     case 7:
                         nextBall.colour = Color.Maroon;
@@ -116,7 +116,7 @@ namespace PoolOne
                         nextBall.colour = Color.Orange;
                         break;
                     case 14:
-                        nextBall.colour = Color.LightGreen;
+                        nextBall.colour = Color.GreenYellow;
                         break;
                     case 15:
                         nextBall.colour = Color.Maroon;
@@ -157,6 +157,8 @@ namespace PoolOne
                 //*/
                 ballsArray[i] = nextBall;
             }
+
+            ballsArray[0].velocity.x = 15;
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -181,7 +183,7 @@ namespace PoolOne
             }
             //*/
 
-            //*/
+            /*/
             if (downArrowDown)
             {
                 ballsArray[0].velocity.y = 8;
@@ -209,7 +211,7 @@ namespace PoolOne
             }
             //*/
 
-            /*
+            //*
             //move balls by their speed
             for (int i = 0; i < 16; i++)
             {
@@ -222,16 +224,16 @@ namespace PoolOne
             {
                 if (ballsArray[i].inPocket == false)
                 {
-                    ballsArray[i].position.x += ballsArray[i].velocity.x;
-                    ballsArray[i].position.y += ballsArray[i].velocity.y;
+                    //ballsArray[i].position.x += ballsArray[i].velocity.x;
+                    //ballsArray[i].position.y += ballsArray[i].velocity.y;
+                    ballsArray[i].SidesCollsion(this);
 
+                    //I think some collisions are ignored because of what is happening in here
                     for (int j = i + 1; j < 16; j++)
                     {
-                        ballsArray[i].SidesCollsion(this);
                         if (ballsArray[i].Colliding(ballsArray[j]))
                         {
                             ballsArray[i].ResolveCollision(ballsArray[j]);
-                            //borderBrush.Color = Color.Blue;
                         }
                     }
                 }
@@ -246,6 +248,9 @@ namespace PoolOne
             SolidBrush borderBrush = new SolidBrush(Color.Maroon);
             SolidBrush ballBrush = new SolidBrush(Color.White);
             SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(80, 150, 150, 150));
+            SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
+
+            Pen numberPen = new Pen(Color.Black, 2);
 
             //draw borders
             e.Graphics.FillRectangle(borderBrush, 0, 0, BORDERSIZE, this.Height);
@@ -270,7 +275,15 @@ namespace PoolOne
                 {
                     Ball b = ballsArray[i];
                     ballBrush.Color = b.colour;
-                    e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
+                    if (i < 9)
+                    {                       
+                        e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
+                    }
+                    else
+                    {
+                        e.Graphics.FillEllipse(whiteBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
+                        e.Graphics.FillRectangle(ballBrush, b.position.x + 4, b.position.y + 5, b.radius * 2 - 8, b.radius * 2 - 10);
+                    }
                 }
             }
         }

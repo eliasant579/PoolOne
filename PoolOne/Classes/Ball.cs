@@ -58,9 +58,10 @@ namespace PoolOne
             float r = radius + ball.radius;
             float dist2 = delta.dot(delta);
 
+            /*
             if (dist2 > r * r)
             { return; }// they aren't colliding
-
+            */
 
             float d = delta.getLength();
 
@@ -86,7 +87,7 @@ namespace PoolOne
             if (vn > 0.0f) return;
 
             // collision impulse
-            float i = -(1.0f + 0.85f) * vn / 2;
+            float i = -(1.0f + 0.65f) * vn / 2;
             Vector2d impulse = mtd.multiply(i);
 
             // change in momentum
