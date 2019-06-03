@@ -44,13 +44,14 @@ namespace PoolOne
 
             startPositionArray[1] = new Point(this.Width / 2 + 3 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
 
+
             startPositionArray[2] = new Point(this.Width / 2 + 4 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
             startPositionArray[3] = new Point(this.Width / 2 + 4 * BALL_SIZE, this.Height / 2 + 1);
 
             startPositionArray[4] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
-            startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            //startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[5] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
-
+            /*
             startPositionArray[6] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
             startPositionArray[7] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
             startPositionArray[9] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height) / 2 + 1);
@@ -61,7 +62,7 @@ namespace PoolOne
             startPositionArray[13] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[14] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
             startPositionArray[15] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
-
+            */
 
             #endregion
 
@@ -158,7 +159,8 @@ namespace PoolOne
                 ballsArray[i] = nextBall;
             }
 
-            ballsArray[0].velocity.x = 15;
+            ballsArray[0].velocity.x = 13;
+            ballsArray[0].velocity.y = 1;
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -211,6 +213,26 @@ namespace PoolOne
             }
             //*/
 
+            for (int i = 0; i < 7; i++)
+            {
+                if (ballsArray[i].inPocket == false)
+                {
+                    ballsArray[i].SidesCollsion(this);
+
+                    //I think some collisions are ignored because of what is happening in here
+                    for (int j = i; j < 7; j++)
+                    {
+                        if (ballsArray[i] != ballsArray[j])
+                        {
+                            if (ballsArray[i].Colliding(ballsArray[j]))
+                            {
+                                ballsArray[i].ResolveCollision(ballsArray[j]);
+                            }
+                        }
+                    }
+                }
+            }
+
             //*
             //move balls by their speed
             for (int i = 0; i < 16; i++)
@@ -219,25 +241,6 @@ namespace PoolOne
                 ballsArray[i].position.y += ballsArray[i].velocity.y;
             }
             //*/
-
-            for (int i = 0; i < 16; i++)
-            {
-                if (ballsArray[i].inPocket == false)
-                {
-                    //ballsArray[i].position.x += ballsArray[i].velocity.x;
-                    //ballsArray[i].position.y += ballsArray[i].velocity.y;
-                    ballsArray[i].SidesCollsion(this);
-
-                    //I think some collisions are ignored because of what is happening in here
-                    for (int j = i + 1; j < 16; j++)
-                    {
-                        if (ballsArray[i].Colliding(ballsArray[j]))
-                        {
-                            ballsArray[i].ResolveCollision(ballsArray[j]);
-                        }
-                    }
-                }
-            }
 
             Refresh();
         }

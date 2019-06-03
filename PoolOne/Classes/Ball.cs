@@ -33,6 +33,7 @@ namespace PoolOne
 
         public Boolean Colliding(Ball ball)
         {
+            //*
             float xd = position.x - ball.position.x;
             float yd = position.y - ball.position.y;
 
@@ -47,7 +48,7 @@ namespace PoolOne
             }
 
             return false;
-
+            //*/
         }
 
         public void ResolveCollision(Ball ball)
@@ -61,7 +62,7 @@ namespace PoolOne
             /*
             if (dist2 > r * r)
             { return; }// they aren't colliding
-            */
+            //*/
 
             float d = delta.getLength();
 
