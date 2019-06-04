@@ -156,7 +156,6 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-
             //*Actual ball 
             if (ballsStopped)
             {
@@ -181,7 +180,7 @@ namespace PoolOne
                 if (enterDown)
                 {
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
-                    velocityInputVector = new Vector2d();
+                    velocityInputVector = new Vector2d(0,0);
                     ballsStopped = false;
                 }
             }          
