@@ -13,7 +13,8 @@ namespace PoolOne
     public partial class GameScreen : UserControl
     {
         const int BORDERSIZE = 30;
-        const float FRICTION_COEFFICIENT = 0.015f;
+        const float FRICTION_COEFFICIENT = 0.01f;
+        const float SLOW_FRICTION_COEFFICIENT = 0.025f;
         const int BALL_SIZE = 30;
         const int BALL_RADIUS = 15;
 
@@ -21,7 +22,9 @@ namespace PoolOne
 
         Ball[] ballsArray = new Ball[16];
         PointF[] startPositionArray = new PointF[16];
-        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown = false;
+        Vector2d velocityInputVector = new Vector2d();
+
+        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown;
         public Boolean ballsStopped;
         //public SolidBrush borderBrush = new SolidBrush(Color.Maroon);
         //public Random randGenerator = new Random();
@@ -149,8 +152,8 @@ namespace PoolOne
                 ballsArray[i] = nextBall;
             }
 
-            ballsArray[0].velocity.x = 13;
-            ballsArray[0].velocity.y = 1;
+            ballsArray[0].velocity.x = 20;
+            ballsArray[0].velocity.y = -0.5f;
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -158,21 +161,28 @@ namespace PoolOne
             //*Ball for testing
             if (downArrowDown)
             {
-                ballsArray[0].velocity.y += 1;
+                velocityInputVector.y += 1;
             }
             else if (upArrowDown)
             {
-                ballsArray[0].velocity.y -= 1;
+                velocityInputVector.y -= 1;
             }
 
             if (leftArrowDown)
             {
-                ballsArray[0].velocity.x -= 1;
+                velocityInputVector.x -= 1;
             }
             else if (rightArrowDown)
             {
-                ballsArray[0].velocity.x += 1;
+                velocityInputVector.x += 1;
             }
+
+
+            if (ballsStopped == false)
+            {
+                ballsArray[0].velocity = velocityInputVector;
+            }
+
             //*/
 
             /*/
@@ -215,9 +225,13 @@ namespace PoolOne
             //slow balls down
             for (int i = 0; i < 16; i++)
             {
-                if (ballsArray[i].velocity.getLength() >= 0.2)
+                if (ballsArray[i].velocity.getLength() >= 3)
                 {
                     ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
+                }
+                else if (ballsArray[i].velocity.getLength() >= 0.4)
+                {
+                    ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - SLOW_FRICTION_COEFFICIENT);
                 }
                 else
                 {
@@ -268,6 +282,8 @@ namespace PoolOne
             SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(80, 150, 150, 150));
             SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
 
+            Pen arrowPen = new Pen(Color.Red, 2);
+
             Pen numberPen = new Pen(Color.Black, 2);
 
             //draw borders
@@ -303,6 +319,14 @@ namespace PoolOne
                         e.Graphics.FillRectangle(ballBrush, b.position.x + 4, b.position.y + 5, b.radius * 2 - 8, b.radius * 2 - 10);
                     }
                 }
+            }
+
+            if (ballsStopped)
+            {
+                PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
+                PointF arrowPosition = new PointF(ballsArray[0].position.subtract(velocityInputVector).x + BALL_RADIUS, ballsArray[0].position.subtract(velocityInputVector).y + BALL_RADIUS);
+
+                e.Graphics.DrawLine(arrowPen, cueBallPosition, arrowPosition);
             }
         }
 
@@ -376,7 +400,13 @@ namespace PoolOne
                 {
                     rightArrowDown = true;
                 }
-            }          
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                ballsStopped = false;
+            }
+
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
