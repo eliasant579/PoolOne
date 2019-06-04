@@ -17,6 +17,7 @@ namespace PoolOne
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
         const int BALL_SIZE = 30;
         const int BALL_RADIUS = 15;
+        const float COMPONENT_INCREASE = 0.25f;
 
         public static GameScreen thisScreen = new GameScreen();
 
@@ -24,7 +25,7 @@ namespace PoolOne
         PointF[] startPositionArray = new PointF[16];
         Vector2d velocityInputVector = new Vector2d();
 
-        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown;
+        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown;
         public Boolean ballsStopped;
         //public SolidBrush borderBrush = new SolidBrush(Color.Maroon);
         //public Random randGenerator = new Random();
@@ -151,41 +152,41 @@ namespace PoolOne
                 #endregion 
                 ballsArray[i] = nextBall;
             }
-
-            ballsArray[0].velocity.x = 20;
-            ballsArray[0].velocity.y = -0.5f;
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //*Ball for testing
-            if (downArrowDown)
-            {
-                velocityInputVector.y += 1;
-            }
-            else if (upArrowDown)
-            {
-                velocityInputVector.y -= 1;
-            }
 
-            if (leftArrowDown)
+            //*Actual ball 
+            if (ballsStopped)
             {
-                velocityInputVector.x -= 1;
-            }
-            else if (rightArrowDown)
-            {
-                velocityInputVector.x += 1;
-            }
+                if (downArrowDown)
+                {
+                    velocityInputVector.y += COMPONENT_INCREASE;
+                }
+                else if (upArrowDown)
+                {
+                    velocityInputVector.y -= COMPONENT_INCREASE;
+                }
 
+                if (leftArrowDown)
+                {
+                    velocityInputVector.x -= COMPONENT_INCREASE;
+                }
+                else if (rightArrowDown)
+                {
+                    velocityInputVector.x += COMPONENT_INCREASE;
+                }
 
-            if (ballsStopped == false)
-            {
-                ballsArray[0].velocity = velocityInputVector;
-            }
+                if (enterDown)
+                {
+                    ballsArray[0].velocity = velocityInputVector.multiply(-1);
+                    velocityInputVector = new Vector2d();
+                    ballsStopped = false;
+                }
+            }          
 
-            //*/
-
-            /*/
+            /*/Testing
             if (downArrowDown)
             {
                 ballsArray[0].velocity.y = 8;
@@ -213,6 +214,7 @@ namespace PoolOne
             }
             //*/
 
+            //well. Guess what this one does
             ProcessCollisions();
 
             //move balls by their speed
@@ -279,14 +281,16 @@ namespace PoolOne
             //Brushes
             SolidBrush borderBrush = new SolidBrush(Color.Maroon);
             SolidBrush ballBrush = new SolidBrush(Color.White);
-            SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(80, 150, 150, 150));
+            SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
             SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
 
-            Pen arrowPen = new Pen(Color.Red, 2);
-
-            Pen numberPen = new Pen(Color.Black, 2);
+            Pen arrowPen = new Pen(Color.Red, 5);
+            Pen arrowShadowPen = new Pen(shadowBrush, 5);
 
             //draw borders
+            e.Graphics.DrawLine(arrowShadowPen, BORDERSIZE, BORDERSIZE, this.Width - BORDERSIZE, BORDERSIZE);
+            e.Graphics.DrawLine(arrowShadowPen, BORDERSIZE, BORDERSIZE + 3, BORDERSIZE, this.Height - BORDERSIZE);
+
             e.Graphics.FillRectangle(borderBrush, 0, 0, BORDERSIZE, this.Height);
             e.Graphics.FillRectangle(borderBrush, 0, 0, this.Width, BORDERSIZE);
             e.Graphics.FillRectangle(borderBrush, this.Width - BORDERSIZE, 0, BORDERSIZE, this.Height);
@@ -302,6 +306,7 @@ namespace PoolOne
                 }
             }
 
+
             //draw balls
             for (int i = 0; i < 16; i++)
             {
@@ -309,6 +314,7 @@ namespace PoolOne
                 {
                     Ball b = ballsArray[i];
                     ballBrush.Color = b.colour;
+
                     if (i < 9)
                     {                       
                         e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
@@ -321,11 +327,13 @@ namespace PoolOne
                 }
             }
 
+            //pointing arrow
             if (ballsStopped)
             {
                 PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
-                PointF arrowPosition = new PointF(ballsArray[0].position.subtract(velocityInputVector).x + BALL_RADIUS, ballsArray[0].position.subtract(velocityInputVector).y + BALL_RADIUS);
+                PointF arrowPosition = new PointF(ballsArray[0].position.add(velocityInputVector.multiply(4)).x + BALL_RADIUS, ballsArray[0].position.add(velocityInputVector.multiply(4)).y + BALL_RADIUS);
 
+                e.Graphics.DrawLine(arrowShadowPen, cueBallPosition.X + 1, cueBallPosition.Y + 1, arrowPosition.X + 1, arrowPosition.Y + 1);
                 e.Graphics.DrawLine(arrowPen, cueBallPosition, arrowPosition);
             }
         }
@@ -381,30 +389,29 @@ namespace PoolOne
         #region Key press
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (ballsStopped)
-            {
-                if (e.KeyCode == Keys.Down)
-                {
-                    downArrowDown = true;
-                }
-                else if (e.KeyCode == Keys.Up)
-                {
-                    upArrowDown = true;
-                }
 
-                if (e.KeyCode == Keys.Left)
-                {
-                    leftArrowDown = true;
-                }
-                else if (e.KeyCode == Keys.Right)
-                {
-                    rightArrowDown = true;
-                }
+            if (e.KeyCode == Keys.Down)
+            {
+                downArrowDown = true;
             }
+            else if (e.KeyCode == Keys.Up)
+            {
+                upArrowDown = true;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                leftArrowDown = true;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                rightArrowDown = true;
+            }
+
 
             if (e.KeyCode == Keys.Enter)
             {
-                ballsStopped = false;
+                enterDown = true;
             }
 
         }
@@ -427,6 +434,12 @@ namespace PoolOne
             else if (e.KeyCode == Keys.Right)
             {
                 rightArrowDown = false;
+            }
+
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                enterDown = false;
             }
         }
         #endregion
