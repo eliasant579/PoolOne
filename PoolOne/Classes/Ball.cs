@@ -59,7 +59,7 @@ namespace PoolOne
             float r = radius + ball.radius;
             float dist2 = delta.dot(delta);
 
-            /*
+            //*
             if (dist2 > r * r)
             { return; }// they aren't colliding
             //*/

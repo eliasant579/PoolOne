@@ -17,7 +17,7 @@ namespace PoolOne
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
         const int BALL_SIZE = 30;
         const int BALL_RADIUS = 15;
-        const float COMPONENT_INCREASE = 0.25f;
+        const float COMPONENT_INCREASE = 0.5f;
 
         public static GameScreen thisScreen = new GameScreen();
 
@@ -27,8 +27,6 @@ namespace PoolOne
 
         public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown;
         public Boolean ballsStopped;
-        //public SolidBrush borderBrush = new SolidBrush(Color.Maroon);
-        //public Random randGenerator = new Random();
 
         public int playerNumber, player1Shots, player2Shots = 0;
 
@@ -159,6 +157,8 @@ namespace PoolOne
             //*Actual ball 
             if (ballsStopped)
             {
+                Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
+
                 if (downArrowDown)
                 {
                     velocityInputVector.y += COMPONENT_INCREASE;
@@ -177,13 +177,18 @@ namespace PoolOne
                     velocityInputVector.x += COMPONENT_INCREASE;
                 }
 
+                if (Math.Abs(velocityInputVector.getLength()) >= 30)
+                {
+                    velocityInputVector = tempVelocity;
+                }
+
                 if (enterDown)
                 {
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
-                    velocityInputVector = new Vector2d(0,0);
+                    velocityInputVector = new Vector2d(0, 0);
                     ballsStopped = false;
                 }
-            }          
+            }
 
             /*/Testing
             if (downArrowDown)
@@ -213,43 +218,45 @@ namespace PoolOne
             }
             //*/
 
-            //well. Guess what this one does
-            ProcessCollisions();
-
-            //move balls by their speed
-            for (int i = 0; i < 16; i++)
+            else
             {
-                ballsArray[i].position.x += ballsArray[i].velocity.x;
-                ballsArray[i].position.y += ballsArray[i].velocity.y;
-            }
+                //well. Guess what this one does
+                ProcessCollisions();
 
-            //slow balls down
-            for (int i = 0; i < 16; i++)
-            {
-                if (ballsArray[i].velocity.getLength() >= 3)
+                //move balls by their speed
+                for (int i = 0; i < 16; i++)
                 {
-                    ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
+                    ballsArray[i].position.x += ballsArray[i].velocity.x;
+                    ballsArray[i].position.y += ballsArray[i].velocity.y;
                 }
-                else if (ballsArray[i].velocity.getLength() >= 0.4)
+
+                //slow balls down
+                for (int i = 0; i < 16; i++)
                 {
-                    ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - SLOW_FRICTION_COEFFICIENT);
+                    if (ballsArray[i].velocity.getLength() >= 3)
+                    {
+                        ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
+                    }
+                    else if (ballsArray[i].velocity.getLength() >= 0.4)
+                    {
+                        ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - SLOW_FRICTION_COEFFICIENT);
+                    }
+                    else
+                    {
+                        ballsArray[i].velocity = new Vector2d(0, 0);
+                    }
                 }
-                else
+
+                //save if there is motion on screen
+                ballsStopped = true;
+                for (int i = 0; i < 16; i++)
                 {
-                    ballsArray[i].velocity = new Vector2d(0, 0);
+                    if (ballsArray[i].inPocket == false && ballsArray[i].velocity.getLength() != 0)
+                    {
+                        ballsStopped = false;
+                    }
                 }
             }
-
-            //save if there is motion on screen
-            ballsStopped = true;
-            for (int i = 0; i < 16; i++)
-            {
-                if (ballsArray[i].inPocket == false && ballsArray[i].velocity.getLength() != 0)
-                {
-                    ballsStopped = false;
-                }
-            }
-
             Refresh();
         }
 
