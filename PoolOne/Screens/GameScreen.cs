@@ -22,6 +22,7 @@ namespace PoolOne
         Ball[] ballsArray = new Ball[16];
         PointF[] startPositionArray = new PointF[16];
         public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown = false;
+        public Boolean ballsStopped;
         //public SolidBrush borderBrush = new SolidBrush(Color.Maroon);
         //public Random randGenerator = new Random();
 
@@ -49,11 +50,12 @@ namespace PoolOne
             startPositionArray[3] = new Point(this.Width / 2 + 4 * BALL_SIZE, this.Height / 2 + 1);
 
             startPositionArray[4] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
-            //startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[5] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
-            /*
             startPositionArray[6] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
+
+            //*
             startPositionArray[7] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
+            startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[9] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height) / 2 + 1);
             startPositionArray[10] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height + 2 * BALL_SIZE) / 2 + 2);
 
@@ -62,7 +64,7 @@ namespace PoolOne
             startPositionArray[13] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[14] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
             startPositionArray[15] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
-            */
+            //*/
 
             #endregion
 
@@ -210,29 +212,41 @@ namespace PoolOne
                 ballsArray[i].position.y += ballsArray[i].velocity.y;
             }
 
-            SlowBallsDown();
+            //slow balls down
+            for (int i = 0; i < 16; i++)
+            {
+                if (ballsArray[i].velocity.getLength() >= 0.2)
+                {
+                    ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
+                }
+                else
+                {
+                    ballsArray[i].velocity = new Vector2d(0, 0);
+                }
+            }
+
+            //save if there is motion on screen
+            ballsStopped = true;
+            for (int i = 0; i < 16; i++)
+            {
+                if (ballsArray[i].inPocket == false && ballsArray[i].velocity.getLength() != 0)
+                {
+                    ballsStopped = false;
+                }
+            }
 
             Refresh();
         }
 
-        private void SlowBallsDown()
-        {
-            for (int i = 0; i < 16; i++)
-            {
-                ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
-            }
-        }
-
         private void ProcessCollisions()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 16; i++)
             {
                 if (ballsArray[i].inPocket == false)
                 {
                     ballsArray[i].SidesCollsion(this);
 
-                    //I think some collisions are ignored because of what is happening in here
-                    for (int j = i; j < 7; j++)
+                    for (int j = i; j < 16; j++)
                     {
                         if (ballsArray[i] != ballsArray[j])
                         {
@@ -343,23 +357,26 @@ namespace PoolOne
         #region Key press
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
+            if (ballsStopped)
             {
-                downArrowDown = true;
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                upArrowDown = true;
-            }
+                if (e.KeyCode == Keys.Down)
+                {
+                    downArrowDown = true;
+                }
+                else if (e.KeyCode == Keys.Up)
+                {
+                    upArrowDown = true;
+                }
 
-            if (e.KeyCode == Keys.Left)
-            {
-                leftArrowDown = true;
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                rightArrowDown = true;
-            }
+                if (e.KeyCode == Keys.Left)
+                {
+                    leftArrowDown = true;
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    rightArrowDown = true;
+                }
+            }          
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
