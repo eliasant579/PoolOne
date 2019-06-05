@@ -165,7 +165,13 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            /*Actual ball 
+            if (ballsArray[0].inPocket && ballsStopped)
+            {
+                ballsArray[0].inPocket = false;
+                ballsArray[0].position = new Vector2d(startPositionArray[0].X, startPositionArray[0].Y);
+            }
+
+            //*Actual ball 
             if (ballsStopped)
             {
                 Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
@@ -201,7 +207,9 @@ namespace PoolOne
                 }
             }
 
-            /*/
+            //*/
+
+            /*
             //Testing
             if (downArrowDown)
             {
@@ -230,7 +238,7 @@ namespace PoolOne
             }
             //*/
 
-            //else
+            else
             {
                 //well. Guess what this one does
                 ProcessCollisions();
@@ -261,14 +269,17 @@ namespace PoolOne
 
                 for (int i = 0; i < ballsArray.Length; i++)
                 {
-                    PointF ballCentre = new PointF(ballsArray[i].position.x - BALL_RADIUS, ballsArray[i].position.y - BALL_RADIUS);
-
-                    for (int j = 0; j < pocketsArray.Length; j++)
+                    if (ballsArray[i].inPocket == false)
                     {
-                        if (pocketsArray[j].PocketCollsion(ballCentre))
+                        PointF ballCentre = new PointF(ballsArray[i].position.x + BALL_RADIUS, ballsArray[i].position.y + BALL_RADIUS);
+
+                        for (int j = 0; j < pocketsArray.Length; j++)
                         {
-                            ballsArray[i].inPocket = true;
-                            break;
+                            if (pocketsArray[j].PocketCollsion(ballCentre))
+                            {
+                                ballsArray[i].inPocket = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -316,7 +327,7 @@ namespace PoolOne
             SolidBrush ballBrush = new SolidBrush(Color.White);
             SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
             SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
-            SolidBrush blackBrush = new SolidBrush(Color.Black);
+            SolidBrush blackBrush = new SolidBrush(Color.FromArgb(255, 20, 20, 20));
 
             Pen arrowPen = new Pen(Color.Red, 5);
             Pen arrowShadowPen = new Pen(shadowBrush, 5);
@@ -340,6 +351,12 @@ namespace PoolOne
                 }
             }
 
+            //draw pockets
+            for (int i = 0; i < pocketsArray.Length; i++)
+            {
+                Pocket p = pocketsArray[i];
+                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
+            }
 
             //draw balls
             for (int i = 0; i < ballsArray.Length; i++)
@@ -359,12 +376,6 @@ namespace PoolOne
                         e.Graphics.FillRectangle(ballBrush, b.position.x + 4, b.position.y + 5, b.radius * 2 - 8, b.radius * 2 - 10);
                     }
                 }
-            }
-
-            for (int i = 0; i < pocketsArray.Length; i++)
-            {
-                Pocket p = pocketsArray[i];
-                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
             }
 
             //pointing arrow

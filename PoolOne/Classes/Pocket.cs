@@ -25,7 +25,7 @@ namespace PoolOne
 
         public Boolean PocketCollsion(PointF centre)
         {
-            RectangleF centreRectangle = new RectangleF(centre.X - 5, centre.Y - 5, 10, 10);
+            RectangleF centreRectangle = new RectangleF(centre.X - 7.5f, centre.Y - 7.5f, 15, 15);
             RectangleF pocketRectangle = new RectangleF(position.X, position.Y, radius * 2, radius * 2);
 
             if(pocketRectangle.IntersectsWith(centreRectangle))
