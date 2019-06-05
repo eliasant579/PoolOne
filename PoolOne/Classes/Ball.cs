@@ -14,8 +14,6 @@ namespace PoolOne
         public Vector2d position;
         public float radius;
         public Boolean inPocket;
-        //public float angularVel;
-        //public float orientation = 45f;
 
         public Ball()
         {
@@ -33,7 +31,6 @@ namespace PoolOne
 
         public Boolean Colliding(Ball ball)
         {
-            //*
             float xd = position.x - ball.position.x;
             float yd = position.y - ball.position.y;
 
@@ -48,12 +45,10 @@ namespace PoolOne
             }
 
             return false;
-            //*/
         }
 
         public void ResolveCollision(Ball ball)
         {
-
             // get the mtd
             Vector2d delta = (position.subtract(ball.position));
             float r = radius + ball.radius;

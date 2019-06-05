@@ -12,7 +12,7 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        const int BORDERSIZE = 30;
+        const int BORDER_SIZE = 30;
         const float FRICTION_COEFFICIENT = 0.01f;
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
         const int BALL_SIZE = 30;
@@ -23,6 +23,8 @@ namespace PoolOne
 
         Ball[] ballsArray = new Ball[16];
         PointF[] startPositionArray = new PointF[16];
+        Pocket[] pocketsArray = new Pocket[6];
+
         Vector2d velocityInputVector = new Vector2d();
 
         public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown;
@@ -68,6 +70,15 @@ namespace PoolOne
             startPositionArray[15] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
             //*/
 
+            #endregion
+
+            #region declaring pockets
+            pocketsArray[0] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2, BORDER_SIZE - BALL_RADIUS / 2, BALL_RADIUS);
+            pocketsArray[1] = new Pocket(this.Width / 2 - BALL_RADIUS, BORDER_SIZE - BALL_RADIUS / 2, BALL_RADIUS);
+            pocketsArray[2] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2, BORDER_SIZE - BALL_RADIUS / 2, BALL_RADIUS);
+            pocketsArray[3] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2, BALL_RADIUS);
+            pocketsArray[4] = new Pocket(this.Width / 2 - BALL_RADIUS, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2, BALL_RADIUS);
+            pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2, BALL_RADIUS);
             #endregion
 
             //generate balls
@@ -154,7 +165,7 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //*Actual ball 
+            /*Actual ball 
             if (ballsStopped)
             {
                 Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
@@ -190,7 +201,8 @@ namespace PoolOne
                 }
             }
 
-            /*/Testing
+            /*/
+            //Testing
             if (downArrowDown)
             {
                 ballsArray[0].velocity.y = 8;
@@ -218,20 +230,20 @@ namespace PoolOne
             }
             //*/
 
-            else
+            //else
             {
                 //well. Guess what this one does
                 ProcessCollisions();
 
                 //move balls by their speed
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < ballsArray.Length; i++)
                 {
                     ballsArray[i].position.x += ballsArray[i].velocity.x;
                     ballsArray[i].position.y += ballsArray[i].velocity.y;
                 }
 
                 //slow balls down
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < ballsArray.Length; i++)
                 {
                     if (ballsArray[i].velocity.getLength() >= 3)
                     {
@@ -247,9 +259,24 @@ namespace PoolOne
                     }
                 }
 
+                for (int i = 0; i < ballsArray.Length; i++)
+                {
+                    PointF ballCentre = new PointF(ballsArray[i].position.x - BALL_RADIUS, ballsArray[i].position.y - BALL_RADIUS);
+
+                    for (int j = 0; j < pocketsArray.Length; j++)
+                    {
+                        if (pocketsArray[j].PocketCollsion(ballCentre))
+                        {
+                            ballsArray[i].inPocket = true;
+                            break;
+                        }
+                    }
+                }
+
+
                 //save if there is motion on screen
                 ballsStopped = true;
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < ballsArray.Length; i++)
                 {
                     if (ballsArray[i].inPocket == false && ballsArray[i].velocity.getLength() != 0)
                     {
@@ -262,13 +289,13 @@ namespace PoolOne
 
         private void ProcessCollisions()
         {
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < ballsArray.Length; i++)
             {
                 if (ballsArray[i].inPocket == false)
                 {
                     ballsArray[i].SidesCollsion(this);
 
-                    for (int j = i; j < 16; j++)
+                    for (int j = i; j < ballsArray.Length; j++)
                     {
                         if (ballsArray[i] != ballsArray[j])
                         {
@@ -289,21 +316,22 @@ namespace PoolOne
             SolidBrush ballBrush = new SolidBrush(Color.White);
             SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
             SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
+            SolidBrush blackBrush = new SolidBrush(Color.Black);
 
             Pen arrowPen = new Pen(Color.Red, 5);
             Pen arrowShadowPen = new Pen(shadowBrush, 5);
 
             //draw borders
-            e.Graphics.DrawLine(arrowShadowPen, BORDERSIZE, BORDERSIZE, this.Width - BORDERSIZE, BORDERSIZE);
-            e.Graphics.DrawLine(arrowShadowPen, BORDERSIZE, BORDERSIZE + 3, BORDERSIZE, this.Height - BORDERSIZE);
+            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE, BORDER_SIZE, this.Width - BORDER_SIZE, BORDER_SIZE);
+            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE, BORDER_SIZE + 3, BORDER_SIZE, this.Height - BORDER_SIZE);
 
-            e.Graphics.FillRectangle(borderBrush, 0, 0, BORDERSIZE, this.Height);
-            e.Graphics.FillRectangle(borderBrush, 0, 0, this.Width, BORDERSIZE);
-            e.Graphics.FillRectangle(borderBrush, this.Width - BORDERSIZE, 0, BORDERSIZE, this.Height);
-            e.Graphics.FillRectangle(borderBrush, 0, this.Height - BORDERSIZE, this.Width, BORDERSIZE);
+            e.Graphics.FillRectangle(borderBrush, 0, 0, BORDER_SIZE, this.Height);
+            e.Graphics.FillRectangle(borderBrush, 0, 0, this.Width, BORDER_SIZE);
+            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE, 0, BORDER_SIZE, this.Height);
+            e.Graphics.FillRectangle(borderBrush, 0, this.Height - BORDER_SIZE, this.Width, BORDER_SIZE);
 
             //draw shadows
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < ballsArray.Length; i++)
             {
                 if (ballsArray[i].inPocket == false)
                 {
@@ -314,7 +342,7 @@ namespace PoolOne
 
 
             //draw balls
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < ballsArray.Length; i++)
             {
                 if (ballsArray[i].inPocket == false)
                 {
@@ -331,6 +359,12 @@ namespace PoolOne
                         e.Graphics.FillRectangle(ballBrush, b.position.x + 4, b.position.y + 5, b.radius * 2 - 8, b.radius * 2 - 10);
                     }
                 }
+            }
+
+            for (int i = 0; i < pocketsArray.Length; i++)
+            {
+                Pocket p = pocketsArray[i];
+                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
             }
 
             //pointing arrow
