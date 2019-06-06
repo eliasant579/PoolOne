@@ -12,6 +12,8 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
+        const int BALL_NUMBER = 2;
+
         const int BORDER_SIZE = 30;
         const float FRICTION_COEFFICIENT = 0.01f;
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
@@ -21,14 +23,14 @@ namespace PoolOne
 
         public static GameScreen thisScreen = new GameScreen();
 
-        Ball[] ballsArray = new Ball[16];
+        Ball[] ballsArray = new Ball[BALL_NUMBER];
         PointF[] startPositionArray = new PointF[16];
         Pocket[] pocketsArray = new Pocket[6];
 
         Vector2d velocityInputVector = new Vector2d();
 
         public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown;
-        public Boolean ballsStopped;
+        public Boolean ballsStopped, screenEmpty;
 
         public int playerNumber, player1Shots, player2Shots = 0;
 
@@ -82,7 +84,7 @@ namespace PoolOne
             #endregion
 
             //generate balls
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < ballsArray.Length; i++)
             {
                 Ball nextBall = new Ball(startPositionArray[i].X, startPositionArray[i].Y, BALL_RADIUS, Color.Beige);
 
@@ -171,7 +173,7 @@ namespace PoolOne
                 ballsArray[0].position = new Vector2d(startPositionArray[0].X, startPositionArray[0].Y);
             }
 
-            //*Actual ball 
+            /*Actual ball 
             if (ballsStopped)
             {
                 Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
@@ -194,7 +196,7 @@ namespace PoolOne
                     velocityInputVector.x += COMPONENT_INCREASE;
                 }
 
-                if (Math.Abs(velocityInputVector.getLength()) >= 30)
+                if (velocityInputVector.getLength() >= 30)
                 {
                     velocityInputVector = tempVelocity;
                 }
@@ -206,10 +208,9 @@ namespace PoolOne
                     ballsStopped = false;
                 }
             }
-
             //*/
 
-            /*
+            //*
             //Testing
             if (downArrowDown)
             {
@@ -238,41 +239,37 @@ namespace PoolOne
             }
             //*/
 
-            else
+            //else
             {
                 //well. Guess what this one does
                 ProcessCollisions();
 
-                //move balls by their speed
-                for (int i = 0; i < ballsArray.Length; i++)
-                {
-                    ballsArray[i].position.x += ballsArray[i].velocity.x;
-                    ballsArray[i].position.y += ballsArray[i].velocity.y;
-                }
-
-                //slow balls down
-                for (int i = 0; i < ballsArray.Length; i++)
-                {
-                    if (ballsArray[i].velocity.getLength() >= 3)
-                    {
-                        ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
-                    }
-                    else if (ballsArray[i].velocity.getLength() >= 0.4)
-                    {
-                        ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - SLOW_FRICTION_COEFFICIENT);
-                    }
-                    else
-                    {
-                        ballsArray[i].velocity = new Vector2d(0, 0);
-                    }
-                }
-
+                ballsStopped = true;
+                screenEmpty = true;
                 for (int i = 0; i < ballsArray.Length; i++)
                 {
                     if (ballsArray[i].inPocket == false)
                     {
-                        PointF ballCentre = new PointF(ballsArray[i].position.x + BALL_RADIUS, ballsArray[i].position.y + BALL_RADIUS);
+                        //move ball
+                        ballsArray[i].position.x += ballsArray[i].velocity.x;
+                        ballsArray[i].position.y += ballsArray[i].velocity.y;
 
+                        //slow balls down
+                        if (ballsArray[i].velocity.getLength() >= 3)
+                        {
+                            ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - FRICTION_COEFFICIENT);
+                        }
+                        else if (ballsArray[i].velocity.getLength() >= 0.4)
+                        {
+                            ballsArray[i].velocity = ballsArray[i].velocity.multiply(1 - SLOW_FRICTION_COEFFICIENT);
+                        }
+                        else
+                        {
+                            ballsArray[i].velocity = new Vector2d(0, 0);
+                        }
+
+                        //collision with pocket
+                        PointF ballCentre = new PointF(ballsArray[i].position.x + BALL_RADIUS, ballsArray[i].position.y + BALL_RADIUS);
                         for (int j = 0; j < pocketsArray.Length; j++)
                         {
                             if (pocketsArray[j].PocketCollsion(ballCentre))
@@ -282,19 +279,25 @@ namespace PoolOne
                             }
                         }
                     }
-                }
 
-
-                //save if there is motion on screen
-                ballsStopped = true;
-                for (int i = 0; i < ballsArray.Length; i++)
-                {
+                    //save if there is motion on screen
                     if (ballsArray[i].inPocket == false && ballsArray[i].velocity.getLength() != 0)
                     {
                         ballsStopped = false;
                     }
+
+                    if (ballsArray[i].inPocket == false && i != 0)
+                    {
+                        screenEmpty = false;
+                    }
+                }
+
+                if (screenEmpty)
+                {
+                    LoadMenuScreen();
                 }
             }
+
             Refresh();
         }
 
@@ -367,7 +370,7 @@ namespace PoolOne
                     ballBrush.Color = b.colour;
 
                     if (i < 9)
-                    {                       
+                    {
                         e.Graphics.FillEllipse(ballBrush, b.position.x, b.position.y, b.radius * 2, b.radius * 2);
                     }
                     else
@@ -378,7 +381,7 @@ namespace PoolOne
                 }
             }
 
-            //pointing arrow
+            //aiming arrow
             if (ballsStopped)
             {
                 PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
