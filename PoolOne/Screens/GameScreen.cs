@@ -312,7 +312,7 @@ namespace PoolOne
 
                     for (int j = i; j < ballsArray.Length; j++)
                     {
-                        if (ballsArray[i] != ballsArray[j])
+                        if (ballsArray[i] != ballsArray[j] && ballsArray[j].inPocket == false)
                         {
                             if (ballsArray[i].Colliding(ballsArray[j]))
                             {
@@ -491,7 +491,6 @@ namespace PoolOne
             {
                 rightArrowDown = false;
             }
-
 
             if (e.KeyCode == Keys.Enter)
             {
