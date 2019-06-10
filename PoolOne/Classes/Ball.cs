@@ -47,6 +47,10 @@ namespace PoolOne
             return false;
         }
 
+        /// <summary>
+        /// I barely know what goes on here. I'm going to study it if I have time
+        /// </summary>
+        /// <param name="ball"></param>
         public void ResolveCollision(Ball ball)
         {
             // get the mtd
