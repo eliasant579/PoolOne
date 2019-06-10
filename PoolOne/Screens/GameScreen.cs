@@ -12,7 +12,7 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        const int BALL_NUMBER = 12;
+        const int BALL_NUMBER = 3;
 
         const int BORDER_SIZE = 30;
         const float FRICTION_COEFFICIENT = 0.01f;
@@ -173,7 +173,7 @@ namespace PoolOne
                 ballsArray[0].position = new Vector2d(startPositionArray[0].X, startPositionArray[0].Y);
             }
 
-            //*Actual ball 
+            /*Actual ball 
             if (ballsStopped)
             {
                 Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
@@ -210,7 +210,7 @@ namespace PoolOne
             }
             //*/
 
-            /*
+            //*
             //Testing
             if (downArrowDown)
             {
