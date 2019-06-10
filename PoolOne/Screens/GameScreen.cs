@@ -12,7 +12,7 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        const int BALL_NUMBER = 3;
+        const int BALL_NUMBER = 16;
 
         const int BORDER_SIZE = 30;
         const float FRICTION_COEFFICIENT = 0.01f;
@@ -38,13 +38,12 @@ namespace PoolOne
         {
             InitializeComponent();
             thisScreen = this;
+            LoadMenuScreen();
             InitializeValues();
         }
 
         public void InitializeValues()
         {
-            LoadMenuScreen();
-
             //Still needs randomization
             #region declaring start positions
             startPositionArray[0] = new Point(200, (this.Height - BALL_SIZE) / 2);
@@ -173,7 +172,7 @@ namespace PoolOne
                 ballsArray[0].position = new Vector2d(startPositionArray[0].X, startPositionArray[0].Y);
             }
 
-            /*Actual ball 
+            //*Actual ball 
             if (ballsStopped)
             {
                 Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
@@ -208,9 +207,9 @@ namespace PoolOne
                     ballsStopped = false;
                 }
             }
-            //*/
+            /*/
 
-            //*
+            /*
             //Testing
             if (downArrowDown)
             {
@@ -239,7 +238,7 @@ namespace PoolOne
             }
             //*/
 
-            //else
+            else
             {
                 //well. Guess what this one does
                 ProcessCollisions();
@@ -295,6 +294,8 @@ namespace PoolOne
 
                 if (screenEmpty)
                 {
+                    gameTimer.Enabled = false;
+                    InitializeValues();
                     LoadMenuScreen();
                 }
             }
