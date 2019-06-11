@@ -26,6 +26,7 @@ namespace PoolOne
         Ball[] ballsArray = new Ball[BALL_NUMBER];
         PointF[] startPositionArray = new PointF[16];
         Pocket[] pocketsArray = new Pocket[6];
+        HighScore[] highScoresArray = new HighScore[4];
 
         Vector2d velocityInputVector = new Vector2d();
 
