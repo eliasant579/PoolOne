@@ -335,8 +335,8 @@ namespace PoolOne
             SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
             SolidBrush blackBrush = new SolidBrush(Color.FromArgb(255, 20, 20, 20));
 
-            Pen arrowPen = new Pen(Color.Red, 5);
-            Pen arrowShadowPen = new Pen(shadowBrush, 5);
+            Pen arrowPen = new Pen(Color.FromArgb(255, 150, 70, 0), 6);
+            Pen arrowShadowPen = new Pen(shadowBrush, 6);
 
             //draw borders
             e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE, BORDER_SIZE, this.Width - BORDER_SIZE, BORDER_SIZE);
@@ -353,7 +353,7 @@ namespace PoolOne
                 if (ballsArray[i].inPocket == false)
                 {
                     Ball b = ballsArray[i];
-                    e.Graphics.FillEllipse(shadowBrush, b.position.x + 3, b.position.y + 2, b.radius * 2, b.radius * 2);
+                    e.Graphics.FillEllipse(shadowBrush, b.position.x + 3, b.position.y + 3, b.radius * 2, b.radius * 2);
                 }
             }
 
@@ -388,7 +388,7 @@ namespace PoolOne
             if (ballsStopped)
             {
                 PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
-                PointF arrowPosition = new PointF(ballsArray[0].position.add(velocityInputVector.multiply(4)).x + BALL_RADIUS, ballsArray[0].position.add(velocityInputVector.multiply(4)).y + BALL_RADIUS);
+                PointF arrowPosition = new PointF(ballsArray[0].position.add(velocityInputVector.multiply(6)).x + BALL_RADIUS, ballsArray[0].position.add(velocityInputVector.multiply(6)).y + BALL_RADIUS);
 
                 e.Graphics.DrawLine(arrowShadowPen, cueBallPosition.X + 1, cueBallPosition.Y + 1, arrowPosition.X + 1, arrowPosition.Y + 1);
                 e.Graphics.DrawLine(arrowPen, cueBallPosition, arrowPosition);
@@ -435,6 +435,25 @@ namespace PoolOne
             thisScreen.Controls.Remove(hss);
         }
 
+        public static void LoadPauseScreen()
+        {
+            PauseScreen ps = new PauseScreen();
+
+            ps.Location = new Point((thisScreen.Width - ps.Width) / 2, (thisScreen.Height - ps.Height) / 2);
+            ps.BackColor = Color.FromArgb(80, 128, 128, 128);
+
+            thisScreen.Controls.Add(ps);
+            ps.BringToFront();
+            ps.Focus();
+        }
+
+        public static void RemovePauseScreen(PauseScreen ps)
+        {
+            thisScreen.Controls.Remove(ps);
+            thisScreen.gameTimer.Enabled = true;
+            thisScreen.Focus();
+        }
+
         public static void StartGame(int playersNumber)
         {
             thisScreen.gameTimer.Enabled = true;
@@ -470,6 +489,12 @@ namespace PoolOne
             if (e.KeyCode == Keys.Enter)
             {
                 enterDown = true;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                gameTimer.Enabled = false;
+                LoadPauseScreen();
             }
 
         }

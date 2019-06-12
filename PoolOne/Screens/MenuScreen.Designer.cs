@@ -42,7 +42,7 @@
             this.onePlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.onePlayerButton.Font = new System.Drawing.Font("Machine BT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onePlayerButton.ForeColor = System.Drawing.Color.Black;
-            this.onePlayerButton.Location = new System.Drawing.Point(18, 197);
+            this.onePlayerButton.Location = new System.Drawing.Point(35, 197);
             this.onePlayerButton.Name = "onePlayerButton";
             this.onePlayerButton.Size = new System.Drawing.Size(155, 45);
             this.onePlayerButton.TabIndex = 0;

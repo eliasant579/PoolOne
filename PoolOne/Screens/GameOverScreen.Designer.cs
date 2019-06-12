@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Name = "GameOverScreen";
-            this.Size = new System.Drawing.Size(800, 500);
+            this.Size = new System.Drawing.Size(428, 313);
             this.ResumeLayout(false);
 
         }

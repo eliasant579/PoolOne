@@ -38,7 +38,6 @@ namespace PoolOne
         private void HighScoresScreen_Load(object sender, EventArgs e)
         {
             backToMenuButton.Focus();
-
         }
     }
 }

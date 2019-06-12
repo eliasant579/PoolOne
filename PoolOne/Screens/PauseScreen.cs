@@ -16,5 +16,27 @@ namespace PoolOne
         {
             InitializeComponent();
         }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            GameScreen.RemovePauseScreen(this);
+        }
+
+        private void continueButton_Enter(object sender, EventArgs e)
+        {
+            continueButton.ForeColor = Color.Red;
+            continueButton.FlatAppearance.BorderSize = 2;
+        }
+
+        private void continueButton_Leave(object sender, EventArgs e)
+        {
+            continueButton.ForeColor = Color.Black;
+            continueButton.FlatAppearance.BorderSize = 0;
+        }
+
+        private void PauseScreen_Load(object sender, EventArgs e)
+        {
+            continueButton.Focus();
+        }
     }
 }

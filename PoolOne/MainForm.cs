@@ -15,6 +15,8 @@ namespace PoolOne
         public MainForm()
         {
             InitializeComponent();
+
+            Cursor.Dispose();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
