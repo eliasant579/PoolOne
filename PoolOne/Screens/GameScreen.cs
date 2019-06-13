@@ -14,12 +14,14 @@ namespace PoolOne
     {
         const int BALL_NUMBER = 16;
 
-        const int BORDER_SIZE = 30;
+        public const int BORDER_SIZE = 30;
+        public const int TABLE_OFFSET = 150;
         const float FRICTION_COEFFICIENT = 0.01f;
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
         const int BALL_SIZE = 30;
         const int BALL_RADIUS = 15;
         const float COMPONENT_INCREASE = 0.5f;
+        const int MAX_SPEED = 35;
 
         public static GameScreen thisScreen = new GameScreen();
 
@@ -46,7 +48,7 @@ namespace PoolOne
         public void InitializeValues()
         {
             #region declaring start positions
-            startPositionArray[0] = new Point(200, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[0] = new Point(this.Width / 2 - 10 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
 
             startPositionArray[1] = new Point(this.Width / 2 + 3 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
 
@@ -74,12 +76,12 @@ namespace PoolOne
             #endregion
 
             #region declaring pockets
-            pocketsArray[0] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2, BORDER_SIZE - BALL_RADIUS / 2, BALL_RADIUS);
-            pocketsArray[1] = new Pocket(this.Width / 2 - BALL_RADIUS, BORDER_SIZE - BALL_RADIUS / 2, BALL_RADIUS);
-            pocketsArray[2] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2, BORDER_SIZE - BALL_RADIUS / 2, BALL_RADIUS);
-            pocketsArray[3] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2, BALL_RADIUS);
-            pocketsArray[4] = new Pocket(this.Width / 2 - BALL_RADIUS, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2, BALL_RADIUS);
-            pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2, BALL_RADIUS);
+            pocketsArray[0] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, BORDER_SIZE - BALL_RADIUS / 2 +  TABLE_OFFSET, BALL_RADIUS);
+            pocketsArray[1] = new Pocket(this.Width / 2 - BALL_RADIUS, BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, BALL_RADIUS);
+            pocketsArray[2] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, BALL_RADIUS);
+            pocketsArray[3] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
+            pocketsArray[4] = new Pocket(this.Width / 2 - BALL_RADIUS, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
+            pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
             #endregion
 
             //generate balls
@@ -177,7 +179,7 @@ namespace PoolOne
                     velocityInputVector.x += COMPONENT_INCREASE;
                 }
 
-                if (velocityInputVector.getLength() >= 30)
+                if (velocityInputVector.getLength() >= MAX_SPEED)
                 {
                     velocityInputVector = tempVelocity;
                 }
@@ -316,24 +318,29 @@ namespace PoolOne
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            //Brushes
+            //Brushes and pens
             SolidBrush borderBrush = new SolidBrush(Color.Maroon);
             SolidBrush ballBrush = new SolidBrush(Color.White);
             SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
             SolidBrush whiteBrush = new SolidBrush(Color.Wheat);
             SolidBrush blackBrush = new SolidBrush(Color.FromArgb(255, 20, 20, 20));
+            SolidBrush greenBrush = new SolidBrush(Color.DarkGreen);
 
             Pen arrowPen = new Pen(Color.FromArgb(255, 150, 70, 0), 6);
-            Pen arrowShadowPen = new Pen(shadowBrush, 6);
+            Pen arrowShadowPen = new Pen(shadowBrush, 8);
+
+            //Draw playground
+            e.Graphics.FillRectangle(greenBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, this.Height - 2 * TABLE_OFFSET);
+
+            //draw borders' shadows
+            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET, this.Height - (BORDER_SIZE + TABLE_OFFSET), this.Width - (BORDER_SIZE + TABLE_OFFSET), this.Height - BORDER_SIZE - TABLE_OFFSET);
+            e.Graphics.DrawLine(arrowShadowPen, this.Width - (BORDER_SIZE + TABLE_OFFSET) - 2, BORDER_SIZE + TABLE_OFFSET, this.Width - BORDER_SIZE - TABLE_OFFSET - 2, this.Height - (BORDER_SIZE + TABLE_OFFSET));
 
             //draw borders
-            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE, BORDER_SIZE, this.Width - BORDER_SIZE, BORDER_SIZE);
-            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE, BORDER_SIZE + 3, BORDER_SIZE, this.Height - BORDER_SIZE);
-
-            e.Graphics.FillRectangle(borderBrush, 0, 0, BORDER_SIZE, this.Height);
-            e.Graphics.FillRectangle(borderBrush, 0, 0, this.Width, BORDER_SIZE);
-            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE, 0, BORDER_SIZE, this.Height);
-            e.Graphics.FillRectangle(borderBrush, 0, this.Height - BORDER_SIZE, this.Width, BORDER_SIZE);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
+            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE - TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, this.Height - BORDER_SIZE - TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
 
             //draw shadows
             for (int i = 0; i < ballsArray.Length; i++)
@@ -341,7 +348,7 @@ namespace PoolOne
                 if (ballsArray[i].inPocket == false)
                 {
                     Ball b = ballsArray[i];
-                    e.Graphics.FillEllipse(shadowBrush, b.position.x + 3, b.position.y + 3, b.radius * 2, b.radius * 2);
+                    e.Graphics.FillEllipse(shadowBrush, b.position.x - 3, b.position.y - 3, b.radius * 2, b.radius * 2);
                 }
             }
 
@@ -378,7 +385,7 @@ namespace PoolOne
                 PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
                 PointF arrowPosition = new PointF(ballsArray[0].position.add(velocityInputVector.multiply(6)).x + BALL_RADIUS, ballsArray[0].position.add(velocityInputVector.multiply(6)).y + BALL_RADIUS);
 
-                e.Graphics.DrawLine(arrowShadowPen, cueBallPosition.X + 1, cueBallPosition.Y + 1, arrowPosition.X + 1, arrowPosition.Y + 1);
+                e.Graphics.DrawLine(arrowShadowPen, cueBallPosition.X - 1, cueBallPosition.Y - 1, arrowPosition.X - 1, arrowPosition.Y - 1);
                 e.Graphics.DrawLine(arrowPen, cueBallPosition, arrowPosition);
             }
         }

@@ -16,10 +16,12 @@ namespace PoolOne
         {
             InitializeComponent();
 
+            /*
             if (twoPlayersButton.Visible == false)
             {
                 onePlayerButton.Text = "PLAY";
             }
+            */
         }
 
         private void exitButton_Click(object sender, EventArgs e)

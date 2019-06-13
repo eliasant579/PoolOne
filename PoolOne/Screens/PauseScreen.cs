@@ -38,5 +38,17 @@ namespace PoolOne
         {
             continueButton.Focus();
         }
+
+        private void menuButton_Enter(object sender, EventArgs e)
+        {
+            menuButton.ForeColor = Color.Red;
+            menuButton.FlatAppearance.BorderSize = 2;
+        }
+
+        private void menuButton_Leave(object sender, EventArgs e)
+        {
+            menuButton.ForeColor = Color.Black;
+            menuButton.FlatAppearance.BorderSize = 0;
+        }
     }
 }
