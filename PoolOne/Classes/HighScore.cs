@@ -17,5 +17,12 @@ namespace PoolOne
 
         }
 
+        public HighScore(string _name, int _shots, DateTime _dateTime)
+        {
+            name = _name;
+            shots = _shots;
+            dateTime = _dateTime;
+        }
+
     }
 }

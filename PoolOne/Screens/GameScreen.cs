@@ -30,7 +30,7 @@ namespace PoolOne
 
         Vector2d velocityInputVector = new Vector2d();
 
-        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown;
+        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown, escapeDown;
         public Boolean ballsStopped, screenEmpty;
 
         public int playerNumber, player1Shots, player2Shots = 0;
@@ -45,7 +45,6 @@ namespace PoolOne
 
         public void InitializeValues()
         {
-            //Still needs randomization
             #region declaring start positions
             startPositionArray[0] = new Point(200, (this.Height - BALL_SIZE) / 2);
 
@@ -141,41 +140,23 @@ namespace PoolOne
                         break;
                 }
 
-                #region Maybe scramble?
-                /*to use only if I do scramble balls
-                //gets positions
-                switch (i)
-                {
-                    case 0:
-                        nextBall.x = new Point(200, (this.Height - BALL_SIZE) / 2).X;
-                        nextBall.y = new Point(200, (this.Height - BALL_SIZE) / 2).Y;
-                        break;
-                    case 8:
-                        nextBall.x = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2).X;
-                        nextBall.y = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2).Y;
-                        break;
-                    default:                       
-                        nextBall.x = startPositionArray[i].X;
-                        nextBall.y = startPositionArray[i].Y;
-                        break;
-                }
-                */
-                #endregion 
+                //if you have time to scramble them do it here
+
                 ballsArray[i] = nextBall;
             }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
-        {
-            if (ballsArray[0].inPocket && ballsStopped)
-            {
-                ballsArray[0].inPocket = false;
-                ballsArray[0].position = new Vector2d(startPositionArray[0].X, startPositionArray[0].Y);
-            }
-
+        {          
             //*Actual ball 
             if (ballsStopped)
             {
+                if (ballsArray[0].inPocket)
+                {
+                    ballsArray[0].inPocket = false;
+                    ballsArray[0].position = new Vector2d(startPositionArray[0].X, startPositionArray[0].Y);
+                }
+
                 Vector2d tempVelocity = new Vector2d(velocityInputVector.x, velocityInputVector.y);
 
                 if (downArrowDown)
@@ -206,6 +187,13 @@ namespace PoolOne
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
                     velocityInputVector = new Vector2d(0, 0);
                     ballsStopped = false;
+                }
+
+                if (escapeDown)
+                {
+                    gameTimer.Enabled = false;
+                    escapeDown = false;
+                    LoadPauseScreen();
                 }
             }
             /*/
@@ -438,13 +426,10 @@ namespace PoolOne
         public static void LoadPauseScreen()
         {
             PauseScreen ps = new PauseScreen();
+            thisScreen.Controls.Add(ps);
 
             ps.Location = new Point((thisScreen.Width - ps.Width) / 2, (thisScreen.Height - ps.Height) / 2);
             ps.BackColor = Color.FromArgb(80, 128, 128, 128);
-
-            thisScreen.Controls.Add(ps);
-            ps.BringToFront();
-            ps.Focus();
         }
 
         public static void RemovePauseScreen(PauseScreen ps)
@@ -493,8 +478,7 @@ namespace PoolOne
 
             if (e.KeyCode == Keys.Escape)
             {
-                gameTimer.Enabled = false;
-                LoadPauseScreen();
+                escapeDown = true;
             }
 
         }
@@ -522,6 +506,11 @@ namespace PoolOne
             if (e.KeyCode == Keys.Enter)
             {
                 enterDown = false;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                escapeDown = false;
             }
         }
         #endregion
