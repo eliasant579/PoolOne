@@ -62,6 +62,7 @@
             this.menuButton.TabIndex = 5;
             this.menuButton.Text = "BACK TO MENU";
             this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
             this.menuButton.Enter += new System.EventHandler(this.menuButton_Enter);
             this.menuButton.Leave += new System.EventHandler(this.menuButton_Leave);
             // 

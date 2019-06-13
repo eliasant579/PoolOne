@@ -50,5 +50,10 @@ namespace PoolOne
             menuButton.ForeColor = Color.Black;
             menuButton.FlatAppearance.BorderSize = 0;
         }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            GameScreen.RemovePauseScreen(this);
+        }
     }
 }
