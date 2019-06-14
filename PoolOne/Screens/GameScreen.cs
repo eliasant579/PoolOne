@@ -15,7 +15,7 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        const int BALL_NUMBER = 2;
+        const int BALL_NUMBER = 16;
 
         private const int BORDER_SIZE = 30;
         private const int TABLE_OFFSET = 150;
