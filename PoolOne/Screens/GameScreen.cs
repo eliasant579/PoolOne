@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
         const int BALL_NUMBER = 16;
-
         public const int BORDER_SIZE = 30;
         public const int TABLE_OFFSET = 150;
         const float FRICTION_COEFFICIENT = 0.01f;
@@ -43,6 +43,11 @@ namespace PoolOne
             thisScreen = this;
             LoadMenuScreen();
             InitializeValues();
+
+
+
+            SoundPlayer deadSkunkJamPlayer = new SoundPlayer(Properties.Resources.Dead_Skunk_Jam_Arcade_Cabinet_Cut);
+            deadSkunkJamPlayer.PlayLooping();
         }
 
         public void InitializeValues()
@@ -190,13 +195,6 @@ namespace PoolOne
                     velocityInputVector = new Vector2d(0, 0);
                     ballsStopped = false;
                 }
-
-                if (escapeDown)
-                {
-                    gameTimer.Enabled = false;
-                    escapeDown = false;
-                    LoadPauseScreen();
-                }
             }
             /*/
 
@@ -289,6 +287,14 @@ namespace PoolOne
                     InitializeValues();
                     LoadMenuScreen();
                 }
+            }
+
+
+            if (escapeDown)
+            {
+                gameTimer.Enabled = false;
+                escapeDown = false;
+                LoadPauseScreen();
             }
 
             Refresh();
@@ -442,8 +448,6 @@ namespace PoolOne
         public static void RemovePauseScreen(PauseScreen ps)
         {
             thisScreen.Controls.Remove(ps);
-            thisScreen.gameTimer.Enabled = true;
-            thisScreen.Focus();
         }
 
         public static void StartGame(int playersNumber)

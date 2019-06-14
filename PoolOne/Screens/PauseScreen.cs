@@ -20,6 +20,7 @@ namespace PoolOne
         private void continueButton_Click(object sender, EventArgs e)
         {
             GameScreen.RemovePauseScreen(this);
+            GameScreen.StartGame(GameScreen.thisScreen.playerNumber);
         }
 
         private void continueButton_Enter(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace PoolOne
         private void menuButton_Click(object sender, EventArgs e)
         {
             GameScreen.RemovePauseScreen(this);
+            GameScreen.LoadMenuScreen();
         }
     }
 }

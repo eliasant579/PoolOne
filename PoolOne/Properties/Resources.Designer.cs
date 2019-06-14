@@ -61,12 +61,11 @@ namespace PoolOne.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap BnSO0dG2 {
+        internal static System.IO.UnmanagedMemoryStream Dead_Skunk_Jam_Arcade_Cabinet_Cut {
             get {
-                object obj = ResourceManager.GetObject("BnSO0dG2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("Dead_Skunk_Jam_Arcade_Cabinet_Cut", resourceCulture);
             }
         }
         
@@ -76,16 +75,6 @@ namespace PoolOne.Properties {
         internal static System.Drawing.Bitmap gameScreenBackPicture {
             get {
                 object obj = ResourceManager.GetObject("gameScreenBackPicture", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap gameScreenBackPicture1 {
-            get {
-                object obj = ResourceManager.GetObject("gameScreenBackPicture1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
