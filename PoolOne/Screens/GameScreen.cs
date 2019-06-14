@@ -292,9 +292,9 @@ namespace PoolOne
 
             if (escapeDown)
             {
-                //gameTimer.Enabled = false;
-                //escapeDown = false;
-                //LoadPauseScreen();
+                gameTimer.Enabled = false;
+                escapeDown = false;
+                LoadPauseScreen();
             }
 
             Refresh();
@@ -499,10 +499,7 @@ namespace PoolOne
 
             if (e.KeyCode == Keys.Escape)
             {
-                //escapeDown = true;
-                gameTimer.Enabled = false;
-               //escapeDown = false;
-                LoadPauseScreen();
+                escapeDown = true;
             }
 
         }
