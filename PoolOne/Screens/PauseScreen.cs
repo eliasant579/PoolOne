@@ -56,6 +56,7 @@ namespace PoolOne
         {
             GameScreen.RemovePauseScreen(this);
             GameScreen.LoadMenuScreen();
+            GameScreen.thisScreen.InitializeValues();
         }
     }
 }

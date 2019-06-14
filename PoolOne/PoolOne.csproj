@@ -133,13 +133,7 @@
     <None Include="Resources\gameScreenBackPicture.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\gameScreenBackPicture1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\BnSO0dG2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Dead_Skunk_Jam_Arcade_Cabinet.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dead_Skunk_Jam_Arcade_Cabinet_Cut.wav" />

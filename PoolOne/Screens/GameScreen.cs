@@ -14,8 +14,10 @@ namespace PoolOne
     public partial class GameScreen : UserControl
     {
         const int BALL_NUMBER = 16;
-        public const int BORDER_SIZE = 30;
-        public const int TABLE_OFFSET = 150;
+
+        private const int BORDER_SIZE = 30;
+        private const int TABLE_OFFSET = 150;
+
         const float FRICTION_COEFFICIENT = 0.01f;
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
         const int BALL_SIZE = 30;
@@ -43,8 +45,6 @@ namespace PoolOne
             thisScreen = this;
             LoadMenuScreen();
             InitializeValues();
-
-
 
             SoundPlayer deadSkunkJamPlayer = new SoundPlayer(Properties.Resources.Dead_Skunk_Jam_Arcade_Cabinet_Cut);
             deadSkunkJamPlayer.PlayLooping();
@@ -292,9 +292,9 @@ namespace PoolOne
 
             if (escapeDown)
             {
-                gameTimer.Enabled = false;
-                escapeDown = false;
-                LoadPauseScreen();
+                //gameTimer.Enabled = false;
+                //escapeDown = false;
+                //LoadPauseScreen();
             }
 
             Refresh();
@@ -320,6 +320,16 @@ namespace PoolOne
                     }
                 }
             }
+        }
+
+        public int getBorder()
+        {
+            return BORDER_SIZE;
+        }
+
+        public int getOffset()
+        {
+            return TABLE_OFFSET;
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -420,8 +430,6 @@ namespace PoolOne
         {
             thisScreen.Controls.Remove(ms);
 
-            Form form = thisScreen.FindForm();
-
             HighScoresScreen hs = new HighScoresScreen();
 
             hs.Location = new Point((thisScreen.Width - hs.Width) / 2, (thisScreen.Height - hs.Height) / 2);
@@ -439,10 +447,12 @@ namespace PoolOne
         public static void LoadPauseScreen()
         {
             PauseScreen ps = new PauseScreen();
-            thisScreen.Controls.Add(ps);
 
             ps.Location = new Point((thisScreen.Width - ps.Width) / 2, (thisScreen.Height - ps.Height) / 2);
             ps.BackColor = Color.FromArgb(80, 128, 128, 128);
+            thisScreen.Controls.Add(ps);
+
+
         }
 
         public static void RemovePauseScreen(PauseScreen ps)
@@ -489,7 +499,10 @@ namespace PoolOne
 
             if (e.KeyCode == Keys.Escape)
             {
-                escapeDown = true;
+                //escapeDown = true;
+                gameTimer.Enabled = false;
+               //escapeDown = false;
+                LoadPauseScreen();
             }
 
         }

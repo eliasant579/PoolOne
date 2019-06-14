@@ -97,21 +97,23 @@ namespace PoolOne
 
         public void SidesCollsion(GameScreen UC)
         {
-            if (position.x <= 180)
+            int totalOffset = UC.getBorder() + UC.getOffset();
+
+            if (position.x <= totalOffset)
             {
                 velocity.x = Math.Abs(velocity.x);
             }
             // Collision with right wall
-            if (position.x >= (UC.Width - radius * 2 - 180))
+            if (position.x >= (UC.Width - radius * 2 - totalOffset))
             {
                 velocity.x = Math.Abs(velocity.x) * -1;
             }
             // Collision with top wall
-            if (position.y <= 182)
+            if (position.y <= totalOffset + 2)
             {
                 velocity.y = Math.Abs(velocity.y);
             }
-            if (position.y >= (UC.Height - radius * 2 - 180))
+            if (position.y >= (UC.Height - radius * 2 - totalOffset))
             {
                 velocity.y = Math.Abs(velocity.y) * -1;
             }
