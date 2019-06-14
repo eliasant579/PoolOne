@@ -38,10 +38,11 @@
             this.continueButton.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
             this.continueButton.FlatAppearance.BorderSize = 0;
             this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.continueButton.Font = new System.Drawing.Font("Machine BT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.continueButton.Location = new System.Drawing.Point(361, 255);
+            this.continueButton.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.continueButton.Location = new System.Drawing.Point(455, 314);
+            this.continueButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(116, 45);
+            this.continueButton.Size = new System.Drawing.Size(181, 55);
             this.continueButton.TabIndex = 4;
             this.continueButton.Text = "CONTINUE";
             this.continueButton.UseVisualStyleBackColor = false;
@@ -55,10 +56,11 @@
             this.menuButton.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
             this.menuButton.FlatAppearance.BorderSize = 0;
             this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.menuButton.Font = new System.Drawing.Font("Machine BT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuButton.Location = new System.Drawing.Point(313, 28);
+            this.menuButton.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuButton.Location = new System.Drawing.Point(378, 34);
+            this.menuButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.menuButton.Name = "menuButton";
-            this.menuButton.Size = new System.Drawing.Size(164, 45);
+            this.menuButton.Size = new System.Drawing.Size(258, 55);
             this.menuButton.TabIndex = 5;
             this.menuButton.Text = "BACK TO MENU";
             this.menuButton.UseVisualStyleBackColor = false;
@@ -68,13 +70,14 @@
             // 
             // PauseScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.menuButton);
             this.Controls.Add(this.continueButton);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PauseScreen";
-            this.Size = new System.Drawing.Size(501, 328);
+            this.Size = new System.Drawing.Size(668, 404);
             this.Load += new System.EventHandler(this.PauseScreen_Load);
             this.ResumeLayout(false);
 
