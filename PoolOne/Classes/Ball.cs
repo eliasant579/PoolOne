@@ -95,27 +95,35 @@ namespace PoolOne
             ball.velocity = ball.velocity.subtract(impulse.multiply(1));
         }
 
-        public void SidesCollsion(GameScreen UC)
+        public bool SidesCollsion(GameScreen UC)
         {
             int totalOffset = UC.getBorder() + UC.getOffset();
 
             if (position.x <= totalOffset)
             {
                 velocity.x = Math.Abs(velocity.x);
+                return true;
             }
             // Collision with right wall
-            if (position.x >= (UC.Width - radius * 2 - totalOffset))
+            else if (position.x >= (UC.Width - radius * 2 - totalOffset))
             {
                 velocity.x = Math.Abs(velocity.x) * -1;
+                return true;
             }
             // Collision with top wall
-            if (position.y <= totalOffset + 2)
+            else if (position.y <= totalOffset + 2)
             {
                 velocity.y = Math.Abs(velocity.y);
+                return true;
             }
-            if (position.y >= (UC.Height - radius * 2 - totalOffset))
+            else if (position.y >= (UC.Height - radius * 2 - totalOffset))
             {
                 velocity.y = Math.Abs(velocity.y) * -1;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

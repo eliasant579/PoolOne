@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using Arcade;
+//using System.IO;
 
 namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        const int BALL_NUMBER = 16;
+        const int BALL_NUMBER = 2;
 
         private const int BORDER_SIZE = 30;
         private const int TABLE_OFFSET = 150;
@@ -39,6 +41,14 @@ namespace PoolOne
 
         public int playerNumber, player1Shots, player2Shots = 0;
 
+        public SoundPlayer cueBallHitPlayer = new SoundPlayer(Properties.Resources.CueBallHit);
+        public SoundPlayer ballToBallHitPlayer = new SoundPlayer(Properties.Resources.BallToBallHit);
+        public SoundPlayer sideHitPlayer = new SoundPlayer(Properties.Resources.SideHit);
+        public SoundPlayer inPocketPlayer = new SoundPlayer(Properties.Resources.BallInPocket);
+
+        //System.Windows.Media.MediaPlayer cueBallHitPlayer = new System.Windows.Media.MediaPlayer();
+        
+
         public GameScreen()
         {
             InitializeComponent();
@@ -46,8 +56,10 @@ namespace PoolOne
             LoadMenuScreen();
             InitializeValues();
 
-            SoundPlayer deadSkunkJamPlayer = new SoundPlayer(Properties.Resources.Dead_Skunk_Jam_Arcade_Cabinet_Cut);
-            deadSkunkJamPlayer.PlayLooping();
+            //SoundPlayer deadSkunkJamPlayer = new SoundPlayer(Properties.Resources.Dead_Skunk_Jam_Arcade_Cabinet_Cut);
+            //deadSkunkJamPlayer.PlayLooping();
+
+            //cueBallHitPlayer.Open(new Uri(Application.StartupPath + "/Resources/CueBallHit.wav"));
         }
 
         public void InitializeValues()
@@ -154,7 +166,7 @@ namespace PoolOne
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
-        {          
+        {
             //*Actual ball 
             if (ballsStopped)
             {
@@ -191,6 +203,7 @@ namespace PoolOne
 
                 if (enterDown)
                 {
+                    cueBallHitPlayer.Play();
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
                     velocityInputVector = new Vector2d(0, 0);
                     ballsStopped = false;
@@ -264,6 +277,9 @@ namespace PoolOne
                             {
                                 ballsArray[i].inPocket = true;
                                 ballsArray[i].velocity = new Vector2d(0, 0);
+
+                                inPocketPlayer.Play();
+
                                 break;
                             }
                         }
@@ -285,7 +301,7 @@ namespace PoolOne
                 {
                     gameTimer.Enabled = false;
                     InitializeValues();
-                    LoadMenuScreen();
+                    LoadEnterScore();
                 }
             }
 
@@ -306,7 +322,10 @@ namespace PoolOne
             {
                 if (ballsArray[i].inPocket == false)
                 {
-                    ballsArray[i].SidesCollsion(this);
+                    if (ballsArray[i].SidesCollsion(this))
+                    {
+                        sideHitPlayer.Play();
+                    }
 
                     for (int j = i; j < ballsArray.Length; j++)
                     {
@@ -315,6 +334,7 @@ namespace PoolOne
                             if (ballsArray[i].Colliding(ballsArray[j]))
                             {
                                 ballsArray[i].ResolveCollision(ballsArray[j]);
+                                ballToBallHitPlayer.Play();
                             }
                         }
                     }
@@ -458,6 +478,13 @@ namespace PoolOne
         public static void RemovePauseScreen(PauseScreen ps)
         {
             thisScreen.Controls.Remove(ps);
+        }
+
+        public static void LoadEnterScore()
+        {
+            EnterScore es = new EnterScore(thisScreen.player1Shots, Color.Gold, Color.Black, Color.Gold);
+            es.Location = new Point((thisScreen.Width - es.Width) / 2, (thisScreen.Height - es.Height) / 2);
+            thisScreen.Controls.Add(es);
         }
 
         public static void StartGame(int playersNumber)

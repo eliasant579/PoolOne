@@ -63,6 +63,33 @@ namespace PoolOne.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BallInPocket {
+            get {
+                return ResourceManager.GetStream("BallInPocket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BallToBallHit {
+            get {
+                return ResourceManager.GetStream("BallToBallHit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream CueBallHit {
+            get {
+                return ResourceManager.GetStream("CueBallHit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Dead_Skunk_Jam_Arcade_Cabinet_Cut {
             get {
                 return ResourceManager.GetStream("Dead_Skunk_Jam_Arcade_Cabinet_Cut", resourceCulture);
@@ -92,6 +119,15 @@ namespace PoolOne.Properties {
         internal static string highScoresXML {
             get {
                 return ResourceManager.GetString("highScoresXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream SideHit {
+            get {
+                return ResourceManager.GetStream("SideHit", resourceCulture);
             }
         }
     }
