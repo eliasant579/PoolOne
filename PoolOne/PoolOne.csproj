@@ -135,5 +135,10 @@
   <ItemGroup>
     <None Include="Resources\Dead_Skunk_Jam_Arcade_Cabinet_Cut.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\highScoresXML.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

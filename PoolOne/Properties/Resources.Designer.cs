@@ -78,5 +78,21 @@ namespace PoolOne.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version =&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;higscores&gt;
+        ///  &lt;highscore&gt;
+        ///    &lt;name&gt;Elia&lt;/name&gt;
+        ///    &lt;shots&gt;6&lt;/shots&gt;
+        ///    &lt;date&gt;&lt;/date&gt;
+        ///  &lt;/highscore&gt;
+        ///&lt;/higscores&gt;.
+        /// </summary>
+        internal static string highScoresXML {
+            get {
+                return ResourceManager.GetString("highScoresXML", resourceCulture);
+            }
+        }
     }
 }
