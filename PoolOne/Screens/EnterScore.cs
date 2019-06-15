@@ -19,6 +19,7 @@ namespace PoolOne
         
         string newName = "";
         int newScore;
+        DateTime newDateTime;
 
         Color textColor, formColor;
 
@@ -29,6 +30,9 @@ namespace PoolOne
             newScore = _newScore;
             textColor = _textColor;
             formColor = _formColor;
+
+            newDateTime = DateTime.Now; /*.ToString("h:mm:ss tt")*/
+
 
             #region place buttons in List
 
@@ -94,11 +98,6 @@ namespace PoolOne
             #endregion
 
             this.Focus();
-        }
-
-        public EnterScore()
-        {
-
         }
 
         private void EnterScore_KeyUp(object sender, KeyEventArgs e)
@@ -205,15 +204,15 @@ namespace PoolOne
 
         private void EnterScore_Leave(object sender, EventArgs e)
         {
-            XmlWriter writer = XmlWriter.Create("Resources/HighScores.xml");
+            XmlWriter writer = XmlWriter.Create("Resources/highScores.xml");
             //Write the root element 
             writer.WriteStartElement("Highscores");
             //Start an element 
             writer.WriteStartElement("Highscore");
             //Write sub-elements 
-            writer.WriteElementString("name", "Chris");
-            writer.WriteElementString("shots", "1313 Mockingbird Lane");
-            writer.WriteElementString("dateTime", "555-1313");
+            writer.WriteElementString("name", newName);
+            writer.WriteElementString("shots", newScore.ToString());
+            writer.WriteElementString("dateTime", newDateTime.ToString());
             // end the element 
             writer.WriteEndElement();
             // end the root element 

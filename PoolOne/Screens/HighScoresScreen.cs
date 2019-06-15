@@ -61,7 +61,7 @@ namespace PoolOne
                 }
             }
 
-            testLabel.Text = "" + highScoresList[2].name;
+            testLabel.Text = "" + highScoresList[0].name;
             //here you put everything in the right place
         }
     }
