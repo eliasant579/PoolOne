@@ -24,17 +24,20 @@ namespace PoolOne
 
         private void onePlayerButton_Click(object sender, EventArgs e)
         {
-            GameScreen.RemoveMenuScreen(this, 1);
+            GameScreen.RemoveThis(this);
+            GameScreen.StartGame(1);
         }
 
         private void twoPlayersButton_Click(object sender, EventArgs e)
         {
-            GameScreen.RemoveMenuScreen(this, 2);
+            GameScreen.RemoveThis(this);
+            GameScreen.StartGame(2);
         }
 
         private void highScoresButton_Click(object sender, EventArgs e)
         {
-            GameScreen.LoadHighScoresScreen(this);
+            GameScreen.RemoveThis(this);
+            GameScreen.LoadHighScoresScreen();
         }
 
         private void onePlayerButton_Enter(object sender, EventArgs e)

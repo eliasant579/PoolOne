@@ -17,7 +17,7 @@ namespace PoolOne
 
         private void backToMenuButton_Click(object sender, EventArgs e)
         {
-            GameScreen.RemoveHighScoresScreen(this);
+            GameScreen.RemoveThis(this);
             GameScreen.LoadMenuScreen();
         }
 

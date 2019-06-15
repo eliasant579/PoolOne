@@ -272,7 +272,6 @@ namespace PoolOne
                                 ballsArray[i].velocity = new Vector2d(0, 0);
 
                                 inPocketPlayer.Play();
-
                                 break;
                             }
                         }
@@ -288,17 +287,18 @@ namespace PoolOne
                     {
                         screenEmpty = false;
                     }
-                }
-
-                if (screenEmpty || kDown)
-                {
-                    gameTimer.Enabled = false;
-                    InitializeValues();
-
-                    LoadEnterScore();
-                }
+                }                
             }
 
+            if (screenEmpty || kDown)
+            {
+                gameTimer.Enabled = false;
+                InitializeValues();
+
+                //foreach (HighScore hs in )
+
+                LoadEnterScore();
+            }
 
             if (escapeDown)
             {
@@ -350,11 +350,6 @@ namespace PoolOne
             return TABLE_OFFSET;
         }
 
-        public void Whatever (HighScore k)
-        {
-
-        }
-
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             //Brushes and pens
@@ -378,12 +373,6 @@ namespace PoolOne
             e.Graphics.DrawLine(shadowPen, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Width - (BORDER_SIZE + TABLE_OFFSET), BORDER_SIZE + TABLE_OFFSET - 1);
             e.Graphics.DrawLine(shadowPen, BORDER_SIZE + TABLE_OFFSET - 1, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Height - (BORDER_SIZE + TABLE_OFFSET));
 
-            //draw borders
-            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
-            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
-            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE - TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
-            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, this.Height - BORDER_SIZE - TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
-
             //draw shadows
             for (int i = 0; i < ballsArray.Length; i++)
             {
@@ -392,13 +381,6 @@ namespace PoolOne
                     Ball b = ballsArray[i];
                     e.Graphics.FillEllipse(shadowBrush, b.position.x - 3, b.position.y - 3, b.radius * 2, b.radius * 2);
                 }
-            }
-
-            //draw pockets
-            for (int i = 0; i < pocketsArray.Length; i++)
-            {
-                Pocket p = pocketsArray[i];
-                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
             }
 
             //draw balls
@@ -421,6 +403,19 @@ namespace PoolOne
                 }
             }
 
+            //draw borders
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
+            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE - TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, this.Height - BORDER_SIZE - TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);           
+
+            //draw pockets
+            for (int i = 0; i < pocketsArray.Length; i++)
+            {
+                Pocket p = pocketsArray[i];
+                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
+            }
+            
             //aiming arrow
             if (ballsStopped)
             {
@@ -446,16 +441,8 @@ namespace PoolOne
             ms.Focus();
         }
 
-        public static void RemoveMenuScreen(MenuScreen ms, int n)
+        public static void LoadHighScoresScreen()
         {
-            thisScreen.Controls.Remove(ms);
-            StartGame(n);
-        }
-
-        public static void LoadHighScoresScreen(MenuScreen ms)
-        {
-            thisScreen.Controls.Remove(ms);
-
             HighScoresScreen hs = new HighScoresScreen();
 
             hs.Location = new Point((thisScreen.Width - hs.Width) / 2, (thisScreen.Height - hs.Height) / 2);
@@ -463,11 +450,6 @@ namespace PoolOne
 
             thisScreen.Controls.Add(hs);
             hs.BringToFront();
-        }
-
-        public static void RemoveHighScoresScreen(HighScoresScreen hss)
-        {
-            thisScreen.Controls.Remove(hss);
         }
 
         public static void LoadPauseScreen()
@@ -479,11 +461,6 @@ namespace PoolOne
             thisScreen.Controls.Add(ps);
         }
 
-        public static void RemovePauseScreen(PauseScreen ps)
-        {
-            thisScreen.Controls.Remove(ps);
-        }
-
         public static void LoadEnterScore()
         {
             HighScore score = new HighScore();
@@ -491,11 +468,6 @@ namespace PoolOne
             EnterScore es = new EnterScore(thisScreen.player1Shots, Color.Gold, Color.Black, Color.Gold);
             es.Location = new Point((thisScreen.Width - es.Width) / 2, (thisScreen.Height - es.Height) / 2);
             thisScreen.Controls.Add(es);
-        }
-
-        public static void RemoveEnterScore(EnterScore es)
-        {
-            thisScreen.Controls.Remove(es);
         }
 
         public static void RemoveThis(UserControl UC)

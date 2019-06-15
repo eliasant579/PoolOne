@@ -26,7 +26,7 @@ namespace PoolOne
             textColor = _textColor;
             formColor = _formColor;
 
-            newDateTime = DateTime.Now; /*.ToString("h:mm:ss tt")*/
+            newDateTime = DateTime.Now;
 
 
             #region place buttons in List
@@ -177,7 +177,8 @@ namespace PoolOne
             }
             else
             {
-                GameScreen.RemoveEnterScore(this);
+                GameScreen.RemoveThis(this);
+                GameScreen.LoadMenuScreen();
             }
         }
 
@@ -186,9 +187,9 @@ namespace PoolOne
             Pen drawPen = new Pen(textColor, 2);
             e.Graphics.DrawRectangle(drawPen, 5, 5, this.Width - 10, this.Height - 10);
 
-            if (newName.Length > 3)
+            if (newName.Length >= 3)
             {
-                //display something like a thanks or whatever
+                //Thanks for playing, your score has been stored! Press any key to go back to menu.
             }
         }
 
