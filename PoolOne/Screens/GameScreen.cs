@@ -366,17 +366,17 @@ namespace PoolOne
             SolidBrush greenBrush = new SolidBrush(Color.DarkGreen);
 
             Pen arrowPen = new Pen(Color.FromArgb(255, 150, 70, 0), 6);
-            Pen arrowShadowPen = new Pen(shadowBrush, 8);
+            Pen shadowPen = new Pen(shadowBrush, 8);
 
             //Draw playground
             e.Graphics.FillRectangle(greenBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, this.Height - 2 * TABLE_OFFSET);
 
             //draw borders' shadows
-            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET, this.Height - (BORDER_SIZE + TABLE_OFFSET), this.Width - (BORDER_SIZE + TABLE_OFFSET), this.Height - BORDER_SIZE - TABLE_OFFSET);
-            e.Graphics.DrawLine(arrowShadowPen, this.Width - (BORDER_SIZE + TABLE_OFFSET) - 2, BORDER_SIZE + TABLE_OFFSET, this.Width - BORDER_SIZE - TABLE_OFFSET - 2, this.Height - (BORDER_SIZE + TABLE_OFFSET));
+            e.Graphics.DrawLine(shadowPen, BORDER_SIZE + TABLE_OFFSET, this.Height - (BORDER_SIZE + TABLE_OFFSET), this.Width - (BORDER_SIZE + TABLE_OFFSET), this.Height - BORDER_SIZE - TABLE_OFFSET);
+            e.Graphics.DrawLine(shadowPen, this.Width - (BORDER_SIZE + TABLE_OFFSET) - 2, BORDER_SIZE + TABLE_OFFSET, this.Width - BORDER_SIZE - TABLE_OFFSET - 2, this.Height - (BORDER_SIZE + TABLE_OFFSET));
 
-            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Width - (BORDER_SIZE + TABLE_OFFSET), BORDER_SIZE + TABLE_OFFSET - 1);
-            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET - 1, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Height - (BORDER_SIZE + TABLE_OFFSET));
+            e.Graphics.DrawLine(shadowPen, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Width - (BORDER_SIZE + TABLE_OFFSET), BORDER_SIZE + TABLE_OFFSET - 1);
+            e.Graphics.DrawLine(shadowPen, BORDER_SIZE + TABLE_OFFSET - 1, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Height - (BORDER_SIZE + TABLE_OFFSET));
 
             //draw borders
             e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
@@ -427,7 +427,7 @@ namespace PoolOne
                 PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
                 PointF arrowPosition = new PointF(ballsArray[0].position.add(velocityInputVector.multiply(6)).x + BALL_RADIUS, ballsArray[0].position.add(velocityInputVector.multiply(6)).y + BALL_RADIUS);
 
-                e.Graphics.DrawLine(arrowShadowPen, cueBallPosition.X - 1, cueBallPosition.Y - 1, arrowPosition.X - 1, arrowPosition.Y - 1);
+                e.Graphics.DrawLine(shadowPen, cueBallPosition.X - 1, cueBallPosition.Y - 1, arrowPosition.X - 1, arrowPosition.Y - 1);
                 e.Graphics.DrawLine(arrowPen, cueBallPosition, arrowPosition);
             }
         }
