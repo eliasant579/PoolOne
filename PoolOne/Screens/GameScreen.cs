@@ -200,7 +200,7 @@ namespace PoolOne
                     velocityInputVector = tempVelocity;
                 }
 
-                if (enterDown)
+                if (enterDown && velocityInputVector.x != 0 && velocityInputVector.y != 0)
                 {
                     cueBallHitPlayer.Play();
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
@@ -335,9 +335,9 @@ namespace PoolOne
                                 ballsArray[i].ResolveCollision(ballsArray[j]);
                                 //ballToBallHitPlayer.Play();
 
-                                var dingPlayer = new System.Windows.Media.MediaPlayer();
-                                dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/BallToBallHit.wav"));
-                                dingPlayer.Play();
+                                //var dingPlayer = new System.Windows.Media.MediaPlayer();
+                                //dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/BallToBallHit.wav"));
+                                //dingPlayer.Play();
                             }
                         }
                     }
