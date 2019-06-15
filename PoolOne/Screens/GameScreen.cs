@@ -200,7 +200,7 @@ namespace PoolOne
                     velocityInputVector = tempVelocity;
                 }
 
-                if (enterDown && velocityInputVector.x != 0 && velocityInputVector.y != 0)
+                if (enterDown)
                 {
                     cueBallHitPlayer.Play();
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
