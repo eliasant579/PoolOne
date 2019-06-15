@@ -375,6 +375,9 @@ namespace PoolOne
             e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET, this.Height - (BORDER_SIZE + TABLE_OFFSET), this.Width - (BORDER_SIZE + TABLE_OFFSET), this.Height - BORDER_SIZE - TABLE_OFFSET);
             e.Graphics.DrawLine(arrowShadowPen, this.Width - (BORDER_SIZE + TABLE_OFFSET) - 2, BORDER_SIZE + TABLE_OFFSET, this.Width - BORDER_SIZE - TABLE_OFFSET - 2, this.Height - (BORDER_SIZE + TABLE_OFFSET));
 
+            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Width - (BORDER_SIZE + TABLE_OFFSET), BORDER_SIZE + TABLE_OFFSET - 1);
+            e.Graphics.DrawLine(arrowShadowPen, BORDER_SIZE + TABLE_OFFSET - 1, BORDER_SIZE + TABLE_OFFSET, BORDER_SIZE + TABLE_OFFSET - 1, this.Height - (BORDER_SIZE + TABLE_OFFSET));
+
             //draw borders
             e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
             e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
