@@ -1,4 +1,4 @@
-﻿namespace Arcade
+﻿namespace PoolOne
 {
     partial class EnterScore
     {
@@ -71,10 +71,10 @@
             this.nameChar1.BackColor = System.Drawing.Color.Black;
             this.nameChar1.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameChar1.ForeColor = System.Drawing.Color.Gold;
-            this.nameChar1.Location = new System.Drawing.Point(272, 408);
+            this.nameChar1.Location = new System.Drawing.Point(242, 326);
             this.nameChar1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameChar1.Name = "nameChar1";
-            this.nameChar1.Size = new System.Drawing.Size(45, 47);
+            this.nameChar1.Size = new System.Drawing.Size(37, 37);
             this.nameChar1.TabIndex = 31;
             this.nameChar1.Text = "_";
             // 
@@ -84,10 +84,10 @@
             this.jChar.BackColor = System.Drawing.Color.Transparent;
             this.jChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jChar.ForeColor = System.Drawing.Color.Gold;
-            this.jChar.Location = new System.Drawing.Point(576, 174);
+            this.jChar.Location = new System.Drawing.Point(512, 139);
             this.jChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.jChar.Name = "jChar";
-            this.jChar.Size = new System.Drawing.Size(45, 47);
+            this.jChar.Size = new System.Drawing.Size(37, 37);
             this.jChar.TabIndex = 9;
             this.jChar.Text = "J";
             // 
@@ -97,10 +97,10 @@
             this.iChar.BackColor = System.Drawing.Color.Transparent;
             this.iChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iChar.ForeColor = System.Drawing.Color.Gold;
-            this.iChar.Location = new System.Drawing.Point(524, 174);
+            this.iChar.Location = new System.Drawing.Point(466, 139);
             this.iChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.iChar.Name = "iChar";
-            this.iChar.Size = new System.Drawing.Size(45, 47);
+            this.iChar.Size = new System.Drawing.Size(37, 37);
             this.iChar.TabIndex = 8;
             this.iChar.Text = "I";
             // 
@@ -110,10 +110,10 @@
             this.hChar.BackColor = System.Drawing.Color.Transparent;
             this.hChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hChar.ForeColor = System.Drawing.Color.Gold;
-            this.hChar.Location = new System.Drawing.Point(472, 174);
+            this.hChar.Location = new System.Drawing.Point(420, 139);
             this.hChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.hChar.Name = "hChar";
-            this.hChar.Size = new System.Drawing.Size(45, 47);
+            this.hChar.Size = new System.Drawing.Size(37, 37);
             this.hChar.TabIndex = 7;
             this.hChar.Text = "H";
             // 
@@ -123,10 +123,10 @@
             this.gChar.BackColor = System.Drawing.Color.Transparent;
             this.gChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gChar.ForeColor = System.Drawing.Color.Gold;
-            this.gChar.Location = new System.Drawing.Point(420, 174);
+            this.gChar.Location = new System.Drawing.Point(373, 139);
             this.gChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gChar.Name = "gChar";
-            this.gChar.Size = new System.Drawing.Size(45, 47);
+            this.gChar.Size = new System.Drawing.Size(37, 37);
             this.gChar.TabIndex = 6;
             this.gChar.Text = "G";
             // 
@@ -136,10 +136,10 @@
             this.fChar.BackColor = System.Drawing.Color.Transparent;
             this.fChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fChar.ForeColor = System.Drawing.Color.Gold;
-            this.fChar.Location = new System.Drawing.Point(368, 174);
+            this.fChar.Location = new System.Drawing.Point(327, 139);
             this.fChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.fChar.Name = "fChar";
-            this.fChar.Size = new System.Drawing.Size(45, 47);
+            this.fChar.Size = new System.Drawing.Size(37, 37);
             this.fChar.TabIndex = 5;
             this.fChar.Text = "F";
             // 
@@ -149,10 +149,10 @@
             this.eChar.BackColor = System.Drawing.Color.Transparent;
             this.eChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eChar.ForeColor = System.Drawing.Color.Gold;
-            this.eChar.Location = new System.Drawing.Point(315, 174);
+            this.eChar.Location = new System.Drawing.Point(280, 139);
             this.eChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.eChar.Name = "eChar";
-            this.eChar.Size = new System.Drawing.Size(45, 47);
+            this.eChar.Size = new System.Drawing.Size(37, 37);
             this.eChar.TabIndex = 4;
             this.eChar.Text = "E";
             // 
@@ -162,10 +162,10 @@
             this.dChar.BackColor = System.Drawing.Color.Transparent;
             this.dChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dChar.ForeColor = System.Drawing.Color.Gold;
-            this.dChar.Location = new System.Drawing.Point(262, 174);
+            this.dChar.Location = new System.Drawing.Point(233, 139);
             this.dChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dChar.Name = "dChar";
-            this.dChar.Size = new System.Drawing.Size(45, 47);
+            this.dChar.Size = new System.Drawing.Size(37, 37);
             this.dChar.TabIndex = 3;
             this.dChar.Text = "D";
             // 
@@ -175,10 +175,10 @@
             this.cChar.BackColor = System.Drawing.Color.Transparent;
             this.cChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cChar.ForeColor = System.Drawing.Color.Gold;
-            this.cChar.Location = new System.Drawing.Point(210, 174);
+            this.cChar.Location = new System.Drawing.Point(187, 139);
             this.cChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cChar.Name = "cChar";
-            this.cChar.Size = new System.Drawing.Size(45, 47);
+            this.cChar.Size = new System.Drawing.Size(37, 37);
             this.cChar.TabIndex = 2;
             this.cChar.Text = "C";
             // 
@@ -188,10 +188,10 @@
             this.bChar.BackColor = System.Drawing.Color.Transparent;
             this.bChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bChar.ForeColor = System.Drawing.Color.Gold;
-            this.bChar.Location = new System.Drawing.Point(158, 174);
+            this.bChar.Location = new System.Drawing.Point(140, 139);
             this.bChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bChar.Name = "bChar";
-            this.bChar.Size = new System.Drawing.Size(45, 47);
+            this.bChar.Size = new System.Drawing.Size(37, 37);
             this.bChar.TabIndex = 1;
             this.bChar.Text = "B";
             // 
@@ -201,10 +201,10 @@
             this.aChar.BackColor = System.Drawing.Color.Transparent;
             this.aChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aChar.ForeColor = System.Drawing.Color.Gold;
-            this.aChar.Location = new System.Drawing.Point(105, 174);
+            this.aChar.Location = new System.Drawing.Point(93, 139);
             this.aChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.aChar.Name = "aChar";
-            this.aChar.Size = new System.Drawing.Size(45, 47);
+            this.aChar.Size = new System.Drawing.Size(37, 37);
             this.aChar.TabIndex = 0;
             this.aChar.Text = "A";
             // 
@@ -214,10 +214,10 @@
             this.tChar.BackColor = System.Drawing.Color.Transparent;
             this.tChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tChar.ForeColor = System.Drawing.Color.Gold;
-            this.tChar.Location = new System.Drawing.Point(576, 237);
+            this.tChar.Location = new System.Drawing.Point(512, 190);
             this.tChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tChar.Name = "tChar";
-            this.tChar.Size = new System.Drawing.Size(45, 47);
+            this.tChar.Size = new System.Drawing.Size(37, 37);
             this.tChar.TabIndex = 19;
             this.tChar.Text = "T";
             // 
@@ -227,10 +227,10 @@
             this.sChar.BackColor = System.Drawing.Color.Transparent;
             this.sChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sChar.ForeColor = System.Drawing.Color.Gold;
-            this.sChar.Location = new System.Drawing.Point(524, 237);
+            this.sChar.Location = new System.Drawing.Point(466, 190);
             this.sChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sChar.Name = "sChar";
-            this.sChar.Size = new System.Drawing.Size(45, 47);
+            this.sChar.Size = new System.Drawing.Size(37, 37);
             this.sChar.TabIndex = 18;
             this.sChar.Text = "S";
             // 
@@ -240,10 +240,10 @@
             this.rChar.BackColor = System.Drawing.Color.Transparent;
             this.rChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rChar.ForeColor = System.Drawing.Color.Gold;
-            this.rChar.Location = new System.Drawing.Point(472, 237);
+            this.rChar.Location = new System.Drawing.Point(420, 190);
             this.rChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.rChar.Name = "rChar";
-            this.rChar.Size = new System.Drawing.Size(45, 47);
+            this.rChar.Size = new System.Drawing.Size(37, 37);
             this.rChar.TabIndex = 17;
             this.rChar.Text = "R";
             // 
@@ -253,10 +253,10 @@
             this.qChar.BackColor = System.Drawing.Color.Transparent;
             this.qChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qChar.ForeColor = System.Drawing.Color.Gold;
-            this.qChar.Location = new System.Drawing.Point(420, 237);
+            this.qChar.Location = new System.Drawing.Point(373, 190);
             this.qChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.qChar.Name = "qChar";
-            this.qChar.Size = new System.Drawing.Size(45, 47);
+            this.qChar.Size = new System.Drawing.Size(37, 37);
             this.qChar.TabIndex = 16;
             this.qChar.Text = "Q";
             // 
@@ -266,10 +266,10 @@
             this.pChar.BackColor = System.Drawing.Color.Transparent;
             this.pChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pChar.ForeColor = System.Drawing.Color.Gold;
-            this.pChar.Location = new System.Drawing.Point(368, 237);
+            this.pChar.Location = new System.Drawing.Point(327, 190);
             this.pChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pChar.Name = "pChar";
-            this.pChar.Size = new System.Drawing.Size(45, 47);
+            this.pChar.Size = new System.Drawing.Size(37, 37);
             this.pChar.TabIndex = 15;
             this.pChar.Text = "P";
             // 
@@ -279,10 +279,10 @@
             this.oChar.BackColor = System.Drawing.Color.Transparent;
             this.oChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.oChar.ForeColor = System.Drawing.Color.Gold;
-            this.oChar.Location = new System.Drawing.Point(315, 237);
+            this.oChar.Location = new System.Drawing.Point(280, 190);
             this.oChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.oChar.Name = "oChar";
-            this.oChar.Size = new System.Drawing.Size(45, 47);
+            this.oChar.Size = new System.Drawing.Size(37, 37);
             this.oChar.TabIndex = 14;
             this.oChar.Text = "O";
             // 
@@ -292,10 +292,10 @@
             this.nChar.BackColor = System.Drawing.Color.Transparent;
             this.nChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nChar.ForeColor = System.Drawing.Color.Gold;
-            this.nChar.Location = new System.Drawing.Point(262, 237);
+            this.nChar.Location = new System.Drawing.Point(233, 190);
             this.nChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nChar.Name = "nChar";
-            this.nChar.Size = new System.Drawing.Size(45, 47);
+            this.nChar.Size = new System.Drawing.Size(37, 37);
             this.nChar.TabIndex = 13;
             this.nChar.Text = "N";
             // 
@@ -305,10 +305,10 @@
             this.mChar.BackColor = System.Drawing.Color.Transparent;
             this.mChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mChar.ForeColor = System.Drawing.Color.Gold;
-            this.mChar.Location = new System.Drawing.Point(210, 237);
+            this.mChar.Location = new System.Drawing.Point(187, 190);
             this.mChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mChar.Name = "mChar";
-            this.mChar.Size = new System.Drawing.Size(45, 47);
+            this.mChar.Size = new System.Drawing.Size(37, 37);
             this.mChar.TabIndex = 12;
             this.mChar.Text = "M";
             // 
@@ -318,10 +318,10 @@
             this.lChar.BackColor = System.Drawing.Color.Transparent;
             this.lChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lChar.ForeColor = System.Drawing.Color.Gold;
-            this.lChar.Location = new System.Drawing.Point(158, 237);
+            this.lChar.Location = new System.Drawing.Point(140, 190);
             this.lChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lChar.Name = "lChar";
-            this.lChar.Size = new System.Drawing.Size(45, 47);
+            this.lChar.Size = new System.Drawing.Size(37, 37);
             this.lChar.TabIndex = 11;
             this.lChar.Text = "L";
             // 
@@ -331,10 +331,10 @@
             this.kChar.BackColor = System.Drawing.Color.Transparent;
             this.kChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kChar.ForeColor = System.Drawing.Color.Gold;
-            this.kChar.Location = new System.Drawing.Point(105, 237);
+            this.kChar.Location = new System.Drawing.Point(93, 190);
             this.kChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.kChar.Name = "kChar";
-            this.kChar.Size = new System.Drawing.Size(45, 47);
+            this.kChar.Size = new System.Drawing.Size(37, 37);
             this.kChar.TabIndex = 10;
             this.kChar.Text = "K";
             // 
@@ -344,10 +344,10 @@
             this.extra4Char.BackColor = System.Drawing.Color.Transparent;
             this.extra4Char.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extra4Char.ForeColor = System.Drawing.Color.Gold;
-            this.extra4Char.Location = new System.Drawing.Point(576, 302);
+            this.extra4Char.Location = new System.Drawing.Point(512, 242);
             this.extra4Char.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.extra4Char.Name = "extra4Char";
-            this.extra4Char.Size = new System.Drawing.Size(45, 47);
+            this.extra4Char.Size = new System.Drawing.Size(37, 37);
             this.extra4Char.TabIndex = 29;
             this.extra4Char.Text = "-";
             // 
@@ -357,10 +357,10 @@
             this.extra3Char.BackColor = System.Drawing.Color.Transparent;
             this.extra3Char.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extra3Char.ForeColor = System.Drawing.Color.Gold;
-            this.extra3Char.Location = new System.Drawing.Point(524, 302);
+            this.extra3Char.Location = new System.Drawing.Point(466, 242);
             this.extra3Char.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.extra3Char.Name = "extra3Char";
-            this.extra3Char.Size = new System.Drawing.Size(45, 47);
+            this.extra3Char.Size = new System.Drawing.Size(37, 37);
             this.extra3Char.TabIndex = 28;
             this.extra3Char.Text = "-";
             // 
@@ -370,10 +370,10 @@
             this.extra2Char.BackColor = System.Drawing.Color.Transparent;
             this.extra2Char.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extra2Char.ForeColor = System.Drawing.Color.Gold;
-            this.extra2Char.Location = new System.Drawing.Point(472, 302);
+            this.extra2Char.Location = new System.Drawing.Point(420, 242);
             this.extra2Char.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.extra2Char.Name = "extra2Char";
-            this.extra2Char.Size = new System.Drawing.Size(45, 47);
+            this.extra2Char.Size = new System.Drawing.Size(37, 37);
             this.extra2Char.TabIndex = 27;
             this.extra2Char.Text = "-";
             // 
@@ -383,10 +383,10 @@
             this.extraChar.BackColor = System.Drawing.Color.Transparent;
             this.extraChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extraChar.ForeColor = System.Drawing.Color.Gold;
-            this.extraChar.Location = new System.Drawing.Point(420, 302);
+            this.extraChar.Location = new System.Drawing.Point(373, 242);
             this.extraChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.extraChar.Name = "extraChar";
-            this.extraChar.Size = new System.Drawing.Size(45, 47);
+            this.extraChar.Size = new System.Drawing.Size(37, 37);
             this.extraChar.TabIndex = 26;
             this.extraChar.Text = "-";
             // 
@@ -396,10 +396,10 @@
             this.zChar.BackColor = System.Drawing.Color.Transparent;
             this.zChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.zChar.ForeColor = System.Drawing.Color.Gold;
-            this.zChar.Location = new System.Drawing.Point(368, 302);
+            this.zChar.Location = new System.Drawing.Point(327, 242);
             this.zChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.zChar.Name = "zChar";
-            this.zChar.Size = new System.Drawing.Size(45, 47);
+            this.zChar.Size = new System.Drawing.Size(37, 37);
             this.zChar.TabIndex = 25;
             this.zChar.Text = "Z";
             // 
@@ -409,10 +409,10 @@
             this.yChar.BackColor = System.Drawing.Color.Transparent;
             this.yChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yChar.ForeColor = System.Drawing.Color.Gold;
-            this.yChar.Location = new System.Drawing.Point(315, 302);
+            this.yChar.Location = new System.Drawing.Point(280, 242);
             this.yChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.yChar.Name = "yChar";
-            this.yChar.Size = new System.Drawing.Size(45, 47);
+            this.yChar.Size = new System.Drawing.Size(37, 37);
             this.yChar.TabIndex = 24;
             this.yChar.Text = "Y";
             // 
@@ -422,10 +422,10 @@
             this.xChar.BackColor = System.Drawing.Color.Transparent;
             this.xChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xChar.ForeColor = System.Drawing.Color.Gold;
-            this.xChar.Location = new System.Drawing.Point(262, 302);
+            this.xChar.Location = new System.Drawing.Point(233, 242);
             this.xChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.xChar.Name = "xChar";
-            this.xChar.Size = new System.Drawing.Size(45, 47);
+            this.xChar.Size = new System.Drawing.Size(37, 37);
             this.xChar.TabIndex = 23;
             this.xChar.Text = "X";
             // 
@@ -435,10 +435,10 @@
             this.wChar.BackColor = System.Drawing.Color.Transparent;
             this.wChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wChar.ForeColor = System.Drawing.Color.Gold;
-            this.wChar.Location = new System.Drawing.Point(210, 302);
+            this.wChar.Location = new System.Drawing.Point(187, 242);
             this.wChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.wChar.Name = "wChar";
-            this.wChar.Size = new System.Drawing.Size(45, 47);
+            this.wChar.Size = new System.Drawing.Size(37, 37);
             this.wChar.TabIndex = 22;
             this.wChar.Text = "W";
             // 
@@ -448,10 +448,10 @@
             this.vChar.BackColor = System.Drawing.Color.Transparent;
             this.vChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vChar.ForeColor = System.Drawing.Color.Gold;
-            this.vChar.Location = new System.Drawing.Point(158, 302);
+            this.vChar.Location = new System.Drawing.Point(140, 242);
             this.vChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.vChar.Name = "vChar";
-            this.vChar.Size = new System.Drawing.Size(45, 47);
+            this.vChar.Size = new System.Drawing.Size(37, 37);
             this.vChar.TabIndex = 21;
             this.vChar.Text = "V";
             // 
@@ -461,10 +461,10 @@
             this.uChar.BackColor = System.Drawing.Color.Transparent;
             this.uChar.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uChar.ForeColor = System.Drawing.Color.Gold;
-            this.uChar.Location = new System.Drawing.Point(105, 302);
+            this.uChar.Location = new System.Drawing.Point(93, 242);
             this.uChar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.uChar.Name = "uChar";
-            this.uChar.Size = new System.Drawing.Size(45, 47);
+            this.uChar.Size = new System.Drawing.Size(37, 37);
             this.uChar.TabIndex = 20;
             this.uChar.Text = "U";
             // 
@@ -474,10 +474,10 @@
             this.nameChar2.BackColor = System.Drawing.Color.Black;
             this.nameChar2.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameChar2.ForeColor = System.Drawing.Color.Gold;
-            this.nameChar2.Location = new System.Drawing.Point(326, 408);
+            this.nameChar2.Location = new System.Drawing.Point(290, 326);
             this.nameChar2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameChar2.Name = "nameChar2";
-            this.nameChar2.Size = new System.Drawing.Size(45, 47);
+            this.nameChar2.Size = new System.Drawing.Size(37, 37);
             this.nameChar2.TabIndex = 32;
             this.nameChar2.Text = "_";
             // 
@@ -487,10 +487,10 @@
             this.nameChar3.BackColor = System.Drawing.Color.Black;
             this.nameChar3.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameChar3.ForeColor = System.Drawing.Color.Gold;
-            this.nameChar3.Location = new System.Drawing.Point(380, 408);
+            this.nameChar3.Location = new System.Drawing.Point(338, 326);
             this.nameChar3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameChar3.Name = "nameChar3";
-            this.nameChar3.Size = new System.Drawing.Size(45, 47);
+            this.nameChar3.Size = new System.Drawing.Size(37, 37);
             this.nameChar3.TabIndex = 33;
             this.nameChar3.Text = "_";
             // 
@@ -500,10 +500,10 @@
             this.enterLabel.BackColor = System.Drawing.Color.Transparent;
             this.enterLabel.Font = new System.Drawing.Font("Courier New", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enterLabel.ForeColor = System.Drawing.Color.Gold;
-            this.enterLabel.Location = new System.Drawing.Point(96, 75);
+            this.enterLabel.Location = new System.Drawing.Point(85, 60);
             this.enterLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.enterLabel.Name = "enterLabel";
-            this.enterLabel.Size = new System.Drawing.Size(545, 54);
+            this.enterLabel.Size = new System.Drawing.Size(452, 46);
             this.enterLabel.TabIndex = 37;
             this.enterLabel.Text = "Enter Your Intials";
             // 
@@ -513,19 +513,18 @@
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.scoreLabel.Font = new System.Drawing.Font("Courier New", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.ForeColor = System.Drawing.Color.Gold;
-            this.scoreLabel.Location = new System.Drawing.Point(138, 20);
+            this.scoreLabel.Location = new System.Drawing.Point(123, 16);
             this.scoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(458, 54);
+            this.scoreLabel.Size = new System.Drawing.Size(380, 46);
             this.scoreLabel.TabIndex = 36;
             this.scoreLabel.Text = "New High Score!";
             // 
             // EnterScore
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(726, 538);
             this.Controls.Add(this.enterLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.nameChar3);
@@ -561,14 +560,14 @@
             this.Controls.Add(this.bChar);
             this.Controls.Add(this.aChar);
             this.Controls.Add(this.nameChar1);
-            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EnterScore";
-            //this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EnterScore";
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EnterScore_FormClosing);
+            this.Size = new System.Drawing.Size(645, 430);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.EnterScore_Paint);
+            this.Enter += new System.EventHandler(this.EnterScore_Enter);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.EnterScore_KeyUp);
+            this.Leave += new System.EventHandler(this.EnterScore_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-using Arcade;
 //using System.IO;
 
 namespace PoolOne
@@ -35,7 +34,7 @@ namespace PoolOne
 
         Vector2d velocityInputVector = new Vector2d();
 
-        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown, escapeDown;
+        public Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, enterDown, escapeDown, kDown;
         public Boolean ballsStopped, screenEmpty;
 
         public int playerNumber, player1Shots, player2Shots = 0;
@@ -203,6 +202,7 @@ namespace PoolOne
                 if (enterDown)
                 {
                     cueBallHitPlayer.Play();
+                    player1Shots++;
                     ballsArray[0].velocity = velocityInputVector.multiply(-1);
                     velocityInputVector = new Vector2d(0, 0);
                     ballsStopped = false;
@@ -296,10 +296,11 @@ namespace PoolOne
                     }
                 }
 
-                if (screenEmpty)
+                if (screenEmpty || kDown)
                 {
                     gameTimer.Enabled = false;
                     InitializeValues();
+
                     LoadEnterScore();
                 }
             }
@@ -353,6 +354,11 @@ namespace PoolOne
         public int getOffset()
         {
             return TABLE_OFFSET;
+        }
+
+        public void Whatever (HighScore k)
+        {
+
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -486,9 +492,21 @@ namespace PoolOne
 
         public static void LoadEnterScore()
         {
+            HighScore score = new HighScore();
+
             EnterScore es = new EnterScore(thisScreen.player1Shots, Color.Gold, Color.Black, Color.Gold);
             es.Location = new Point((thisScreen.Width - es.Width) / 2, (thisScreen.Height - es.Height) / 2);
             thisScreen.Controls.Add(es);
+        }
+
+        public static void RemoveEnterScore(EnterScore es)
+        {
+            thisScreen.Controls.Remove(es);
+        }
+
+        public static void RemoveThis(UserControl UC)
+        {
+            thisScreen.Controls.Remove(UC);
         }
 
         public static void StartGame(int playersNumber)
@@ -533,6 +551,11 @@ namespace PoolOne
                 escapeDown = true;
             }
 
+            if (e.KeyCode == Keys.K)
+            {
+                kDown = true;
+            }
+
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -563,6 +586,11 @@ namespace PoolOne
             if (e.KeyCode == Keys.Escape)
             {
                 escapeDown = false;
+            }
+
+            if (e.KeyCode == Keys.K)
+            {
+                kDown = false;
             }
         }
         #endregion

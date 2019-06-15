@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
-namespace Arcade
+namespace PoolOne
 {
     public partial class EnterScore : UserControl
     {
@@ -92,108 +93,138 @@ namespace Arcade
 
             #endregion
 
-            //TopMost = true;
             this.Focus();
+        }
+
+        public EnterScore()
+        {
+
         }
 
         private void EnterScore_KeyUp(object sender, KeyEventArgs e)
         {
-            labels[currentIndex].BackColor = formColor;
-            labels[currentIndex].ForeColor = textColor;
-
-            #region set active button or select letter
-
-            switch (e.KeyCode)
+            if (newName.Length < 3)
             {
-                case Keys.Down:
-                    if (currentIndex > 19)
-                    {
-                        currentIndex -= 20;
-                    }
-                    else
-                    {
-                        currentIndex += 10;
-                    }
-                    break;
-                case Keys.Up:
-                    if (currentIndex < 10)
-                    {
-                        currentIndex += 20;
-                    }
-                    else
-                    {
-                        currentIndex -= 10;
-                    }
-                    break;
-                case Keys.Right:
-                    if (currentIndex == 9 || currentIndex == 19 || currentIndex == 29)
-                    {
-                        currentIndex -= 9;
-                    }
-                    else
-                    {
-                        currentIndex++;
-                    }
-                    break;
-                case Keys.Left:
-                    if (currentIndex == 0 || currentIndex == 10 || currentIndex == 20)
-                    {
-                        currentIndex += 9;
-                    }
-                    else
-                    {
-                        currentIndex--;
-                    }
-                    break;
-                case Keys.Space:
-                    if (charSelect == 1)
-                    {
-                        nameChar1.Text = labels[currentIndex].Text;
-                        newName += labels[currentIndex].Text;
-                        charSelect++;
-                    }
-                    else if (charSelect == 2)
-                    {
-                        nameChar2.Text = labels[currentIndex].Text;
-                        newName += labels[currentIndex].Text;
-                        charSelect++;
-                    }
-                    else
-                    {
-                        nameChar3.Text = labels[currentIndex].Text;
-                        newName += labels[currentIndex].Text;
-                        //Close();
-                    }
-                    break;
-                default:
-                    break;
+                labels[currentIndex].BackColor = formColor;
+                labels[currentIndex].ForeColor = textColor;
+
+                #region set active button or select letter
+
+                switch (e.KeyCode)
+                {
+                    case Keys.Down:
+                        if (currentIndex > 19)
+                        {
+                            currentIndex -= 20;
+                        }
+                        else
+                        {
+                            currentIndex += 10;
+                        }
+                        break;
+                    case Keys.Up:
+                        if (currentIndex < 10)
+                        {
+                            currentIndex += 20;
+                        }
+                        else
+                        {
+                            currentIndex -= 10;
+                        }
+                        break;
+                    case Keys.Right:
+                        if (currentIndex == 9 || currentIndex == 19 || currentIndex == 29)
+                        {
+                            currentIndex -= 9;
+                        }
+                        else
+                        {
+                            currentIndex++;
+                        }
+                        break;
+                    case Keys.Left:
+                        if (currentIndex == 0 || currentIndex == 10 || currentIndex == 20)
+                        {
+                            currentIndex += 9;
+                        }
+                        else
+                        {
+                            currentIndex--;
+                        }
+                        break;
+                    case Keys.Space:
+                        if (charSelect == 1)
+                        {
+                            nameChar1.Text = labels[currentIndex].Text;
+                            newName += labels[currentIndex].Text;
+                            charSelect++;
+                        }
+                        else if (charSelect == 2)
+                        {
+                            nameChar2.Text = labels[currentIndex].Text;
+                            newName += labels[currentIndex].Text;
+                            charSelect++;
+                        }
+                        else
+                        {
+                            nameChar3.Text = labels[currentIndex].Text;
+                            newName += labels[currentIndex].Text;
+                            //Close();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                #endregion
+
+                labels[currentIndex].BackColor = textColor;
+                labels[currentIndex].ForeColor = formColor;
             }
-
-            #endregion
-
-            labels[currentIndex].BackColor = textColor;
-            labels[currentIndex].ForeColor = formColor;
+            else
+            {
+                GameScreen.RemoveEnterScore(this);
+            }
         }
 
         private void EnterScore_Paint(object sender, PaintEventArgs e)
         {
-            Graphics formGraphics = e.Graphics;
             Pen drawPen = new Pen(textColor, 2);
-            formGraphics.DrawRectangle(drawPen, 5, 5, this.Width - 10, this.Height - 10);
+            e.Graphics.DrawRectangle(drawPen, 5, 5, this.Width - 10, this.Height - 10);
+
+            if (newName.Length > 3)
+            {
+                //display something like a thanks or whatever
+            }
+        }
+
+        private void EnterScore_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EnterScore_Leave(object sender, EventArgs e)
+        {
+            XmlWriter writer = XmlWriter.Create("Resources/HighScores.xml");
+            //Write the root element 
+            writer.WriteStartElement("Highscores");
+            //Start an element 
+            writer.WriteStartElement("Highscore");
+            //Write sub-elements 
+            writer.WriteElementString("name", "Chris");
+            writer.WriteElementString("shots", "1313 Mockingbird Lane");
+            writer.WriteElementString("dateTime", "555-1313");
+            // end the element 
+            writer.WriteEndElement();
+            // end the root element 
+            writer.WriteEndElement();
+            //Write the XML to file and close the writer 
+            writer.Close();
         }
 
         private void EnterScore_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Refresh();
-            Refresh();
-            System.Threading.Thread.Sleep(750);
-            /*
-            if (ArcadeUtilities.highScoreDB.Count() == 0)
-            {
-                ArcadeUtilities.LoadScores();
-            }
-            ArcadeUtilities.SaveScores(newScore, newName);
-            */
+            
         }
     }
 }

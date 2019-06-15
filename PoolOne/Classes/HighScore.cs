@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoolOne
 {
-    class HighScore
+    public partial class HighScore
     {
         public string name;
         public int shots;
