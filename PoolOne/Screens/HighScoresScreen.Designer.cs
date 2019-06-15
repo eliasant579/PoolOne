@@ -42,7 +42,7 @@
             this.backToMenuButton.Font = new System.Drawing.Font("Impact", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backToMenuButton.ForeColor = System.Drawing.Color.Black;
             this.backToMenuButton.Location = new System.Drawing.Point(377, 329);
-            this.backToMenuButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backToMenuButton.Margin = new System.Windows.Forms.Padding(4);
             this.backToMenuButton.Name = "backToMenuButton";
             this.backToMenuButton.Size = new System.Drawing.Size(261, 57);
             this.backToMenuButton.TabIndex = 0;
@@ -62,7 +62,7 @@
             this.fakeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fakeButton.ForeColor = System.Drawing.Color.Black;
             this.fakeButton.Location = new System.Drawing.Point(0, 0);
-            this.fakeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fakeButton.Margin = new System.Windows.Forms.Padding(4);
             this.fakeButton.Name = "fakeButton";
             this.fakeButton.Size = new System.Drawing.Size(215, 57);
             this.fakeButton.TabIndex = 1;
@@ -72,7 +72,7 @@
             // 
             this.testLabel.AutoSize = true;
             this.testLabel.BackColor = System.Drawing.Color.LightGray;
-            this.testLabel.Location = new System.Drawing.Point(248, 112);
+            this.testLabel.Location = new System.Drawing.Point(102, 61);
             this.testLabel.Name = "testLabel";
             this.testLabel.Size = new System.Drawing.Size(182, 17);
             this.testLabel.TabIndex = 2;
@@ -87,7 +87,7 @@
             this.Controls.Add(this.fakeButton);
             this.Controls.Add(this.backToMenuButton);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HighScoresScreen";
             this.Size = new System.Drawing.Size(668, 404);
             this.Load += new System.EventHandler(this.HighScoresScreen_Load);

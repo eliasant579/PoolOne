@@ -125,7 +125,7 @@
     <value>..\Resources\Dead_Skunk_Jam_Arcade_Cabinet_Cut.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="highScoresXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\highScoresXML.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\Resources\highScores.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="BallInPocket" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BallInPocket.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -32,7 +32,6 @@ namespace PoolOne
         Ball[] ballsArray = new Ball[BALL_NUMBER];
         PointF[] startPositionArray = new PointF[16];
         Pocket[] pocketsArray = new Pocket[6];
-        HighScore[] highScoresArray = new HighScore[4];
 
         Vector2d velocityInputVector = new Vector2d();
 
@@ -334,7 +333,11 @@ namespace PoolOne
                             if (ballsArray[i].Colliding(ballsArray[j]))
                             {
                                 ballsArray[i].ResolveCollision(ballsArray[j]);
-                                ballToBallHitPlayer.Play();
+                                //ballToBallHitPlayer.Play();
+
+                                var dingPlayer = new System.Windows.Media.MediaPlayer();
+                                dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/BallToBallHit.wav"));
+                                dingPlayer.Play();
                             }
                         }
                     }
@@ -471,8 +474,6 @@ namespace PoolOne
             ps.Location = new Point((thisScreen.Width - ps.Width) / 2, (thisScreen.Height - ps.Height) / 2);
             ps.BackColor = Color.FromArgb(80, 128, 128, 128);
             thisScreen.Controls.Add(ps);
-
-
         }
 
         public static void RemovePauseScreen(PauseScreen ps)

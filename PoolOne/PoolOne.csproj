@@ -149,7 +149,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\highScoresXML.xml">
+    <None Include="Resources\highScores.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
