@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
+using System.Collections.Generic;
+using System.Xml;
 //using System.IO;
 
 namespace PoolOne
@@ -25,6 +27,7 @@ namespace PoolOne
         Ball[] ballsArray = new Ball[BALL_NUMBER];
         PointF[] startPositionArray = new PointF[16];
         Pocket[] pocketsArray = new Pocket[6];
+        public List<HighScore> highScoresList = new List<HighScore>();
 
         Vector2d velocityInputVector = new Vector2d();
 
@@ -69,7 +72,6 @@ namespace PoolOne
             startPositionArray[5] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
             startPositionArray[6] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
 
-            //*
             startPositionArray[7] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
             startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[9] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height) / 2 + 1);
@@ -80,8 +82,6 @@ namespace PoolOne
             startPositionArray[13] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
             startPositionArray[14] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
             startPositionArray[15] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
-            //*/
-
             #endregion
 
             #region declaring pockets
@@ -92,6 +92,27 @@ namespace PoolOne
             pocketsArray[4] = new Pocket(this.Width / 2 - BALL_RADIUS, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
             pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
             #endregion
+
+            highScoresList.Clear();
+
+            XmlReader reader = XmlReader.Create("Resources/highScores.xml");
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    HighScore s = new HighScore();
+
+                    s.name = reader.ReadString();
+
+                    reader.ReadToNextSibling("shots");
+                    s.shots = Convert.ToInt16(reader.ReadString());
+
+                    reader.ReadToNextSibling("dateTime");
+                    s.dateTime = Convert.ToDateTime(reader.ReadString());
+
+                    highScoresList.Add(s);
+                }
+            }
 
             //generate balls
             for (int i = 0; i < ballsArray.Length; i++)
@@ -294,9 +315,6 @@ namespace PoolOne
             {
                 gameTimer.Enabled = false;
                 InitializeValues();
-
-                //foreach (HighScore hs in )
-
                 LoadEnterScore();
             }
 
@@ -465,7 +483,7 @@ namespace PoolOne
         {
             HighScore score = new HighScore();
 
-            EnterScore es = new EnterScore(thisScreen.player1Shots, Color.Gold, Color.Black, Color.Gold);
+            EnterScore es = new EnterScore(thisScreen.player1Shots);
             es.Location = new Point((thisScreen.Width - es.Width) / 2, (thisScreen.Height - es.Height) / 2);
             thisScreen.Controls.Add(es);
         }

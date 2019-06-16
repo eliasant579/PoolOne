@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,19 +17,23 @@ namespace PoolOne
         int newScore;
         DateTime newDateTime;
 
-        Color textColor, formColor;
+        Color textColor = Color.Red;
+        Color formColor = Color.FromArgb(200, 200, 200, 200);
 
-        public EnterScore(int _newScore, Color _textColor, Color _formColor, Color _titleColor)
+        public EnterScore(int _newScore)
         {
             InitializeComponent();
 
+            OnScreen();
+
             newScore = _newScore;
-            textColor = _textColor;
-            formColor = _formColor;
 
             newDateTime = DateTime.Now;
 
+        }
 
+        public void OnScreen()
+        {
             #region place buttons in List
 
             currentIndex = 0;
@@ -81,8 +86,8 @@ namespace PoolOne
             nameChar2.ForeColor = textColor;
             nameChar3.ForeColor = textColor;
 
-            scoreLabel.ForeColor = _titleColor;
-            enterLabel.ForeColor = _titleColor;
+            scoreLabel.ForeColor = textColor;
+            enterLabel.ForeColor = textColor;
 
             this.BackColor = formColor;
 
@@ -163,7 +168,9 @@ namespace PoolOne
                         {
                             nameChar3.Text = labels[currentIndex].Text;
                             newName += labels[currentIndex].Text;
-                            //Close();
+
+                            GameScreen.RemoveThis(this);
+                            GameScreen.LoadMenuScreen();
                         }
                         break;
                     default:
@@ -174,11 +181,6 @@ namespace PoolOne
 
                 labels[currentIndex].BackColor = textColor;
                 labels[currentIndex].ForeColor = formColor;
-            }
-            else
-            {
-                GameScreen.RemoveThis(this);
-                GameScreen.LoadMenuScreen();
             }
         }
 
@@ -200,17 +202,29 @@ namespace PoolOne
 
         private void EnterScore_Leave(object sender, EventArgs e)
         {
+            HighScore newHighScore = new HighScore(newName, newScore, newDateTime);
+            GameScreen.thisScreen.highScoresList.Add(newHighScore);
+
+            GameScreen.thisScreen.highScoresList.OrderBy(o => o.shots).ToList();
+            GameScreen.thisScreen.highScoresList.Reverse();
+
+            GameScreen.thisScreen.highScoresList.RemoveAt(3);
+
             XmlWriter writer = XmlWriter.Create("Resources/highScores.xml");
             //Write the root element 
-            writer.WriteStartElement("Highscores");
-            //Start an element 
-            writer.WriteStartElement("Highscore");
-            //Write sub-elements 
-            writer.WriteElementString("name", newName);
-            writer.WriteElementString("shots", newScore.ToString());
-            writer.WriteElementString("dateTime", newDateTime.ToString());
-            // end the element 
-            writer.WriteEndElement();
+            writer.WriteStartElement("highscores");
+
+            foreach (HighScore hs in GameScreen.thisScreen.highScoresList)
+            {
+                //Start an element 
+                writer.WriteStartElement("highscore");
+                //Write sub-elements 
+                writer.WriteElementString("name", hs.name);
+                writer.WriteElementString("shots", hs.shots.ToString());
+                writer.WriteElementString("dateTime", hs.dateTime.ToString());
+                // end the element 
+                writer.WriteEndElement();               
+            }
             // end the root element 
             writer.WriteEndElement();
             //Write the XML to file and close the writer 

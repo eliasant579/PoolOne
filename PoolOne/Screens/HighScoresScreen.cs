@@ -8,8 +8,6 @@ namespace PoolOne
 {
     public partial class HighScoresScreen : UserControl
     {
-        List<HighScore> highScoresList = new List<HighScore>();
-
         public HighScoresScreen()
         {
             InitializeComponent();
@@ -37,26 +35,7 @@ namespace PoolOne
         {
             backToMenuButton.Focus();
 
-            XmlReader reader = XmlReader.Create("Resources/highScores.xml");
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Text)
-                {
-                    HighScore s = new HighScore();
-
-                    s.name = reader.ReadString();
-
-                    reader.ReadToNextSibling("shots");
-                    s.shots = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("dateTime");
-                    s.dateTime = Convert.ToDateTime(reader.ReadString());
-
-                    highScoresList.Add(s);
-                }
-            }
-
-            testLabel.Text = "" + highScoresList[0].name;
+            testLabel.Text = "" + GameScreen.thisScreen.highScoresList[0].name;
             //here you put everything in the right place
         }
     }
