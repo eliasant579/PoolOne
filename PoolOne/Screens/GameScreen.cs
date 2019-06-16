@@ -481,11 +481,18 @@ namespace PoolOne
 
         public static void LoadEnterScore()
         {
-            HighScore score = new HighScore();
-
             EnterScore es = new EnterScore(thisScreen.player1Shots);
             es.Location = new Point((thisScreen.Width - es.Width) / 2, (thisScreen.Height - es.Height) / 2);
             thisScreen.Controls.Add(es);
+        }
+
+        public static void LoadThanksScreen()
+        {
+            ThanksScreen ts = new ThanksScreen();
+            ts.Location = new Point((thisScreen.Width - ts.Width) / 2, (thisScreen.Height - ts.Height) / 2);
+            thisScreen.Controls.Add(ts);
+
+            ts.Focus();
         }
 
         public static void RemoveThis(UserControl UC)

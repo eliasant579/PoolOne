@@ -72,7 +72,7 @@
             // 
             this.testLabel.AutoSize = true;
             this.testLabel.BackColor = System.Drawing.Color.LightGray;
-            this.testLabel.Location = new System.Drawing.Point(102, 61);
+            this.testLabel.Location = new System.Drawing.Point(205, 28);
             this.testLabel.Name = "testLabel";
             this.testLabel.Size = new System.Drawing.Size(182, 17);
             this.testLabel.TabIndex = 2;

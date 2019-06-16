@@ -170,7 +170,7 @@ namespace PoolOne
                             newName += labels[currentIndex].Text;
 
                             GameScreen.RemoveThis(this);
-                            GameScreen.LoadMenuScreen();
+                            GameScreen.LoadThanksScreen();
                         }
                         break;
                     default:
@@ -188,16 +188,6 @@ namespace PoolOne
         {
             Pen drawPen = new Pen(textColor, 2);
             e.Graphics.DrawRectangle(drawPen, 5, 5, this.Width - 10, this.Height - 10);
-
-            if (newName.Length >= 3)
-            {
-                //Thanks for playing, your score has been stored! Press any key to go back to menu.
-            }
-        }
-
-        private void EnterScore_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void EnterScore_Leave(object sender, EventArgs e)
@@ -229,11 +219,6 @@ namespace PoolOne
             writer.WriteEndElement();
             //Write the XML to file and close the writer 
             writer.Close();
-        }
-
-        private void EnterScore_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
         }
     }
 }

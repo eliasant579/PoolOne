@@ -565,7 +565,6 @@
             this.Name = "EnterScore";
             this.Size = new System.Drawing.Size(645, 430);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.EnterScore_Paint);
-            this.Enter += new System.EventHandler(this.EnterScore_Enter);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.EnterScore_KeyUp);
             this.Leave += new System.EventHandler(this.EnterScore_Leave);
             this.ResumeLayout(false);
