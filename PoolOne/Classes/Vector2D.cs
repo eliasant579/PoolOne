@@ -69,8 +69,8 @@ namespace PoolOne
             float len = getLength();
             if (len != 0.0f)
             {
-                x = (x / len);
-                y = (y / len);
+                x /= len;
+                y /= len;
             }
             else
             {
@@ -79,6 +79,16 @@ namespace PoolOne
             }
 
             return this;
+        }
+
+        public Vector2d perpendicular()
+        {
+            Vector2d result = new Vector2d();
+            float temp = x;
+            result.x = y;
+            result.y = -temp;
+
+            return result;
         }
     }
 }

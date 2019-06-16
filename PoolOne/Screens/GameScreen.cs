@@ -8,7 +8,7 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        const int BALL_NUMBER = 16;
+        const int BALL_NUMBER = 11;
 
         private const int BORDER_SIZE = 30;
         private const int TABLE_OFFSET = 150;
@@ -321,14 +321,14 @@ namespace PoolOne
                         sideHitPlayer.Play();
                     }
 
-                    for (int j = i; j < ballsArray.Length; j++)
+                    for (int j = i + 1; j < ballsArray.Length; j++)
                     {
-                        if (ballsArray[i] != ballsArray[j] && ballsArray[j].inPocket == false)
+                        if (ballsArray[j].inPocket == false)
                         {
                             if (ballsArray[i].Colliding(ballsArray[j]))
                             {
                                 ballsArray[i].ResolveCollision(ballsArray[j]);
-                                //ballToBallHitPlayer.Play();
+                                ballToBallHitPlayer.Play();
 
                                 //var dingPlayer = new System.Windows.Media.MediaPlayer();
                                 //dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/BallToBallHit.wav"));
@@ -383,6 +383,19 @@ namespace PoolOne
                 }
             }
 
+            //draw borders
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
+            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE - TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
+            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, this.Height - BORDER_SIZE - TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
+
+            //draw pockets
+            for (int i = 0; i < pocketsArray.Length; i++)
+            {
+                Pocket p = pocketsArray[i];
+                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
+            }
+
             //draw balls
             for (int i = 0; i < ballsArray.Length; i++)
             {
@@ -403,19 +416,6 @@ namespace PoolOne
                 }
             }
 
-            //draw borders
-            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
-            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);
-            e.Graphics.FillRectangle(borderBrush, this.Width - BORDER_SIZE - TABLE_OFFSET, TABLE_OFFSET, BORDER_SIZE, this.Height - 2 * TABLE_OFFSET);
-            e.Graphics.FillRectangle(borderBrush, TABLE_OFFSET, this.Height - BORDER_SIZE - TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, BORDER_SIZE);           
-
-            //draw pockets
-            for (int i = 0; i < pocketsArray.Length; i++)
-            {
-                Pocket p = pocketsArray[i];
-                e.Graphics.FillEllipse(blackBrush, p.position.X, p.position.Y, p.radius * 2, p.radius * 2);
-            }
-            
             //aiming arrow
             if (ballsStopped)
             {
