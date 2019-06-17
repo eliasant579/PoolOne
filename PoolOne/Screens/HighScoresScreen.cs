@@ -39,10 +39,10 @@ namespace PoolOne
         private void HighScoresScreen_Paint(object sender, PaintEventArgs e)
         {
             Font impactFont = new Font("Impact", 20);
-            SolidBrush redBrush = new SolidBrush(Color.Red);
+            SolidBrush redBrush = new SolidBrush(Color.Maroon);
             SolidBrush whiteBrush = new SolidBrush(Color.FromArgb(200, 255, 255, 255));
 
-            e.Graphics.FillRectangle(whiteBrush, 40, 30, 350, 220);
+            e.Graphics.FillRectangle(whiteBrush, 40, 30, 425, 230);
 
             for (int i = 0; i < GameScreen.thisScreen.highScoresList.Count; i++)
             {

@@ -115,14 +115,14 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.BackColor = System.Drawing.Color.Black;
-            this.titleLabel.Font = new System.Drawing.Font("Impact", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.ForeColor = System.Drawing.Color.Red;
-            this.titleLabel.Location = new System.Drawing.Point(34, 70);
+            this.titleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.titleLabel.Font = new System.Drawing.Font("Impact", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.titleLabel.Location = new System.Drawing.Point(3, 29);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(316, 75);
+            this.titleLabel.Size = new System.Drawing.Size(498, 145);
             this.titleLabel.TabIndex = 4;
-            this.titleLabel.Text = "POOOOOOOL";
+            this.titleLabel.Text = "POOOOOL";
             // 
             // comingSoonLabel
             // 
@@ -130,11 +130,11 @@
             this.comingSoonLabel.BackColor = System.Drawing.Color.White;
             this.comingSoonLabel.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comingSoonLabel.ForeColor = System.Drawing.Color.Red;
-            this.comingSoonLabel.Location = new System.Drawing.Point(267, 363);
+            this.comingSoonLabel.Location = new System.Drawing.Point(258, 363);
             this.comingSoonLabel.Name = "comingSoonLabel";
-            this.comingSoonLabel.Size = new System.Drawing.Size(111, 21);
+            this.comingSoonLabel.Size = new System.Drawing.Size(120, 21);
             this.comingSoonLabel.TabIndex = 5;
-            this.comingSoonLabel.Text = "Coming sooon";
+            this.comingSoonLabel.Text = "Coming soooon";
             // 
             // MenuScreen
             // 

@@ -30,6 +30,7 @@
         {
             this.backToMenuButton = new System.Windows.Forms.Button();
             this.fakeButton = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // backToMenuButton
@@ -67,11 +68,24 @@
             this.fakeButton.TabIndex = 1;
             this.fakeButton.UseVisualStyleBackColor = false;
             // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.titleLabel.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.titleLabel.Location = new System.Drawing.Point(46, 45);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(531, 98);
+            this.titleLabel.TabIndex = 5;
+            this.titleLabel.Text = "HIGHSCOOORES";
+            // 
             // HighScoresScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.fakeButton);
             this.Controls.Add(this.backToMenuButton);
             this.DoubleBuffered = true;
@@ -81,6 +95,7 @@
             this.Load += new System.EventHandler(this.HighScoresScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.HighScoresScreen_Paint);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -88,5 +103,6 @@
 
         private System.Windows.Forms.Button backToMenuButton;
         private System.Windows.Forms.Button fakeButton;
+        private System.Windows.Forms.Label titleLabel;
     }
 }
