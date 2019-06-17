@@ -1,14 +1,18 @@
 <?xml version ="1.0" encoding="utf-8" ?>
 <highscores>
   <highscore>
-    <name>Elia</name>
-    <shots>6</shots>
+    <name>TEST</name>
+    <shots>10000</shots>
     <dateTime>2010-11-13 10:33:54.227806</dateTime>
-    <name>Santa</name>
-    <shots>6</shots>
+  </highscore>
+  <highscore>
+    <name>TEST2</name>
+    <shots>10000</shots>
     <dateTime>2010-11-13 10:33:54.227806</dateTime>
-    <name>Giuliana</name>
-    <shots>6</shots>
+  </highscore>
+  <highscore>
+    <name>TEST3</name>
+    <shots>10000</shots>
     <dateTime>2010-11-13 10:33:54.227806</dateTime>
   </highscore>
 </highscores>

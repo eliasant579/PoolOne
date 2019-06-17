@@ -15,6 +15,8 @@ namespace PoolOne
         public MenuScreen()
         {
             InitializeComponent();
+
+            titleLabel.BackColor = Color.FromArgb(150, 0, 0, 0);
         }
 
         private void exitButton_Click(object sender, EventArgs e)

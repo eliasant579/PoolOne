@@ -36,6 +36,7 @@ namespace PoolOne
 
         public int playerNumber, player1Shots, player2Shots = 0;
 
+        //sound players. They work if going slowly and not overlapping each other. which is quite rare
         public SoundPlayer cueBallHitPlayer = new SoundPlayer(Properties.Resources.CueBallHit);
         public SoundPlayer ballToBallHitPlayer = new SoundPlayer(Properties.Resources.BallToBallHit);
         public SoundPlayer sideHitPlayer = new SoundPlayer(Properties.Resources.SideHit);
@@ -93,8 +94,12 @@ namespace PoolOne
             pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
             #endregion
 
+            player1Shots = 0;
+            player2Shots = 0;
+
             highScoresList.Clear();
 
+            //reads and saves values from xml
             XmlReader reader = XmlReader.Create("Resources/highScores.xml");
             while (reader.Read())
             {
@@ -214,7 +219,7 @@ namespace PoolOne
                     velocityInputVector = tempVelocity;
                 }
 
-                if (enterDown)
+                if (enterDown && velocityInputVector.getLength() != 0)
                 {
                     cueBallHitPlayer.Play();
                     player1Shots++;
@@ -311,19 +316,28 @@ namespace PoolOne
                 }                
             }
 
+            //if no balls other than the cue ball are on the screen
             if (screenEmpty || kDown)
             {
                 gameTimer.Enabled = false;
-                InitializeValues();
 
+                //see if score is lower than past scores or not
+                int i = 0;
                 foreach (HighScore hs in highScoresList)
                 {
+                    i++;
                     if (player1Shots <= hs.shots)
                     {
                         LoadEnterScore();
                         break;
                     }
+                    else if (i == 3)
+                    {
+                        LoadThanksScreen();
+                    }
                 }
+
+                InitializeValues();
             }
 
             if (escapeDown)
@@ -354,6 +368,8 @@ namespace PoolOne
                             if (ballsArray[i].Colliding(ballsArray[j]))
                             {
                                 ballsArray[i].ResolveCollision(ballsArray[j]);
+                                
+                                //this tries to play sound
                                 ballToBallHitPlayer.Play();
 
                                 //var dingPlayer = new System.Windows.Media.MediaPlayer();
@@ -511,8 +527,11 @@ namespace PoolOne
         public static void StartGame(int playersNumber)
         {
             thisScreen.gameTimer.Enabled = true;
+            //recall player number
             thisScreen.playerNumber = playersNumber;
+            //set/reset values
             thisScreen.InitializeValues();
+
             thisScreen.Focus();
         }
 

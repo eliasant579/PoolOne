@@ -196,7 +196,18 @@ namespace PoolOne
 
             GameScreen.thisScreen.highScoresList.Add(newHighScore);
 
-            GameScreen.thisScreen.highScoresList.OrderBy(o => o.shots).ToList();
+            for (int i = 0; i < GameScreen.thisScreen.highScoresList.Count; i++)
+            {
+                for (int j = i + 1; j < GameScreen.thisScreen.highScoresList.Count; j++)
+                {
+                    if (GameScreen.thisScreen.highScoresList[i].shots < GameScreen.thisScreen.highScoresList[j].shots)
+                    {
+                        HighScore tempHighScore = GameScreen.thisScreen.highScoresList[i];
+                        GameScreen.thisScreen.highScoresList[i] = GameScreen.thisScreen.highScoresList[j];
+                        GameScreen.thisScreen.highScoresList[j] = tempHighScore;
+                    }
+                }
+            }
 
             GameScreen.thisScreen.highScoresList.Reverse();
 
