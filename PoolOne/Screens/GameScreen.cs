@@ -12,15 +12,16 @@ namespace PoolOne
     {
         //SMALL LITTLE CHANGE because testing
 
-        const int BALL_NUMBER = 11;
+        const int BALL_NUMBER = 16;
 
         private const int BORDER_SIZE = 30;
         private const int TABLE_OFFSET = 150;
 
         const float FRICTION_COEFFICIENT = 0.01f;
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
-        const int BALL_SIZE = 30;
-        const int BALL_RADIUS = 15;
+        const float BALL_SIZE = 30;
+        const float BALL_RADIUS = 15;
+        const float POCKET_RADIUS = 17.5f;
         const float COMPONENT_INCREASE = 0.5f;
         const int MAX_SPEED = 35;
 
@@ -63,37 +64,37 @@ namespace PoolOne
         public void InitializeValues()
         {
             #region declaring start positions
-            startPositionArray[0] = new Point(this.Width / 2 - 10 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[0] = new PointF(this.Width / 2 - 10 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
 
-            startPositionArray[1] = new Point(this.Width / 2 + 3 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[1] = new PointF(this.Width / 2 + 3 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
 
 
-            startPositionArray[2] = new Point(this.Width / 2 + 4 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
-            startPositionArray[3] = new Point(this.Width / 2 + 4 * BALL_SIZE, this.Height / 2 + 1);
+            startPositionArray[2] = new PointF(this.Width / 2 + 4 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
+            startPositionArray[3] = new PointF(this.Width / 2 + 4 * BALL_SIZE, this.Height / 2 + 1);
 
-            startPositionArray[4] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
-            startPositionArray[5] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
-            startPositionArray[6] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
+            startPositionArray[4] = new PointF(this.Width / 2 + 5 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
+            startPositionArray[5] = new PointF(this.Width / 2 + 5 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
+            startPositionArray[6] = new PointF(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 4 * BALL_SIZE) / 2 - 2);
 
-            startPositionArray[7] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
-            startPositionArray[8] = new Point(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
-            startPositionArray[9] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height) / 2 + 1);
-            startPositionArray[10] = new Point(this.Width / 2 + 6 * BALL_SIZE, (this.Height + 2 * BALL_SIZE) / 2 + 2);
+            startPositionArray[7] = new PointF(this.Width / 2 + 6 * BALL_SIZE, (this.Height - 2 * BALL_SIZE) / 2 - 1);
+            startPositionArray[8] = new PointF(this.Width / 2 + 5 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[9] = new PointF(this.Width / 2 + 6 * BALL_SIZE, (this.Height) / 2 + 1);
+            startPositionArray[10] = new PointF(this.Width / 2 + 6 * BALL_SIZE, (this.Height + 2 * BALL_SIZE) / 2 + 2);
 
-            startPositionArray[11] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - 5 * BALL_SIZE) / 2 - 2);
-            startPositionArray[12] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
-            startPositionArray[13] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
-            startPositionArray[14] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
-            startPositionArray[15] = new Point(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
+            startPositionArray[11] = new PointF(this.Width / 2 + 7 * BALL_SIZE, (this.Height - 5 * BALL_SIZE) / 2 - 2);
+            startPositionArray[12] = new PointF(this.Width / 2 + 7 * BALL_SIZE, (this.Height - 3 * BALL_SIZE) / 2 - 1);
+            startPositionArray[13] = new PointF(this.Width / 2 + 7 * BALL_SIZE, (this.Height - BALL_SIZE) / 2);
+            startPositionArray[14] = new PointF(this.Width / 2 + 7 * BALL_SIZE, (this.Height + BALL_SIZE) / 2 + 1);
+            startPositionArray[15] = new PointF(this.Width / 2 + 7 * BALL_SIZE, (this.Height + 3 * BALL_SIZE) / 2 + 2);
             #endregion
 
             #region declaring pockets
-            pocketsArray[0] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, BORDER_SIZE - BALL_RADIUS / 2 +  TABLE_OFFSET, BALL_RADIUS);
-            pocketsArray[1] = new Pocket(this.Width / 2 - BALL_RADIUS, BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, BALL_RADIUS);
-            pocketsArray[2] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, BALL_RADIUS);
-            pocketsArray[3] = new Pocket(BORDER_SIZE - BALL_RADIUS / 2 + TABLE_OFFSET, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
-            pocketsArray[4] = new Pocket(this.Width / 2 - BALL_RADIUS, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
-            pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, this.Height - BORDER_SIZE - BALL_RADIUS * 3 / 2 - TABLE_OFFSET, BALL_RADIUS);
+            pocketsArray[0] = new Pocket(BORDER_SIZE - POCKET_RADIUS / 2 + TABLE_OFFSET, BORDER_SIZE - POCKET_RADIUS / 2 +  TABLE_OFFSET, POCKET_RADIUS);
+            pocketsArray[1] = new Pocket(this.Width / 2 - POCKET_RADIUS, BORDER_SIZE - POCKET_RADIUS / 2 + TABLE_OFFSET, POCKET_RADIUS);
+            pocketsArray[2] = new Pocket(this.Width - BORDER_SIZE - POCKET_RADIUS * 3 / 2 - TABLE_OFFSET, BORDER_SIZE - POCKET_RADIUS / 2 + TABLE_OFFSET, POCKET_RADIUS);
+            pocketsArray[3] = new Pocket(BORDER_SIZE - POCKET_RADIUS / 2 + TABLE_OFFSET, this.Height - BORDER_SIZE - POCKET_RADIUS * 3 / 2 - TABLE_OFFSET, POCKET_RADIUS);
+            pocketsArray[4] = new Pocket(this.Width / 2 - POCKET_RADIUS, this.Height - BORDER_SIZE - POCKET_RADIUS * 3 / 2 - TABLE_OFFSET, POCKET_RADIUS);
+            pocketsArray[5] = new Pocket(this.Width - BORDER_SIZE - POCKET_RADIUS * 3 / 2 - TABLE_OFFSET, this.Height - BORDER_SIZE - POCKET_RADIUS * 3 / 2 - TABLE_OFFSET, POCKET_RADIUS);
             #endregion
 
             player1Shots = 0;
@@ -231,9 +232,6 @@ namespace PoolOne
                 }
             }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
-        {
-
             else
             {
                 //well. Guess what this one does
@@ -288,7 +286,7 @@ namespace PoolOne
                     {
                         screenEmpty = false;
                     }
-                }                
+                }
             }
 
             //if no balls other than the cue ball are on the screen
@@ -343,9 +341,11 @@ namespace PoolOne
                             if (ballsArray[i].Colliding(ballsArray[j]))
                             {
                                 ballsArray[i].ResolveCollision(ballsArray[j]);
-                                
-                                //this tries to play sound
-                                ballToBallHitPlayer.Play();
+
+                                float impactVel = ballsArray[i].velocity.add(ballsArray[j].velocity).getLength();
+
+                                //this tries to play sound but is messy
+                                //ballToBallHitPlayer.Play();
 
                                 //var dingPlayer = new System.Windows.Media.MediaPlayer();
                                 //dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/BallToBallHit.wav"));
