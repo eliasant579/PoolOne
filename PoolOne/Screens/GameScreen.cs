@@ -536,7 +536,7 @@ namespace PoolOne
             }
 
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Space)
             {
                 enterDown = true;
             }
@@ -573,7 +573,7 @@ namespace PoolOne
                 rightArrowDown = false;
             }
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Space)
             {
                 enterDown = false;
             }

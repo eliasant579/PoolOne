@@ -48,7 +48,7 @@ namespace PoolOne
             {
                 HighScore hs = GameScreen.thisScreen.highScoresList[i];
 
-                e.Graphics.DrawString((i + 1) + "     " + hs.name + "     " + hs.shots + "     " + hs.dateTime.ToString("dd-mm-yy"), impactFont, redBrush, 50, i*40 + 130);
+                e.Graphics.DrawString((i + 1) + "     " + hs.name + "     " + hs.shots + "     " + hs.dateTime.Day + "-" + hs.dateTime.Month + "-" + hs.dateTime.Year, impactFont, redBrush, 50, i*40 + 130);
             }
         }
     }
