@@ -19,9 +19,9 @@ namespace PoolOne
 
         const float FRICTION_COEFFICIENT = 0.01f;
         const float SLOW_FRICTION_COEFFICIENT = 0.025f;
-        const float BALL_SIZE = 30;
-        const float BALL_RADIUS = 15;
-        const float POCKET_RADIUS = 17.5f;
+        const float BALL_SIZE = 35;
+        const float BALL_RADIUS = 17.5f;
+        const float POCKET_RADIUS = 30f;
         const float COMPONENT_INCREASE = 0.5f;
         const int MAX_SPEED = 35;
 
@@ -378,8 +378,8 @@ namespace PoolOne
             SolidBrush blackBrush = new SolidBrush(Color.FromArgb(255, 20, 20, 20));
             SolidBrush greenBrush = new SolidBrush(Color.DarkGreen);
 
-            Pen arrowPen = new Pen(Color.FromArgb(255, 150, 70, 0), 6);
-            Pen shadowPen = new Pen(shadowBrush, 8);
+            Pen arrowPen = new Pen(Color.FromArgb(255, 150, 70, 0), BALL_RADIUS * 2 / 5);
+            Pen shadowPen = new Pen(shadowBrush, BALL_RADIUS * 2 / 5);
 
             //Draw playground
             e.Graphics.FillRectangle(greenBrush, TABLE_OFFSET, TABLE_OFFSET, this.Width - 2 * TABLE_OFFSET, this.Height - 2 * TABLE_OFFSET);
@@ -440,7 +440,7 @@ namespace PoolOne
                 PointF cueBallPosition = new PointF(ballsArray[0].position.x + BALL_RADIUS, ballsArray[0].position.y + BALL_RADIUS);
                 PointF arrowPosition = new PointF(ballsArray[0].position.add(velocityInputVector.multiply(6)).x + BALL_RADIUS, ballsArray[0].position.add(velocityInputVector.multiply(6)).y + BALL_RADIUS);
 
-                e.Graphics.DrawLine(shadowPen, cueBallPosition.X - 1, cueBallPosition.Y - 1, arrowPosition.X - 1, arrowPosition.Y - 1);
+                e.Graphics.DrawLine(shadowPen, cueBallPosition.X - BALL_RADIUS / 15, cueBallPosition.Y - BALL_RADIUS / 15, arrowPosition.X - BALL_RADIUS / 15, arrowPosition.Y - BALL_RADIUS / 15);
                 e.Graphics.DrawLine(arrowPen, cueBallPosition, arrowPosition);
             }
         }
