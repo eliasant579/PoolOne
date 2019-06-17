@@ -219,19 +219,19 @@ namespace PoolOne
                     velocityInputVector = tempVelocity;
                 }
 
-                if (enterDown && velocityInputVector.getLength() != 0)
-                {
-                    cueBallHitPlayer.Play();
-                    player1Shots++;
-                    ballsArray[0].velocity = velocityInputVector.multiply(-1);
-                    velocityInputVector = new Vector2d(0, 0);
-                    ballsStopped = false;
-                }
             }
+        }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
+        private void GameTimer_Tick(object sender, EventArgs e)
         {
-
+            if (enterDown && velocityInputVector.getLength() != 0)
+            {
+                cueBallHitPlayer.Play();
+                player1Shots++;
+                ballsArray[0].velocity = velocityInputVector.multiply(-1);
+                velocityInputVector = new Vector2d(0, 0);
+                ballsStopped = false;
+            }
             else
             {
                 //well. Guess what this one does
