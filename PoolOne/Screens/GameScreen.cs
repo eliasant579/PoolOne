@@ -222,15 +222,8 @@ namespace PoolOne
                     velocityInputVector = tempVelocity;
                 }
 
-                if (enterDown && velocityInputVector.getLength() != 0)
-                {
-                    cueBallHitPlayer.Play();
-                    player1Shots++;
-                    ballsArray[0].velocity = velocityInputVector.multiply(-1);
-                    velocityInputVector = new Vector2d(0, 0);
-                    ballsStopped = false;
-                }
             }
+        }
 
             else
             {
