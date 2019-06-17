@@ -10,7 +10,7 @@ namespace PoolOne
 {
     public partial class GameScreen : UserControl
     {
-        //SMALL LITTLE CHANGE because testing
+        //update xml file
 
         const int BALL_NUMBER = 16;
 
