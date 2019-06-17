@@ -185,7 +185,7 @@ namespace PoolOne
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //*Actual ball 
+            //Actual ball 
             if (ballsStopped)
             {
                 if (ballsArray[0].inPocket)
@@ -228,36 +228,9 @@ namespace PoolOne
                     ballsStopped = false;
                 }
             }
-            /*/
 
-            /*
-            //Testing
-            if (downArrowDown)
-            {
-                ballsArray[0].velocity.y = 8;
-            }
-            else if (upArrowDown)
-            {
-                ballsArray[0].velocity.y = -8;
-            }
-            else
-            {
-                ballsArray[0].velocity.y = 0;
-            }
-
-            if (leftArrowDown)
-            {
-                ballsArray[0].velocity.x = -8;
-            }
-            else if (rightArrowDown)
-            {
-                ballsArray[0].velocity.x = 8;
-            }
-            else
-            {
-                ballsArray[0].velocity.x = 0;
-            }
-            //*/
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
 
             else
             {
