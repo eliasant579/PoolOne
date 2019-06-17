@@ -30,7 +30,6 @@
         {
             this.backToMenuButton = new System.Windows.Forms.Button();
             this.fakeButton = new System.Windows.Forms.Button();
-            this.testLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // backToMenuButton
@@ -68,22 +67,11 @@
             this.fakeButton.TabIndex = 1;
             this.fakeButton.UseVisualStyleBackColor = false;
             // 
-            // testLabel
-            // 
-            this.testLabel.AutoSize = true;
-            this.testLabel.BackColor = System.Drawing.Color.LightGray;
-            this.testLabel.Location = new System.Drawing.Point(205, 28);
-            this.testLabel.Name = "testLabel";
-            this.testLabel.Size = new System.Drawing.Size(182, 17);
-            this.testLabel.TabIndex = 2;
-            this.testLabel.Text = "USELESS TESTING LABEL";
-            // 
             // HighScoresScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.Controls.Add(this.testLabel);
             this.Controls.Add(this.fakeButton);
             this.Controls.Add(this.backToMenuButton);
             this.DoubleBuffered = true;
@@ -91,8 +79,8 @@
             this.Name = "HighScoresScreen";
             this.Size = new System.Drawing.Size(668, 404);
             this.Load += new System.EventHandler(this.HighScoresScreen_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.HighScoresScreen_Paint);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -100,6 +88,5 @@
 
         private System.Windows.Forms.Button backToMenuButton;
         private System.Windows.Forms.Button fakeButton;
-        private System.Windows.Forms.Label testLabel;
     }
 }

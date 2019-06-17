@@ -315,7 +315,15 @@ namespace PoolOne
             {
                 gameTimer.Enabled = false;
                 InitializeValues();
-                LoadEnterScore();
+
+                foreach (HighScore hs in highScoresList)
+                {
+                    if (player1Shots <= hs.shots)
+                    {
+                        LoadEnterScore();
+                        break;
+                    }
+                }
             }
 
             if (escapeDown)
@@ -504,6 +512,7 @@ namespace PoolOne
         {
             thisScreen.gameTimer.Enabled = true;
             thisScreen.playerNumber = playersNumber;
+            thisScreen.InitializeValues();
             thisScreen.Focus();
         }
 

@@ -193,9 +193,11 @@ namespace PoolOne
         private void EnterScore_Leave(object sender, EventArgs e)
         {
             HighScore newHighScore = new HighScore(newName, newScore, newDateTime);
+
             GameScreen.thisScreen.highScoresList.Add(newHighScore);
 
             GameScreen.thisScreen.highScoresList.OrderBy(o => o.shots).ToList();
+
             GameScreen.thisScreen.highScoresList.Reverse();
 
             GameScreen.thisScreen.highScoresList.RemoveAt(3);
@@ -215,6 +217,7 @@ namespace PoolOne
                 // end the element 
                 writer.WriteEndElement();               
             }
+
             // end the root element 
             writer.WriteEndElement();
             //Write the XML to file and close the writer 
